@@ -140,7 +140,7 @@ En la arquitectura ARM se tienen banderas que almacenan información referida a 
 	
 Luego, es posible utilizar instrucciones condicionadas que se ejecutarán o no, dependiendo de estas banderas. Estas condiciones se colocan también como un sufijo en el nemónico. 
 
-Ejemplo de uso de sufijo ‘s’:
+Ejemplo de uso de sufijo ‘S’:
 
 	MOV R1, #0x7B000000 	(R1 = 2.063.597.568)
 	MOV R2, #0xF0000000	(R2 = 4.026.531.840)
