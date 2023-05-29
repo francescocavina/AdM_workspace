@@ -131,12 +131,12 @@ Los sufijos se utilizan junto a los nemónicos para modificar el comportamiento 
 ### 2. ¿Para qué se utiliza el sufijo ‘S’? Dé un ejemplo. 
 
 En la arquitectura ARM se tienen banderas que almacenan información referida a la última operación realizada por la ALU (siempre que se haya habilitado en la instrucción). Estas banderas generalmente son 4 y se encuentran en el Current Program Status Register (CPSR). Se pueden modificar cuando se utilizan instrucciones de procesamiento de datos, agregando el sufjo ‘S’ al nemónico. Las banderas son las siguientes:
-	- Bandera N (negativo): permite evaluar si un número es negativo, tomando el estado del bit 31 del resultado.
-	- Bandera V (desborde o overflow): permite determinar luego de una operación con signo, si el resultado sufrió desborde. Se verifica el acarreo del bit 30 y del bit 31 (ocurre desborde si no son iguales).
-	- Bandera Z (cero): indica si la totalidad de los bits en la última operación resultaron 0. 
-	- Bandera C (acarreo o carry): se activa cuando la suma es mayor o igual a 2^32, el resultado de una resta es positivo o por un corrimiento.
-	
-Existe otra bandera en la arquitectura ARM, llamada bandera Q de Saturación. Esta permite detectar saturación en variables de 32 bits con contenido de 16 bits. 	
+
++ **Bandera N (negativo):** permite evaluar si un número es negativo, tomando el estado del bit 31 del resultado.
++ **Bandera V (desborde o overflow):** permite determinar luego de una operación con signo, si el resultado sufrió desborde. Se verifica el acarreo del bit 30 y del bit 31 (ocurre desborde si no son iguales).
++ **Bandera Z (cero):** indica si la totalidad de los bits en la última operación resultaron 0. 
++ **Bandera C (acarreo o carry):** se activa cuando la suma es mayor o igual a 2^32, el resultado de una resta es positivo o por un corrimiento.
++ **Bandera Q (saturación):** se utiliza para indicar el desbordamiento en las operaciones de multiplicación y acumulación (multiply-accumulate) saturadas.		
 	
 Luego, es posible tomando estas bandera y utilizar instrucciones condicionadas, que se ejecutarán o no, dependiendo de estas banderas. Estas condiciones se colocan también como un sufijo en el nemónico. 
 
