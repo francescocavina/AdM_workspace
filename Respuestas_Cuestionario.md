@@ -7,7 +7,7 @@
 
 + **Cortex A (Applications):** son microprocesadores optimizados para correr muchas aplicaciones a la vez y no en tiempo real. Porque importe la cantidad de procesamiento y no en 			el tiempo en que responda. Además, es posible embeberle un sistema operativo de propósito general y podría ser utilizado, por ejemplo, en un smartphone. Otra característica de este perfil es que poseen memoria Caché (memoria rápida para ganar tiempo). Como estos microprocesadores a veces utilizan la memoria RAM y otras veces la Caché, no hay determinismo y es por eso que no pueden ser utilizador para tiempo real. 
 
-+ **Cortex R (Real Time):** son muy parecido al Cortex A, pero o poseen memoria Caché. Por lo tanto, es más lento para correr aplicaciones, pero existe un determinismo en el tiempo, que lo hace ideal para utilizarlo en aplicaciones de tiempo real.
++ **Cortex R (Real Time):** son muy parecidos a los Cortex A, pero no poseen memoria Caché. Por lo tanto, son más lentos para correr aplicaciones, pero existe un determinismo en el tiempo, que lo hace ideal para utilizarlos en aplicaciones de tiempo real.
 
 + **Cortex M (Microcontroller):** se utilizan en la mayoría de las aplicaciones. Posee una memoria SRAM, la cuál es muy rápida y que funciona a la velocidad del micro, y entonces la información está disponible casi instantáneamente. No se utilizan en sistemas embebidos de alta performance. 
 
@@ -16,14 +16,14 @@
 ## CORTEX M
 
 
-1. Describa brevemente las diferencias entre las familias de procesadores Cortex M0, M3 y M4.
+### 1. Describa brevemente las diferencias entre las familias de procesadores Cortex M0, M3 y M4.
 
 + **M0:** es la arquitectura más básica de Cortex-M, diseñada para aplicaciones que requieren un procesamiento pequeño y un bajo consumo de energía.
 + **M3:** es una arquitectura más potente que la anterior que ofrece más memoria y mayor procesamiento.
 + **M4:** incluye procesamiento digital de señales y soporte para punto flotante. 
 
 
-2. ¿Por qué se dice que el set de instrucciones Thumb permite mayor densidad de código? Explique. 
+### 2. ¿Por qué se dice que el set de instrucciones Thumb permite mayor densidad de código? Explique. 
 
 Las instrucciones Thumb se refieren a un conjunto de instrucciones de 16 bits diseñadas para mejorar la eficiencia de código y reducir el tamaño de los programas (consumo de memoria) en comparación con las instrucciones de 32 bits tradicionales. Es por esta reazón que se dice que permiten una mayor densidad de código.
 
