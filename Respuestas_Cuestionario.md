@@ -1,4 +1,6 @@
--+-+-+- PREGUNTAS ORIENTADORAS -+-+-+-
+# PREGUNTAS ORIENTADORAS
+
+## ARM GENERAL
 
 
 1. Describa brevemente los diferentes perfiles de familias de microprocesadores/microcontroladores de ARM. Explique alguna de sus diferencias características.
@@ -10,7 +12,7 @@ c) Cortex M (Microcontroller): se utilizan en la mayoría de las aplicaciones. P
 
 
 
--+-+-+- CORTEX M -+-+-+-
+## CORTEX M
 
 
 1. Describa brevemente las diferencias entre las familias de procesadores Cortex M0, M3 y M4.
@@ -112,7 +114,7 @@ Normalmente, en un sistema de alta fiabilidad, la tarea de aplicación se ejecut
 
 
 
--+-+-+- ISA -+-+-+-
+## ISA (Instruction Set Architecture)
 
 1. ¿Qué son los sufijos y para qué se los utiliza? Dé un ejemplo. 
 
