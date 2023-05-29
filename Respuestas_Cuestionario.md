@@ -138,7 +138,7 @@ En la arquitectura ARM se tienen banderas que almacenan información referida a 
 + **Bandera C (acarreo o carry):** se activa cuando la suma es mayor o igual a 2^32, el resultado de una resta es positivo o por un corrimiento.
 + **Bandera Q (saturación):** se utiliza para indicar el desbordamiento en las operaciones de multiplicación y acumulación (multiply-accumulate) saturadas.		
 	
-Luego, es posible tomando estas bandera y utilizar instrucciones condicionadas, que se ejecutarán o no, dependiendo de estas banderas. Estas condiciones se colocan también como un sufijo en el nemónico. 
+Luego, es posible utilizar instrucciones condicionadas que se ejecutarán o no, dependiendo de estas banderas. Estas condiciones se colocan también como un sufijo en el nemónico. 
 
 Ejemplo de uso de sufijo ‘s’:
 
