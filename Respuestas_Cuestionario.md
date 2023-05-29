@@ -3,7 +3,7 @@
 ## ARM GENERAL
 
 
-1. Describa brevemente los diferentes perfiles de familias de microprocesadores/microcontroladores de ARM. Explique alguna de sus diferencias características. Los diferentes perfiles de familias de uC/uP de ARM son:
+### 1. Describa brevemente los diferentes perfiles de familias de microprocesadores/microcontroladores de ARM. Explique alguna de sus diferencias características. Los diferentes perfiles de familias de uC/uP de ARM son:
 
 + **Cortex A (Applications):** son microprocesadores optimizados para correr muchas aplicaciones a la vez y no en tiempo real. Porque importe la cantidad de procesamiento y no en 			el tiempo en que responda. Además, es posible embeberle un sistema operativo de propósito general y podría ser utilizado, por ejemplo, en un smartphone. Otra característica de este perfil es que poseen memoria Caché (memoria rápida para ganar tiempo). Como estos microprocesadores a veces utilizan la memoria RAM y otras veces la Caché, no hay determinismo y es por eso que no pueden ser utilizador para tiempo real. 
 
@@ -33,7 +33,7 @@ Si se desea utilizar instrucciones ARM de 32 bits, se utiliza la directiva ".arm
 
 Además, en las instrucciones Thumb, las banderas se actualizan por defecto. 
 
-3. ¿Qué entiende por arquitectura load-store? ¿Qué tipo de instrucciones no posee este tipo de arquitectura?
+### 3. ¿Qué entiende por arquitectura load-store? ¿Qué tipo de instrucciones no posee este tipo de arquitectura?
 
 En ARM todas las operaciones se realizan entre registros (o entre registro e inmediato). Por lo tanto, en esta arquitectura se dividen las instrucciones en dos categorías principales: 		
 	- Instrucciones de acceso a memoria (carga y almacenamiento entre la memoria y los registros). 
@@ -45,16 +45,16 @@ Estas arquitecturas carecen entonces de instrucciones que permitan realizar oper
 	3) Guardar el dato del registro resultado en memoria.
 
 
-4. ¿Cómo es el mapa de memoria de la familia? ***
+### 4. ¿Cómo es el mapa de memoria de la familia? ***
 
 
-5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP? ***
+### 5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP? ***
 
 
-6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado. ***
+### 6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado. ***
 
 
-7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo.
+### 7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo.
 
 Se refiere a una característica del conjunto de instrucciones ARM en el que todos los registros generales se pueden utilizar de la misma manera en cualquier contexto o modo de ejecución. Esto significa que los registros se pueden utilizar para almacenar datos, direcciones de memoria, punteros, resultados intermedios, entre otros, en cualquier contexto sin restricciones especiales. Algunos ejemplos son:
 	
@@ -63,51 +63,51 @@ Se refiere a una característica del conjunto de instrucciones ARM en el que tod
 	PUSH {R5, R6, R7}
 	MOV PC, LR
 
-8. ¿Qué ventajas presenta el uso de intrucciones de ejecución condicional (IT)? Dé un ejemplo.
+### 8. ¿Qué ventajas presenta el uso de intrucciones de ejecución condicional (IT)? Dé un ejemplo.
 
 
-9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault).
+### 9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault).
 
 
-10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?
+### 10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?
 
 
-11. Describa la secuencia de reset del microprocesador. ***
+### 11. Describa la secuencia de reset del microprocesador. ***
 
 
-12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?
+### 12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?
 
 
-13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo. ***
+### 13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo. ***
 
 
-14. ¿Qué es el CMSIS? ¿Qué función cumple? ¿Quién lo provee? ¿Qué ventajas aporta? ***
+### 14. ¿Qué es el CMSIS? ¿Qué función cumple? ¿Quién lo provee? ¿Qué ventajas aporta? ***
 
 
-15. Cuando ocurre una interrupción, asumiendo que está habilitada ¿Cómo opera el microprocesador para atender a la subrutina correspondiente? Explique con un ejemplo.
+### 15. Cuando ocurre una interrupción, asumiendo que está habilitada ¿Cómo opera el microprocesador para atender a la subrutina correspondiente? Explique con un ejemplo.
 
 
-17. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
+### 17. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
 
 
-16. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
+### 16. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
 
 
-17. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
+### 17. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
 
 
-18. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?
+### 18. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?
 
 MPU (Memory Protecion Unit) es implementada en Cortex y se utiliza para proteger a la memoria desde una dirección hasta otra dirección determinadas. Poder acceder toda la memoria es solo posible si el modo de ejecución es privilegiado. Cuando una tarea en modo no privilegiado quiere acceder a un espacio de memoria protegido, se producirá una excepción que la deberá manejar el SO.
 
 
-19. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?
+### 19. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?
 
 
-20. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo.
+### 20. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo.
 
 
-21. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.
+### 21. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.
 
 SVC es un mecanismo de excepción proporcionado por el núcleo del procesador ARM Cortex-M. La ejecución de una instrucción SVC genera una llamada de supervisor, que se utiliza para llevar a cabo operaciones privilegiadas desde dentro de un núcleo de sistema operativo.  Esto permite al código de la aplicación acceder a los recursos del procesador y controlarlos.
 
@@ -117,7 +117,7 @@ Normalmente, en un sistema de alta fiabilidad, la tarea de aplicación se ejecut
 
 ## ISA (Instruction Set Architecture)
 
-1. ¿Qué son los sufijos y para qué se los utiliza? Dé un ejemplo. 
+### 1. ¿Qué son los sufijos y para qué se los utiliza? Dé un ejemplo. 
 
 Los sufijos se utilizan junto a los nemónicos para modificar el comportamiento de las instrucciones. En ARM existen los siguientes sufijos:
 	- De condición: se utilizan para especificar una condición bajo la cual se ejecutará la instrucción. Permite realizar ejecuciones condicionales basadas en el estado de las banderas (ver siguiente pregunta).
@@ -125,7 +125,7 @@ Los sufijos se utilizan junto a los nemónicos para modificar el comportamiento 
 	- De tamaño de carga/almacenamiento de datos: se utilizan junto a las instrucciones como LDR y STR para indicar el tamaño de los datos, por ejemplo: ‘B’ indica byte, ‘H’ indica media palabra (halfword) y ‘W’ indica palabra completa (word).  
 
 
-2. ¿Para qué se utiliza el sufijo ‘S’? Dé un ejemplo. 
+### 2. ¿Para qué se utiliza el sufijo ‘S’? Dé un ejemplo. 
 
 En la arquitectura ARM se tienen banderas que almacenan información referida a la última operación realizada por la ALU (siempre que se haya habilitado en la instrucción). Estas banderas generalmente son 4 y se encuentran en el Current Program Status Register (CPSR). Se pueden modificar cuando se utilizan instrucciones de procesamiento de datos, agregando el sufjo ‘S’ al nemónico. Las banderas son las siguientes:
 	- Bandera N (negativo): permite evaluar si un número es negativo, tomando el estado del bit 31 del resultado.
@@ -143,7 +143,7 @@ Ejemplo de uso de sufijo ‘s’.
 	ADDS R0, R1, R2		(R0 = 6.090.129.408)
 Con el resultado de la suma se actualizarán las banderas. El resultado será 0x16B000000, con lo que se activará la bandera de acarreo porque el número resultante excede los 32 bits. 		
 
-3. ¿Qué utilidad tiene la implementación de instrucciones de aritmética saturada? Dé un ejemplo con operaciones con datos de 8 bits.
+### 3. ¿Qué utilidad tiene la implementación de instrucciones de aritmética saturada? Dé un ejemplo con operaciones con datos de 8 bits.
 
 La utilidad de las instrucciones de aritmética saturada se da cuando se produce overflow o underflow (en ambos casos desborde creciente o descreciente respectivamente). Esto sirve para que en estas situaciones el número almacenado no continúe desde el extremo opuesto y se mantenga dentro de los límites establecidos. De esta forma el número quedaría solo saturado en máximo o mínimo y es muy útil, por ejemplo, en DSP (Digital Signal Processing). 
 
@@ -161,9 +161,9 @@ En el segundo caso, el resultado queda saturado en el máximo valor posible, ya 
 	- Números negativos: 128 - 256
 
 
-4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?
+### 4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?
 
 
-5. ¿Qué es una instrucción SIMD? ¿En qué se aplican y que ventajas reporta su uso? Dé un ejemplo.
+### 5. ¿Qué es una instrucción SIMD? ¿En qué se aplican y que ventajas reporta su uso? Dé un ejemplo.
 
 
