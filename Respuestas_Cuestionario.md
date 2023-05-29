@@ -154,6 +154,7 @@ La utilidad de las instrucciones de aritmética saturada se da cuando se produce
 
 Un ejemplo sería la suma de dos números enteros de 8 bits: A y B. Si se realiza la suma, el resultado podría desbordarse si el producto excede el rango permitido en números binarios de 8 bits. Al utilizar aritmética saturada, se ajusta el resultado para mantenerlo dentro del rango permitido.
 
+```
 A = 0011 0110 (binario) = +54 (decimal)
 
 B = 0101 0110 (binario) = +86 (decimal)
@@ -161,6 +162,7 @@ B = 0101 0110 (binario) = +86 (decimal)
 A + B (sin aritmética saturada) = 1000 1100 (binario) = -116 (decimal)
 
 A + B (con aritmética saturada) = 0111 1111 (binario) = +127 (decimal)
+```
 
 Se puede ver que en el primer caso, resultaría un número negativo de la suma de dos números positivos.
 En el segundo caso, el resultado queda saturado en el máximo valor posible, ya que en números de 8 bits con signo, se tiene que:
