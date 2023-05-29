@@ -7,9 +7,11 @@
 
 Los diferentes perfiles de familias de uC/uP de ARM son:
 
-A. Cortex A (Applications): son microprocesadores optimizados para correr muchas aplicaciones a la vez y no en tiempo real. Porque importe la cantidad de procesamiento y no en 			el tiempo en que responda. Además, es posible embeberle un sistema operativo de propósito general y podría ser utilizado, por ejemplo, en un smartphone. Otra característica de este perfil es que poseen memoria Caché (memoria rápida para ganar tiempo). Como estos microprocesadores a veces utilizan la memoria RAM y otras veces la Caché, no hay determinismo y es por eso que no pueden ser utilizador para tiempo real. 
-B. Cortex R (Real Time): son muy parecido al Cortex A, pero o poseen memoria Caché. Por lo tanto, es más lento para correr aplicaciones, pero existe un determinismo en el tiempo, que lo hace ideal para utilizarlo en aplicaciones de tiempo real.
-C. Cortex M (Microcontroller): se utilizan en la mayoría de las aplicaciones. Posee una memoria SRAM, la cuál es muy rápida y que funciona a la velocidad del micro, y entonces la información está disponible casi instantáneamente. No se utilizan en sistemas embebidos de alta performance. 
+a. Cortex A (Applications): son microprocesadores optimizados para correr muchas aplicaciones a la vez y no en tiempo real. Porque importe la cantidad de procesamiento y no en 			el tiempo en que responda. Además, es posible embeberle un sistema operativo de propósito general y podría ser utilizado, por ejemplo, en un smartphone. Otra característica de este perfil es que poseen memoria Caché (memoria rápida para ganar tiempo). Como estos microprocesadores a veces utilizan la memoria RAM y otras veces la Caché, no hay determinismo y es por eso que no pueden ser utilizador para tiempo real. 
+
+b. Cortex R (Real Time): son muy parecido al Cortex A, pero o poseen memoria Caché. Por lo tanto, es más lento para correr aplicaciones, pero existe un determinismo en el tiempo, que lo hace ideal para utilizarlo en aplicaciones de tiempo real.
+
+c. Cortex M (Microcontroller): se utilizan en la mayoría de las aplicaciones. Posee una memoria SRAM, la cuál es muy rápida y que funciona a la velocidad del micro, y entonces la información está disponible casi instantáneamente. No se utilizan en sistemas embebidos de alta performance. 
 
 
 
