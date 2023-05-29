@@ -122,9 +122,10 @@ Normalmente, en un sistema de alta fiabilidad, la tarea de aplicación se ejecut
 ### 1. ¿Qué son los sufijos y para qué se los utiliza? Dé un ejemplo. 
 
 Los sufijos se utilizan junto a los nemónicos para modificar el comportamiento de las instrucciones. En ARM existen los siguientes sufijos:
-	- De condición: se utilizan para especificar una condición bajo la cual se ejecutará la instrucción. Permite realizar ejecuciones condicionales basadas en el estado de las banderas (ver siguiente pregunta).
-	- De actualización de banderas: se utilizan par actualizar las banderas según el resultado de una operación de procesamiento de datos (ver siguiente pregunta).
-	- De tamaño de carga/almacenamiento de datos: se utilizan junto a las instrucciones como LDR y STR para indicar el tamaño de los datos, por ejemplo: ‘B’ indica byte, ‘H’ indica media palabra (halfword) y ‘W’ indica palabra completa (word).  
+
++ **De condición:** se utilizan para especificar una condición bajo la cual se ejecutará la instrucción. Permite realizar ejecuciones condicionales basadas en el estado de las banderas (ver siguiente pregunta).
++ **De actualización de banderas:** se utilizan par actualizar las banderas según el resultado de una operación de procesamiento de datos (ver siguiente pregunta).
++ **De tamaño de carga/almacenamiento de datos:** se utilizan junto a las instrucciones como LDR y STR para indicar el tamaño de los datos, por ejemplo: ‘B’ indica byte, ‘H’ indica media palabra (halfword) y ‘W’ indica palabra completa (word).  
 
 
 ### 2. ¿Para qué se utiliza el sufijo ‘S’? Dé un ejemplo. 
@@ -139,10 +140,12 @@ Existe otra bandera en la arquitectura ARM, llamada bandera Q de Saturación. Es
 	
 Luego, es posible tomando estas bandera y utilizar instrucciones condicionadas, que se ejecutarán o no, dependiendo de estas banderas. Estas condiciones se colocan también como un sufijo en el nemónico. 
 
-Ejemplo de uso de sufijo ‘s’.
+Ejemplo de uso de sufijo ‘s’:
+
 	MOV R1, #0x7B000000 	(R1 = 2.063.597.568)
 	MOV R2, #0xF0000000	(R2 = 4.026.531.840)
 	ADDS R0, R1, R2		(R0 = 6.090.129.408)
+	
 Con el resultado de la suma se actualizarán las banderas. El resultado será 0x16B000000, con lo que se activará la bandera de acarreo porque el número resultante excede los 32 bits. 		
 
 ### 3. ¿Qué utilidad tiene la implementación de instrucciones de aritmética saturada? Dé un ejemplo con operaciones con datos de 8 bits.
@@ -159,8 +162,9 @@ A + B (con aritmética saturada) = 0111 1111 (binario) = +127 (decimal)
 
 Se puede ver que en el primer caso, resultaría un número negativo de la suma de dos números positivos.
 En el segundo caso, el resultado queda saturado en el máximo valor posible, ya que en números de 8 bits con signo, se tiene que:
-	- Números positivos: 0 - 127
-	- Números negativos: 128 - 256
+
++ Números positivos: 0 - 127
++ Números negativos: 128 - 256
 
 
 ### 4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?
