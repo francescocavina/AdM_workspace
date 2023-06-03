@@ -1,0 +1,46 @@
+/*
+ * asm_func_tester.c
+ *
+ *  Created on: Jun 2, 2023
+ *      Author: francesco
+ */
+
+#include "asm_func_tester.h"
+
+void asm_sum_tester(void) {
+
+	uint32_t a = 5;
+	uint32_t b = 3;
+	uint32_t resultado;
+
+	resultado = asm_sum(a, b);
+}
+
+
+void asm_zeros_tester(void) {
+
+	uint32_t myVec[] = {1, 3, 5, 7, 9, 11};
+
+	asm_zeros(myVec, sizeof(myVec) / sizeof(myVec[0]));
+}
+
+
+void asm_productoEscalar32_tester(void) {
+
+	uint32_t myVecIn[] = {10, 8, 9, 7, 11};
+	uint32_t myVecSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
+	uint32_t myVecOut[myVecSize];
+	uint32_t scalar = 12;
+
+	asm_productoEscalar32(myVecIn, myVecOut, myVecSize, scalar);
+}
+
+
+void asm_productoEscalar16_tester(void) {
+
+}
+
+
+void asm_productoEscalar16Sat_tester(void) {
+
+}

@@ -5,6 +5,10 @@
 @ Simbolos exportados
 .global asm_svc
 .global asm_sum
+.global asm_zeros
+.global asm_productoEscalar32
+.global asm_productoEscalar16
+.global asm_productoEscalar16Sat
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -19,7 +23,7 @@
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
-@   uint32_t asmSum (uint32_t firstOperand, uint32_t secondOperand)
+@   uint32_t asm_sum (uint32_t firstOperand, uint32_t secondOperand);
 @
 @ Parametros recibidos:
 @   r0: firstOperand
@@ -42,4 +46,98 @@
         @ mov pc,lr
         @ bx lr
         @ push {lr} ... pop {pc}
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_zeros(uint32_t *vector, uint32_t longitud);
+@
+@ Parametros recibidos:
+@   R0: vector
+@   R1: longitud
+@
+@ Valor de retorno:
+@   R0: -
+@
+.thumb_func
+    asm_zeros:
+    	MOV R2, #0   				@ zero = 0
+    _for1:							@ bucle for
+    	SUBS R1, R1, #1				@ longitud -= 1
+        STR R2, [R0, R1, LSL #2]	@ *(vector + longitud * 4) = zero
+        BNE _for1					@ if longitud > 0 -> repetir bucle
+		BX LR						@ retornar a la función llamadora (caller)
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_productoEscalar32(uint32_t *vectorIn, uint32_t *vectorOut, uint32_t longitud, uint32_t escalar);
+@
+@ Parametros recibidos:
+@   R0: vectorIn
+@   R1: vectorOut
+@	R2: longitud
+@	R3: escalar
+@
+@ Valor de retorno:
+@   R0: -
+@
+.thumb_func
+    asm_productoEscalar32:
+    _for2:							@ bucle for
+    	SUBS R2, R2, #1				@ longitud -= 1
+    	LDR R4, [R0, R2, LSL #2]	@ var = *(vectorIn + longitud * 4)
+    	MUL R4, R4, R3				@ var = var * escalar
+        STR R4, [R1, R2, LSL #2]	@ *(vectorOut + longitud * 4) = var
+        BNE _for2					@ if longitud > 0 -> repetir bucle
+		BX LR						@ retornar a la función llamadora (caller)
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_productoEscalar16(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar);
+@
+@ Parametros recibidos:
+@   R0: vectorIn
+@   R1: vectorOut
+@	R2: longitud
+@	R3: escalar
+@
+@ Valor de retorno:
+@   R0: -
+@
+.thumb_func
+	asm_productoEscalar16:
+	_for3:							@ bucle for
+		SUBS R2, R2, #1				@ longitud -= 1
+		LDRH R4, [R0, R2, LSL #1]	@ var = *(vectorIn + longitud * 4)
+		MUL R4, R4, R3				@ var = var * escalar
+		STRH R4, [R1, R2, LSL #1]	@ *(vectorOut + longitud * 4) = var
+		BNE _for3					@ if longitud > 0 -> repetir bucle
+		BX LR						@ retornar a la función llamadora (caller)
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_productoEscalar16Sat(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar);
+@
+@ Parametros recibidos:
+@   R0: vectorIn
+@   R1: vectorOut
+@	R2: longitud
+@	R3: escalar
+@
+@ Valor de retorno:
+@   R0: -
+@
+.thumb_func
+    asm_productoEscalar16Sat:
+    _for4:							@ bucle for
+		SUBS R2, R2, #1				@ longitud -= 1
+		LDRH R4, [R0, R2, LSL #1]	@ var = *(vectorIn + longitud * 4)
+		MUL R4, R4, R3				@ var = var * escalar
+		USAT R4, #12, R4			@ saturación en el bit 12
+	    STRH R4, [R1, R2, LSL #1]	@ *(vectorOut + longitud * 4) = var
+	    BNE _for4					@ if longitud > 0 -> repetir bucle
+		BX LR						@ retornar a la función llamadora (caller)
 

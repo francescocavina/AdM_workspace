@@ -1,0 +1,5 @@
+../Core/Src/asm_func_tester.c:11:6:asm_sum_tester	24	static
+../Core/Src/asm_func_tester.c:21:6:asm_zeros_tester	40	static
+../Core/Src/asm_func_tester.c:29:6:asm_productoEscalar32_tester	80	dynamic
+../Core/Src/asm_func_tester.c:40:6:asm_productoEscalar16_tester	64	dynamic
+../Core/Src/asm_func_tester.c:51:6:asm_productoEscalar16Sat_tester	64	dynamic

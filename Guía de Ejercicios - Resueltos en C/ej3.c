@@ -5,12 +5,11 @@ void productoEscalar16(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitu
 
 int main(void) {
 
-	uint16_t myVecIn[SIZE] = {10, 8, 9, 7, 11};
-	uint16_t myVecOut[SIZE];
-	uint16_t scalar = 12;
-	uint16_t myVecSize = 0;
+	uint16_t myVecIn[SIZE] = {1, 3, 5, 7, 9, 11};
+	uint16_t myVecSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
+	uint16_t myVecOut[myVecSize];
+	uint16_t scalar = 4;
 
-	myVecSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
 	productoEscalar16(myVecIn, myVecOut, myVecSize, scalar);
 
 	return 0;
@@ -18,7 +17,7 @@ int main(void) {
 
 void productoEscalar16(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar) {
 
-	for(int i = 0; i < longitud; i ++) {
-		vectorOut[i] = vectorIn[i] * escalar;
+	for(; longitud > 0; i--) {
+		vectorOut[longitud-1] = vectorIn[longitud-1] * escalar;
 	}
 }

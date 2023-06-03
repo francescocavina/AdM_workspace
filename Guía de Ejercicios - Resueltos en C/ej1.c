@@ -5,19 +5,17 @@ void zeros(uint32_t *vector, uint32_t longitud);
 
 int main(void) {
 
-	uint32_t myVec[SIZE];
-	uint32_t myVecSize = 0;
+	uint32_t myVec[] = {1, 3, 5, 7, 9, 11};
 
-	myVecSize = sizeof(myVec) / sizeof(myVec[0]);
-	zeros(myVec, myVecSize);
+	zeros(myVec, sizeof(myVec) / sizeof(myVec[0]);
 
 	return 0;
 }
 
 void zeros(uint32_t *vector, uint32_t longitud) {
 
-	for(int i = 0; i < longitud; i ++) {
-		vector[i] = 0;
+	for(; longitud > 0; i--) {
+		vector[longitud-1] = 0;
 	}
 }
 

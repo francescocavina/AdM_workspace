@@ -5,12 +5,11 @@ void productoEscalar32(uint32_t *vectorIn, uint32_t *vectorOut, uint32_t longitu
 
 int main(void) {
 
-	uint32_t myVecIn[SIZE] = {10, 8, 9, 7, 11};
-	uint32_t myVecOut[SIZE];
-	uint32_t scalar = 12;
-	uint32_t myVecSize = 0;
+	uint32_t myVecIn[SIZE] = {1, 3, 5, 7, 9, 11};
+	uint32_t myVecSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
+	uint32_t myVecOut[myVecSize];
+	uint32_t scalar = 8;
 
-	myVecSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
 	productoEscalar32(myVecIn, myVecOut, myVecSize, scalar);
 
 	return 0;
@@ -18,7 +17,7 @@ int main(void) {
 
 void productoEscalar32(uint32_t *vectorIn, uint32_t *vectorOut, uint32_t longitud, uint32_t escalar) {
 
-	for(int i = 0; i < longitud; i ++) {
-		vectorOut[i] = vectorIn[i] * escalar;
+	for(; longitud > 0; i--) {
+		vectorOut[longitud-1] = vectorIn[longitud-1] * escalar;
 	}
 }

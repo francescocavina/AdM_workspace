@@ -1,10 +1,10 @@
-12:35:15 **** Incremental Build of configuration Debug for project adm_c16 ****
+01:07:04 **** Incremental Build of configuration Debug for project adm_c16 ****
 make -j20 all 
 arm-none-eabi-size   adm_c16.elf 
    text	   data	    bss	    dec	    hex	filename
-  12664	     20	   3492	  16176	   3f30	adm_c16.elf
+  12712	     20	   3492	  16224	   3f60	adm_c16.elf
 Finished building: default.size.stdout
  
 
-12:35:15 Build Finished. 0 errors, 0 warnings. (took 516ms)
+01:07:05 Build Finished. 0 errors, 0 warnings. (took 590ms)
 
