@@ -157,10 +157,10 @@ int main(void)
 
   //PrivilegiosSVC ();
   //asm_sum_tester();
-  asm_zeros_tester();					// EJERCICIO 1
-  //asm_productoEscalar32_tester();		// EJERCICIO 2
-  //asm_productoEscalar16_tester();		// EJERCICIO 3
-  //asm_productoEscalar16Sat_tester();	// EJERCICIO 4
+  asm_zeros_tester();
+  //asm_productoEscalar32_tester();
+  //asm_productoEscalar16_tester();
+  //asm_productoEscalar16Sat_tester();
 
   /* USER CODE END 2 */
 

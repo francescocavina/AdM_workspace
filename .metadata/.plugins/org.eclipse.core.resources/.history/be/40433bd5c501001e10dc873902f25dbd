@@ -48,7 +48,6 @@
         @ push {lr} ... pop {pc}
 
 
-/* EJERCICIO 1 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
 @   void asm_zeros(uint32_t *vector, uint32_t longitud);
@@ -70,7 +69,6 @@
 		BX LR						@ retornar a la función llamadora (caller)
 
 
-/* EJERCICIO 2 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
 @   void asm_productoEscalar32(uint32_t *vectorIn, uint32_t *vectorOut, uint32_t longitud, uint32_t escalar);
@@ -95,7 +93,6 @@
 		BX LR						@ retornar a la función llamadora (caller)
 
 
-/* EJERCICIO 3 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
 @   void asm_productoEscalar16(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar);
@@ -120,7 +117,6 @@
 		BX LR						@ retornar a la función llamadora (caller)
 
 
-/* EJERCICIO 4 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
 @   void asm_productoEscalar16Sat(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar);
