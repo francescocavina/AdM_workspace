@@ -25,7 +25,7 @@
 @ Prototipo en "C":
 @   uint32_t asm_sum (uint32_t firstOperand, uint32_t secondOperand);
 @
-@ Parámetros recibidos:
+@ Parametros recibidos:
 @   r0: firstOperand
 @   r1: secondOperand
 @
@@ -53,7 +53,7 @@
 @ Prototipo en "C":
 @   void asm_zeros(uint32_t *vector, uint32_t longitud);
 @
-@ Parámetros recibidos:
+@ Parametros recibidos:
 @   R0: vector
 @   R1: longitud
 @
@@ -75,7 +75,7 @@
 @ Prototipo en "C":
 @   void asm_productoEscalar32(uint32_t *vectorIn, uint32_t *vectorOut, uint32_t longitud, uint32_t escalar);
 @
-@ Parámetros recibidos:
+@ Parametros recibidos:
 @   R0: vectorIn
 @   R1: vectorOut
 @	R2: longitud
@@ -92,8 +92,8 @@
     	LDR R4, [R0, R2, LSL #2]			@ var = *(vectorIn + longitud * 4)
     	MUL R4, R4, R3						@ var = var * escalar
         STR R4, [R1, R2, LSL #2]			@ *(vectorOut + longitud * 4) = var
-        BNE asm_productoEscalar32_loop		@ if longitud > 0 -> repetir bucle
-        pop {R4}							@ se recupera el valor original de R4 desde el stack
+        BNE asm_productoEscalar32_loop:		@ if longitud > 0 -> repetir bucle
+        pop {R4}							@ se recupera el valor de R4 desde el stack
 		BX LR								@ retornar a la función llamadora (caller)
 
 
@@ -102,7 +102,7 @@
 @ Prototipo en "C":
 @   void asm_productoEscalar16(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar);
 @
-@ Parámetros recibidos:
+@ Parametros recibidos:
 @   R0: vectorIn
 @   R1: vectorOut
 @	R2: longitud
@@ -119,8 +119,8 @@
 		LDRH R4, [R0, R2, LSL #1]			@ var = *(vectorIn + longitud * 4)
 		MUL R4, R4, R3						@ var = var * escalar
 		STRH R4, [R1, R2, LSL #1]			@ *(vectorOut + longitud * 4) = var
-		BNE asm_productoEscalar16_loop		@ if longitud > 0 -> repetir bucle
-        pop {R4}							@ se recupera el valor original de R4 desde el stack
+		BNE asm_productoEscalar16_loop:		@ if longitud > 0 -> repetir bucle
+        pop {R4}							@ se recupera el valor de R4 desde el stack
 		BX LR								@ retornar a la función llamadora (caller)
 
 
@@ -129,7 +129,7 @@
 @ Prototipo en "C":
 @   void asm_productoEscalar16Sat(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar);
 @
-@ Parámetros recibidos:
+@ Parametros recibidos:
 @   R0: vectorIn
 @   R1: vectorOut
 @	R2: longitud
@@ -147,7 +147,7 @@
 		MUL R4, R4, R3						@ var = var * escalar
 		USAT R4, #12, R4					@ saturación en el bit 12
 	    STRH R4, [R1, R2, LSL #1]			@ *(vectorOut + longitud * 4) = var
-	    BNE asm_productoEscalar16Sat_loop	@ if longitud > 0 -> repetir bucle
-        pop {R4}							@ se recupera el valor original de R4 desde el stack
+	    BNE asm_productoEscalar16Sat_loop:	@ if longitud > 0 -> repetir bucle
+        pop {R4}							@ se recupera el valor de R4 desde el stack
 		BX LR								@ retornar a la función llamadora (caller)
 

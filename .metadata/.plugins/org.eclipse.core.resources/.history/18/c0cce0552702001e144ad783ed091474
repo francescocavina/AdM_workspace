@@ -93,7 +93,7 @@
     	MUL R4, R4, R3						@ var = var * escalar
         STR R4, [R1, R2, LSL #2]			@ *(vectorOut + longitud * 4) = var
         BNE asm_productoEscalar32_loop		@ if longitud > 0 -> repetir bucle
-        pop {R4}							@ se recupera el valor original de R4 desde el stack
+        pop {R4}							@ se recupera el valor de R4 desde el stack
 		BX LR								@ retornar a la función llamadora (caller)
 
 
@@ -120,7 +120,7 @@
 		MUL R4, R4, R3						@ var = var * escalar
 		STRH R4, [R1, R2, LSL #1]			@ *(vectorOut + longitud * 4) = var
 		BNE asm_productoEscalar16_loop		@ if longitud > 0 -> repetir bucle
-        pop {R4}							@ se recupera el valor original de R4 desde el stack
+        pop {R4}							@ se recupera el valor de R4 desde el stack
 		BX LR								@ retornar a la función llamadora (caller)
 
 
@@ -148,6 +148,6 @@
 		USAT R4, #12, R4					@ saturación en el bit 12
 	    STRH R4, [R1, R2, LSL #1]			@ *(vectorOut + longitud * 4) = var
 	    BNE asm_productoEscalar16Sat_loop	@ if longitud > 0 -> repetir bucle
-        pop {R4}							@ se recupera el valor original de R4 desde el stack
+        pop {R4}							@ se recupera el valor de R4 desde el stack
 		BX LR								@ retornar a la función llamadora (caller)
 
