@@ -1,11 +1,10 @@
 #include <stdint.h>
-#define SIZE 5
 
 void productoEscalar16(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar);
 
 int main(void) {
 
-	uint16_t myVecIn[SIZE] = {1, 3, 5, 7, 9, 11};
+	uint16_t myVecIn[] = {1, 3, 5, 7, 9, 11};
 	uint16_t myVecSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
 	uint16_t myVecOut[myVecSize];
 	uint16_t scalar = 4;

@@ -1,5 +1,4 @@
 #include <stdint.h>
-#define SIZE 5
 
 void zeros(uint32_t *vector, uint32_t longitud);
 
