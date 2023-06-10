@@ -61,27 +61,3 @@ void asm_productoEscalar16Sat_tester(void) {
 
 	asm_productoEscalar16Sat(myVecIn, myVecOut, myVecSize, scalar);
 }
-
-
-/* EJERCICIO 5 ---------------------------------------------------------------*/
-void asm_filtroVentana10_tester(void) {
-
-
-}
-
-
-/* EJERCICIO 6 ---------------------------------------------------------------*/
-void asm_pack32to16_tester(void) {
-
-}
-
-
-/* EJERCICIO 7 ---------------------------------------------------------------*/
-void asm_max_tester(void) {
-
-
-}
-
-
-
-

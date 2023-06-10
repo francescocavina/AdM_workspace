@@ -169,7 +169,7 @@
 /* EJERCICIO 6 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
-@   void asm_pack32to16 (int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud);
+@   void asm_filtroVentana10(uint16_t *vectorIn, float *vectorOut, uint16_t longitudVectorIn);
 @
 @ Parámetros recibidos:
 @   R0:
@@ -183,7 +183,7 @@
 /* EJERCICIO 7 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
-@   void asm_max (int32_t * vectorIn, uint32_t longitud);
+@   void asm_filtroVentana10(uint16_t *vectorIn, float *vectorOut, uint16_t longitudVectorIn);
 @
 @ Parámetros recibidos:
 @   R0:
@@ -192,5 +192,3 @@
 @   R0: -
 @
 .thumb_func
-
-
