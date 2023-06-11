@@ -161,9 +161,9 @@ int main(void)
   //asm_productoEscalar32_tester();		// EJERCICIO 2
   //asm_productoEscalar16_tester();		// EJERCICIO 3
   //asm_productoEscalar16Sat_tester();	// EJERCICIO 4
-  asm_filtroVentana10_tester(); 		// EJERCICIO 5
-  //asm_pack32to16_tester(); 			// EJERCICIO 6
-  //asm_max_tester(); 					// EJERCICIO 7
+  //asm_filtroVentana10_tester(); 		// EJERCICIO 5
+  ///asm_pack32to16_tester(); 			// EJERCICIO 6
+  asm_max_tester(); 					// EJERCICIO 7
   //asm_downsampleM_tester();			// EJERCICIO 8
   //asm_invertir_tester();				// EJERCICIO 9
   // // EJERCICIO 10

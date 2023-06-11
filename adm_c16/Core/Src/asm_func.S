@@ -10,6 +10,8 @@
 .global asm_productoEscalar16
 .global asm_productoEscalar16Sat
 .global asm_filtroVentana10
+.global asm_pack32to16
+.global asm_max
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -206,6 +208,7 @@
 @ END LOOP EXTERNO --------------------------------------------------------------------
 
 		POP {R4 - R9}						@ se recuperan registros desde STACK
+		BX LR								@ retornar a la función llamadora (caller)
 
 
 /* EJERCICIO 6 ---------------------------------------------------------------*/
@@ -214,29 +217,57 @@
 @   void asm_pack32to16(int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud);
 @
 @ Parámetros recibidos:
-@   R0:
+@   R0: vectorIn
+@	R1: vectorOut
+@	R2: longitud
 @
 @ Valor de retorno:
 @   R0: -
 @
+#define MAXSIZEBITS	16
+
 .thumb_func
 	asm_pack32to16:
+
+	asm_pack32to16_loop:					@ loop
+		SUBS R2, R2, #1						@ longitud--;
+		LDR R3, [R0, R2, LSL #2]			@ aux = *(vectorIn + longitud * 4)
+		ASR	R3, #MAXSIZEBITS				@ aux >> MAXSIZEBITS;
+		STRH R3, [R1, R2, LSL #1]			@ *(vectorOut + longitud * 2) = aux
+		BNE asm_pack32to16_loop				@ if(longitud > 0) -> repetir bucle
+
+		BX LR								@ retornar a la función llamadora (caller)
 
 
 /* EJERCICIO 7 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
-@   void asm_max(int32_t * vectorIn, uint32_t longitud);
+@   int32_t asm_max(int32_t * vectorIn, uint32_t longitud);
 @
 @ Parámetros recibidos:
-@   R0:
+@   R0: vectorIn
+@	R1: longitud
 @
 @ Valor de retorno:
 @   R0: -
 @
 .thumb_func
 	asm_max:
+		LDR R2, [R0]						@ max = vectorIn[0];
 
+	asm_max_loop: 							@ loop
+		SUBS R1, R1, #1						@ longitud--;
+		LDR R3, [R0, R1, LSL #2]			@ var = *(vectorIn + longitud * 4)
+		CMP R3, R2							@ var - longitud;
+		BLE asm_max_else					@ if(vectorIn[longitud] <= max) --> else
+		MOV R2, R3							@ max = vectorIn[longitud - 1];
+
+	asm_max_else:
+		CMP R1, #0							@ longitud - 0; Y se activan banderas
+		BNE asm_max_loop					@ if(longitud > 0) --> repetir bucle
+		MOV R0, R2							@ return max;
+
+		BX LR								@ retornar a la función llamadora (caller)
 
 /* EJERCICIO 8 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

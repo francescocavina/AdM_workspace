@@ -77,13 +77,21 @@ void asm_filtroVentana10_tester(void) {
 /* EJERCICIO 6 ---------------------------------------------------------------*/
 void asm_pack32to16_tester(void) {
 
+	int32_t myVecIn[] = {32500, 439000, 65500, 7010000, 115400, 4000450, 3990705493, 1200, 815440, 340444};
+	uint32_t myVecInSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
+	int16_t myVecOut[myVecInSize];
+
+	asm_pack32to16(myVecIn, myVecOut, myVecInSize);
 }
 
 
 /* EJERCICIO 7 ---------------------------------------------------------------*/
 void asm_max_tester(void) {
 
+	int32_t myVecIn[] = {32500, 439000, -65500, 7010000, -115400, 4000450, 90705493, -1200, 815440, 340444};
+	uint32_t myVecInSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
 
+	int32_t max = asm_max(myVecIn, myVecInSize);
 }
 
 
