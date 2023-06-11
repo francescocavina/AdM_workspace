@@ -155,12 +155,19 @@ int main(void)
   MX_USB_OTG_FS_PCD_Init();
   /* USER CODE BEGIN 2 */
 
-  //PrivilegiosSVC ();
+  PrivilegiosSVC();
   //asm_sum_tester();
-  asm_zeros_tester();					// EJERCICIO 1
+  //asm_zeros_tester();					// EJERCICIO 1
   //asm_productoEscalar32_tester();		// EJERCICIO 2
   //asm_productoEscalar16_tester();		// EJERCICIO 3
   //asm_productoEscalar16Sat_tester();	// EJERCICIO 4
+  asm_filtroVentana10_tester(); 		// EJERCICIO 5
+  //asm_pack32to16_tester(); 			// EJERCICIO 6
+  //asm_max_tester(); 					// EJERCICIO 7
+  //asm_downsampleM_tester();			// EJERCICIO 8
+  //asm_invertir_tester();				// EJERCICIO 9
+  // // EJERCICIO 10
+  //asm_corr_tester();					// EJERCICIO 11
 
   /* USER CODE END 2 */
 

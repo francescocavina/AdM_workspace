@@ -1,20 +1,10 @@
-12:57:26 **** Incremental Build of configuration Debug for project adm_c16 ****
+13:32:56 **** Incremental Build of configuration Debug for project adm_c16 ****
 make -j20 all 
-arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/asm_func.d" -MT"Core/Src/asm_func.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func.o" "../Core/Src/asm_func.S"
-arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: adm_c16.elf
- 
 arm-none-eabi-size   adm_c16.elf 
-arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
-arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
    text	   data	    bss	    dec	    hex	filename
-  12724	     20	   3492	  16236	   3f6c	adm_c16.elf
+  13012	     20	   3492	  16524	   408c	adm_c16.elf
 Finished building: default.size.stdout
  
-Finished building: adm_c16.bin
- 
-Finished building: adm_c16.list
- 
 
-12:57:26 Build Finished. 0 errors, 0 warnings. (took 233ms)
+13:32:57 Build Finished. 0 errors, 0 warnings. (took 531ms)
 

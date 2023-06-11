@@ -3,3 +3,9 @@
 ../Core/Src/asm_func_tester.c:31:6:asm_productoEscalar32_tester	80	dynamic
 ../Core/Src/asm_func_tester.c:43:6:asm_productoEscalar16_tester	64	dynamic
 ../Core/Src/asm_func_tester.c:55:6:asm_productoEscalar16Sat_tester	64	dynamic
+../Core/Src/asm_func_tester.c:67:6:asm_filtroVentana10_tester	72	dynamic
+../Core/Src/asm_func_tester.c:78:6:asm_pack32to16_tester	4	static
+../Core/Src/asm_func_tester.c:84:6:asm_max_tester	4	static
+../Core/Src/asm_func_tester.c:91:6:asm_downsampleM_tester	4	static
+../Core/Src/asm_func_tester.c:98:6:asm_invertir_tester	4	static
+../Core/Src/asm_func_tester.c:109:6:asm_corr_tester	4	static

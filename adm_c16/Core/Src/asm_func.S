@@ -9,6 +9,7 @@
 .global asm_productoEscalar32
 .global asm_productoEscalar16
 .global asm_productoEscalar16Sat
+.global asm_filtroVentana10
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -155,21 +156,62 @@
 /* EJERCICIO 5 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
-@   void asm_filtroVentana10(uint16_t *vectorIn, float *vectorOut, uint16_t longitudVectorIn);
+@   void asm_filtroVentana10(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitudVectorIn);
 @
 @ Parámetros recibidos:
-@   R0:
+@   R0: vectorIn
+@	R1: vectorOut
+@	R2: longitudVectorIn
 @
 @ Valor de retorno:
 @   R0: -
 @
+#define WINDOWSIZE 11
+
 .thumb_func
+	asm_filtroVentana10:
+		PUSH {R4 - R9}						@ se resguardan registros en STACK
+		SUB R2, R2, 1						@ longitudVectorIn--;
+		MOV R3, R2							@ i = longitudVectorIn;
+
+@ BEGIN LOOP EXTERNO --------------------------------------------------------------------
+	asm_filtroVentana10_loop1:				@ loop externo
+		MOV R4, 0							@ sum = 0;
+		MOV R9, #WINDOWSIZE					@ R9 = WINDOWSIZE
+		ADD R5, R3, R9, LSR #1				@ upperLimit = i + (WINDOWSIZE / 2);
+		SUB R6, R3, R9, LSR #1				@ lowerLimit = i - (WINDOWSIZE / 2);
+
+@ BEGIN LOOP INTERNO --------------------------------------------------------------------
+		MOV R7, R5							@ j = upperLimit;
+	asm_filtroVentana10_loop2:				@ loop interno
+		@ IF TRUE
+		CMP R7, #0							@ j - 0;
+		BLT asm_filtroVentana10_else		@ if(j < 0) --> else
+		CMP R7, R2							@ j - longitudVectorIn;
+		BGT asm_filtroVentana10_else		@ if(j > longitudVectorIn) --> else
+		LDRH R8, [R0, R7, LSL 1]			@ R8 = vectorIn[j];
+		ADD R4, R4, R8						@ sum += R8; sum += vectorIn[j];
+		@ ELSE
+	asm_filtroVentana10_else:
+		SUB R7, R7, #1						@ j--;
+		CMP R7, R6							@ j - lowerLimit;
+		BGE asm_filtroVentana10_loop2		@ if(j >= lowerLimit) --> loop2 again
+@ END LOOP INTERNO --------------------------------------------------------------------
+
+		SDIV R4, R4, R9						@ sum = sum / WINDOWSIZE;
+		STRH R4, [R1, R3, LSL 1]			@ vectorOut[i] = sum / WINDOWSIZE;
+
+		SUBS R3, R3, #1						@ i--; Y se activan banderas
+		BPL asm_filtroVentana10_loop1		@ se repite loop
+@ END LOOP EXTERNO --------------------------------------------------------------------
+
+		POP {R4 - R9}						@ se recuperan registros desde STACK
 
 
 /* EJERCICIO 6 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
-@   void asm_pack32to16 (int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud);
+@   void asm_pack32to16(int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud);
 @
 @ Parámetros recibidos:
 @   R0:
@@ -178,12 +220,58 @@
 @   R0: -
 @
 .thumb_func
+	asm_pack32to16:
 
 
 /* EJERCICIO 7 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
-@   void asm_max (int32_t * vectorIn, uint32_t longitud);
+@   void asm_max(int32_t * vectorIn, uint32_t longitud);
+@
+@ Parámetros recibidos:
+@   R0:
+@
+@ Valor de retorno:
+@   R0: -
+@
+.thumb_func
+	asm_max:
+
+
+/* EJERCICIO 8 ---------------------------------------------------------------*/
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_downsampleM(int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N);
+@
+@ Parámetros recibidos:
+@   R0:
+@
+@ Valor de retorno:
+@   R0: -
+@
+.thumb_func
+	asm_downsampleM:
+
+
+/* EJERCICIO 9 ---------------------------------------------------------------*/
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_invertir(uint16_t * vector, uint32_t longitud);
+@
+@ Parámetros recibidos:
+@   R0:
+@
+@ Valor de retorno:
+@   R0: -
+@
+.thumb_func
+	asm_invertir:
+
+
+/* EJERCICIO 10 ---------------------------------------------------------------*/
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void ABC();
 @
 @ Parámetros recibidos:
 @   R0:
@@ -194,3 +282,16 @@
 .thumb_func
 
 
+/* EJERCICIO 11 ---------------------------------------------------------------*/
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_corr(int16_t *vectorX, int16_t *vectorY, int16_t *vectorCorr, uint32_t longitud);
+
+@ Parámetros recibidos:
+@   R0:
+@
+@ Valor de retorno:
+@   R0: -
+@
+.thumb_func
+	asm_corr:
