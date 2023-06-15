@@ -12,6 +12,8 @@
 .global asm_filtroVentana10
 .global asm_pack32to16
 .global asm_max
+.global asm_downsampleM
+.global asm_invertir
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -275,13 +277,46 @@
 @   void asm_downsampleM(int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N);
 @
 @ Parámetros recibidos:
-@   R0:
+@   R0: vectorIn
+@	R1: vectorOut
+@	R2: longitud
+@	R3: N
 @
 @ Valor de retorno:
 @   R0: -
 @
 .thumb_func
 	asm_downsampleM:
+		PUSH {R4 - R6}						@ se resguardan registros en STACK
+		MOV R4, #0							@ index = 0;
+		MOV R5, #1							@ i = 1;
+
+	asm_downsampleM_loop1:					@ loop1
+		UDIV R6, R5, R3						@ resultado1 = i / N;
+		MUL R6, R6, R3						@ resultado2 = resultado1 * N;
+		SUBS R6, R5, R6						@ resto = i - resultado2; // Resto
+		BEQ asm_downsampleM_else			@ if(resto == 0) --> else
+
+		SUB R5, R5, #1						@ i--;
+		LDR R6, [R0, R5, LSL #2]			@ R6 = *(vectorIn + i)
+		ADD R5, #1							@ i++;
+		STR R6, [R1, R4, LSL #2]			@ *(vectorOut + index) = R6;
+		ADD R4, #1							@ index++;
+
+	asm_downsampleM_else:					@ else
+		ADD R5, #1							@ i++;
+		CMP R2, R5							@ longitud - i;
+		BHS asm_downsampleM_loop1			@ if(longitud >= i) --> repetir loop1
+
+	asm_downsampleM_loop2:					@ loop2
+		MOV R5, #0							@ R5 = 0;
+		STR R5, [R1, R4, LSL #2]			@ *(vectorOut + index) = R5;
+		ADD R4, #1							@ index++;
+		CMP R2, R4							@ longitud - index;
+		BHI asm_downsampleM_loop2			@ if(longitud > index) --> repetir loop2
+
+		POP {R4 - R6}						@ se recuperan registros desde STACK
+		BX LR								@ retornar a la función llamadora (caller)
 
 
 /* EJERCICIO 9 ---------------------------------------------------------------*/
@@ -290,13 +325,32 @@
 @   void asm_invertir(uint16_t * vector, uint32_t longitud);
 @
 @ Parámetros recibidos:
-@   R0:
+@   R0: vector
+@	R1: longitud
 @
 @ Valor de retorno:
 @   R0: -
 @
 .thumb_func
 	asm_invertir:
+		PUSH {R4 - R6}						@ se resguardan registros en STACK
+		MOV R2, #0							@ i = 0;
+		MOV R3, R1, LSR #1					@ R3 = longitud / 2;
+
+	asm_invertir_loop:						@ loop
+		LDRH R4, [R0, R2, LSL #1]			@ aux1 = *(vector + i)
+		SUB R5, R1, R2						@ R5 = longitud - i;
+		SUB R5, R5, #1						@ R5--;
+		LDRH R6, [R0, R5, LSL #1]			@ aux2 = *(vector + (longitud - i));
+		STRH R6, [R0, R2, LSL #1]			@ *(vector + i) = aux2;
+		STRH R4, [R0, R5, LSL #1]			@ *(vector + (longitud - i)) = aux1;
+
+		ADD R2, #1							@ i++;
+		CMP R3, R2							@ (longitud / 2) - i;
+		BHI asm_invertir_loop				@ if(longitud > i) --> repetir bucle
+
+		POP {R4 - R6}						@ se recuperan registros desde STACK
+		BX LR								@ retornar a la función llamadora (caller)
 
 
 /* EJERCICIO 10 ---------------------------------------------------------------*/

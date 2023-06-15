@@ -1,4 +1,4 @@
-16:28:51 **** Incremental Build of configuration Debug for project adm_c16 ****
+01:01:16 **** Incremental Build of configuration Debug for project adm_c16 ****
 make -j20 all 
 arm-none-eabi-gcc "../Core/Src/asm_func_tester.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/asm_func_tester.d" -MT"Core/Src/asm_func_tester.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func_tester.o"
 ../Core/Src/asm_func_tester.c: In function 'asm_sum_tester':
@@ -16,7 +16,7 @@ arm-none-eabi-size   adm_c16.elf
 arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
 arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
    text	   data	    bss	    dec	    hex	filename
-  13040	     20	   3492	  16552	   40a8	adm_c16.elf
+  13268	     20	   3492	  16780	   418c	adm_c16.elf
 Finished building: default.size.stdout
  
 Finished building: adm_c16.bin
@@ -24,5 +24,5 @@ Finished building: adm_c16.bin
 Finished building: adm_c16.list
  
 
-16:28:52 Build Finished. 0 errors, 2 warnings. (took 954ms)
+01:01:17 Build Finished. 0 errors, 2 warnings. (took 888ms)
 
