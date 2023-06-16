@@ -9,6 +9,7 @@
 #define INC_ASM_FUNC_TESTER_H_
 
 #include <stdint.h>
+#include <stdlib.h>
 #include "asm_func.h"
 
 

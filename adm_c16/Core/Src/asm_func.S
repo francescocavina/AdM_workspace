@@ -14,6 +14,7 @@
 .global asm_max
 .global asm_downsampleM
 .global asm_invertir
+.global asm_eco
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -353,18 +354,56 @@
 		BX LR								@ retornar a la función llamadora (caller)
 
 
-/* EJERCICIO 10 ---------------------------------------------------------------*/
+/* EJERCICIO 10.1 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
-@   void ABC();
+@   void asm_eco(int16_t *vectorIn, int16_t *vectorOut, uint16_t bufferSize, uint16_t samplingRate, uint16_t delay_ms);
 @
 @ Parámetros recibidos:
-@   R0:
+@   R0: vectorIn
+@	R1: vectorOut
+@	R2: bufferSize
+@	R3: samplingRate
+@	STACK: delay_ms
 @
 @ Valor de retorno:
 @   R0: -
 @
 .thumb_func
+	asm_eco:
+		PUSH {R4 - R9}					@ se resguardan registros en STACK
+		LDRH R4, [SP, #24]				@ se obtiene el quinto parámetro. Se toma 24 biytes arriba porque
+										@ se haN guardado R4 A R9 en el stack.
+		MUL R5, R3, R4					@ delay_samples = sampling * delay_ms;
+		MOV R6, #1000					@ R6  = 1000;
+		UDIV R5, R5, R6					@ delay_samples = delay_samples / 1000;
+
+	asm_eco_loop:						@ loop
+		SUB R2, R2, #1					@ bufferSize--;
+		CMP R2, R5						@ bufferSize - delay_samples;
+		BLO asm_eco_else				@ if(bufferSize < delay_samples) --> ir al else
+		MOV R6, R2						@ R6 = bufferSize;
+		SUB R6, R6, #1					@ R6 = 	bufferSize - 1;
+		MOV R7, R6						@ R7 = bufferSize - 1;
+		SUB R7, R7, R5					@ R7 = bufferSize - 1 - delay_samples;
+		LDRH R8, [R0, R6, LSL #1]		@ R8 = vectorIn[bufferSize - 1];
+		LDRH R9, [R0, R7, LSL #1]		@ R9 = vectorIn[bufferSize - 1 - delay_samples;
+		ADD R8, R8, R9, LSR #1			@ R8 = vectorIn[bufferSize - 1] + vectorIn[bufferSize - 1 - delay_samples] / 2;
+		STRH R8, [R1, R6, LSL #1]		@ vectorOut[bufferSize - 1] = R8;
+		B asm_eco_end_if				@ cuando termina el if, se va al final
+
+	asm_eco_else:
+		MOV R6, R2						@ R6 = bufferSize;
+		SUB R6, R6, #1					@ R6 = 	bufferSize - 1;
+		LDRH R7, [R0, R6, LSL #1]		@ R7 = vectorIn[bufferSize - 1];
+		STRH R7, [R1, R6, LSL #1]		@ vectorOut[bufferSize - 1] = R7;
+
+	asm_eco_end_if:
+		CMP R2, #0						@ bufferSize - 0;
+		BNE asm_eco_loop				@ if(bufferSize > 0) --> repetir bucle
+
+		POP {R4 - R9}					@ se recuperan registros desde STACK
+		BX LR							@ retornar a la función llamadora (caller)
 
 
 /* EJERCICIO 11 ---------------------------------------------------------------*/
@@ -380,3 +419,5 @@
 @
 .thumb_func
 	asm_corr:
+
+

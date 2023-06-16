@@ -165,8 +165,8 @@ int main(void)
   ///asm_pack32to16_tester(); 			// EJERCICIO 6
   //asm_max_tester(); 					// EJERCICIO 7
   //asm_downsampleM_tester();			// EJERCICIO 8
-  asm_invertir_tester();				// EJERCICIO 9
-  // // EJERCICIO 10
+  //asm_invertir_tester();				// EJERCICIO 9
+  asm_eco_tester();					// EJERCICIO 10.1
   //asm_corr_tester();					// EJERCICIO 11
 
   /* USER CODE END 2 */
