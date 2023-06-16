@@ -379,26 +379,26 @@
 		UDIV R5, R5, R6					@ delay_samples = delay_samples / 1000;
 
 	asm_eco_loop:						@ loop
-		SUB R2, R2, #1					@ bufferSize--;
 		CMP R2, R5						@ bufferSize - delay_samples;
-		BLO asm_eco_else				@ if(bufferSize < delay_samples) --> ir al else
+		BLS asm_eco_else				@ if(bufferSize < delay_samples) --> ir al else
 		MOV R6, R2						@ R6 = bufferSize;
 		SUB R6, R6, #1					@ R6 = 	bufferSize - 1;
 		MOV R7, R6						@ R7 = bufferSize - 1;
 		SUB R7, R7, R5					@ R7 = bufferSize - 1 - delay_samples;
-		LDRH R8, [R0, R6, LSL #1]		@ R8 = vectorIn[bufferSize - 1];
-		LDRH R9, [R0, R7, LSL #1]		@ R9 = vectorIn[bufferSize - 1 - delay_samples;
-		ADD R8, R8, R9, LSR #1			@ R8 = vectorIn[bufferSize - 1] + vectorIn[bufferSize - 1 - delay_samples] / 2;
+		LDRSH R8, [R0, R6, LSL #1]		@ R8 = vectorIn[bufferSize - 1];
+		LDRSH R9, [R0, R7, LSL #1]		@ R9 = vectorIn[bufferSize - 1 - delay_samples;
+		ADD R8, R8, R9, ASR #1			@ R8 = vectorIn[bufferSize - 1] + vectorIn[bufferSize - 1 - delay_samples] / 2;
 		STRH R8, [R1, R6, LSL #1]		@ vectorOut[bufferSize - 1] = R8;
 		B asm_eco_end_if				@ cuando termina el if, se va al final
 
 	asm_eco_else:
 		MOV R6, R2						@ R6 = bufferSize;
 		SUB R6, R6, #1					@ R6 = 	bufferSize - 1;
-		LDRH R7, [R0, R6, LSL #1]		@ R7 = vectorIn[bufferSize - 1];
+		LDRSH R7, [R0, R6, LSL #1]		@ R7 = vectorIn[bufferSize - 1];
 		STRH R7, [R1, R6, LSL #1]		@ vectorOut[bufferSize - 1] = R7;
 
 	asm_eco_end_if:
+		SUBS R2, R2, #1					@ bufferSize--;
 		CMP R2, #0						@ bufferSize - 0;
 		BNE asm_eco_loop				@ if(bufferSize > 0) --> repetir bucle
 

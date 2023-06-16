@@ -11,6 +11,7 @@
 #include <stdint.h>
 #include <stdlib.h>
 #include "asm_func.h"
+#include "main.h"
 
 
 void asm_sum_tester(void);
@@ -42,8 +43,8 @@ void asm_downsampleM_tester(void);
 /* EJERCICIO 9 ---------------------------------------------------------------*/
 void asm_invertir_tester(void);
 
-/* EJERCICIO 10 --------------------------------------------------------------*/
-
+/* EJERCICIO 10.1 ------------------------------------------------------------*/
+void asm_eco_tester(void);
 
 /* EJERCICIO 11 --------------------------------------------------------------*/
 void asm_corr_tester(void);

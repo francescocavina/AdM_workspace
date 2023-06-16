@@ -134,7 +134,11 @@ void asm_eco_tester(void) {
 		myVecIn[i] = rand() % 65536 - 32768;
 	}
 
+	DWT->CYCCNT = 0;
+
 	asm_eco(myVecIn, myVecOut, bufferSize, samplingRate, delay_ms);
+
+	const volatile uint32_t Ciclos = DWT->CYCCNT;
 }
 
 

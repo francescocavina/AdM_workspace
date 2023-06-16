@@ -136,6 +136,7 @@ int main(void)
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
+  DWT->CTRL |= 1 << DWT_CTRL_CYCCNTENA_Pos;
 
   /* USER CODE BEGIN Init */
 
@@ -166,7 +167,7 @@ int main(void)
   //asm_max_tester(); 					// EJERCICIO 7
   //asm_downsampleM_tester();			// EJERCICIO 8
   //asm_invertir_tester();				// EJERCICIO 9
-  asm_eco_tester();					// EJERCICIO 10.1
+  asm_eco_tester();						// EJERCICIO 10.1
   //asm_corr_tester();					// EJERCICIO 11
 
   /* USER CODE END 2 */
