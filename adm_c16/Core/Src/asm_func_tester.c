@@ -118,7 +118,7 @@ void asm_invertir_tester(void) {
 
 
 /* EJERCICIO 10.1 ------------------------------------------------------------*/
-void asm_eco_tester(void) {
+void asm_ecoV1_tester(void) {
 
 	const uint16_t bufferSize = 4096;
 	const uint16_t samplingRate = 44100;
@@ -136,11 +136,59 @@ void asm_eco_tester(void) {
 
 	DWT->CYCCNT = 0;
 
-	asm_eco(myVecIn, myVecOut, bufferSize, samplingRate, delay_ms);
+	asm_ecoV1(myVecIn, myVecOut, bufferSize, samplingRate, delay_ms);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 73.530 ciclos
 }
 
+
+/* EJERCICIO 10.2 ------------------------------------------------------------*/
+void asm_ecoV2_tester(void) {
+
+	const uint16_t bufferSize = 4096;
+	const uint16_t samplingRate = 44100;
+	const uint16_t delay_ms = 20;
+
+	int16_t myVecIn[bufferSize];
+	int16_t myVecOut[bufferSize];
+
+	srand(0);
+
+	for(uint16_t i = 0; i < bufferSize; i++) {
+
+		myVecIn[i] = rand() % 65536 - 32768;
+	}
+
+	DWT->CYCCNT = 0;
+
+	asm_ecoV2(myVecIn, myVecOut, bufferSize, samplingRate, delay_ms);
+
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 74978 ciclos
+}
+
+/* EJERCICIO 10.3 ------------------------------------------------------------*/
+void asm_ecoV3_tester(void) {
+
+	const uint16_t bufferSize = 4096;
+	const uint16_t samplingRate = 44100;
+	const uint16_t delay_ms = 20;
+
+	int16_t myVecIn[bufferSize];
+	int16_t myVecOut[bufferSize];
+
+	srand(0);
+
+	for(uint16_t i = 0; i < bufferSize; i++) {
+
+		myVecIn[i] = rand() % 65536 - 32768;
+	}
+
+	DWT->CYCCNT = 0;
+
+	asm_ecoV3(myVecIn, myVecOut, bufferSize, samplingRate, delay_ms);
+
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 37495 ciclos
+}
 
 
 /* EJERCICIO 11 --------------------------------------------------------------*/

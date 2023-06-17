@@ -8,5 +8,7 @@
 ../Core/Src/asm_func_tester.c:89:6:asm_max_tester	64	static
 ../Core/Src/asm_func_tester.c:99:6:asm_downsampleM_tester	152	dynamic
 ../Core/Src/asm_func_tester.c:111:6:asm_invertir_tester	40	static
-../Core/Src/asm_func_tester.c:121:6:asm_eco_tester	80	dynamic
-../Core/Src/asm_func_tester.c:145:6:asm_corr_tester	4	static
+../Core/Src/asm_func_tester.c:121:6:asm_ecoV1_tester	80	dynamic
+../Core/Src/asm_func_tester.c:146:6:asm_ecoV2_tester	80	dynamic
+../Core/Src/asm_func_tester.c:170:6:asm_ecoV3_tester	80	dynamic
+../Core/Src/asm_func_tester.c:195:6:asm_corr_tester	4	static

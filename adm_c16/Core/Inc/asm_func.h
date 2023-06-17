@@ -34,7 +34,13 @@ void asm_downsampleM(int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud,
 void asm_invertir(uint16_t * vector, uint32_t longitud);
 
 /* EJERCICIO 10.1 --------------------------------------------------------------*/
-void asm_eco(int16_t *vectorIn, int16_t *vectorOut, uint16_t bufferSize, uint16_t samplingRate, uint16_t delay_ms);
+void asm_ecoV1(int16_t *vectorIn, int16_t *vectorOut, uint16_t bufferSize, uint16_t samplingRate, uint16_t delay_ms);
+
+/* EJERCICIO 10.2 --------------------------------------------------------------*/
+void asm_ecoV2(int16_t *vectorIn, int16_t *vectorOut, uint16_t bufferSize, uint16_t samplingRate, uint16_t delay_ms);
+
+/* EJERCICIO 10.3 --------------------------------------------------------------*/
+void asm_ecoV3(int16_t *vectorIn, int16_t *vectorOut, uint16_t bufferSize, uint16_t samplingRate, uint16_t delay_ms);
 
 /* EJERCICIO 11 --------------------------------------------------------------*/
 void asm_corr(int16_t *vectorX, int16_t *vectorY, int16_t *vectorCorr, uint32_t longitud);

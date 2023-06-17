@@ -167,7 +167,9 @@ int main(void)
   //asm_max_tester(); 					// EJERCICIO 7
   //asm_downsampleM_tester();			// EJERCICIO 8
   //asm_invertir_tester();				// EJERCICIO 9
-  asm_eco_tester();						// EJERCICIO 10.1
+  //asm_ecoV1_tester();					// EJERCICIO 10.1
+  //asm_ecoV2_tester();					// EJERCICIO 10.2
+  asm_ecoV3_tester();					// EJERCICIO 10.3
   //asm_corr_tester();					// EJERCICIO 11
 
   /* USER CODE END 2 */

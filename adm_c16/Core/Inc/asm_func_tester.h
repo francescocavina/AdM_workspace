@@ -44,7 +44,13 @@ void asm_downsampleM_tester(void);
 void asm_invertir_tester(void);
 
 /* EJERCICIO 10.1 ------------------------------------------------------------*/
-void asm_eco_tester(void);
+void asm_ecoV1_tester(void);
+
+/* EJERCICIO 10.2 ------------------------------------------------------------*/
+void asm_ecoV2_tester(void);
+
+/* EJERCICIO 10.3 ------------------------------------------------------------*/
+void asm_ecoV3_tester(void);
 
 /* EJERCICIO 11 --------------------------------------------------------------*/
 void asm_corr_tester(void);

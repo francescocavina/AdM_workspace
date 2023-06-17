@@ -14,7 +14,9 @@
 .global asm_max
 .global asm_downsampleM
 .global asm_invertir
-.global asm_eco
+.global asm_ecoV1
+.global asm_ecoV2
+.global asm_ecoV3
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -357,7 +359,7 @@
 /* EJERCICIO 10.1 ---------------------------------------------------------------*/
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
-@   void asm_eco(int16_t *vectorIn, int16_t *vectorOut, uint16_t bufferSize, uint16_t samplingRate, uint16_t delay_ms);
+@   void asm_ecoV1(int16_t *vectorIn, int16_t *vectorOut, uint16_t bufferSize, uint16_t samplingRate, uint16_t delay_ms);
 @
 @ Parámetros recibidos:
 @   R0: vectorIn
@@ -370,37 +372,139 @@
 @   R0: -
 @
 .thumb_func
-	asm_eco:
+	asm_ecoV1:
 		PUSH {R4 - R9}					@ se resguardan registros en STACK
 		LDRH R4, [SP, #24]				@ se obtiene el quinto parámetro. Se toma 24 biytes arriba porque
-										@ se haN guardado R4 A R9 en el stack.
-		MUL R5, R3, R4					@ delay_samples = sampling * delay_ms;
+										@ se han guardado R4 A R9 en el stack.
+		MUL R5, R3, R4					@ delay_samples = samplingRate * delay_ms;
 		MOV R6, #1000					@ R6  = 1000;
 		UDIV R5, R5, R6					@ delay_samples = delay_samples / 1000;
 
-	asm_eco_loop:						@ loop
+	asm_ecoV1_loop:						@ loop
 		CMP R2, R5						@ bufferSize - delay_samples;
-		BLS asm_eco_else				@ if(bufferSize < delay_samples) --> ir al else
+		BLS asm_ecoV1_else				@ if(bufferSize < delay_samples) --> ir al else
 		MOV R6, R2						@ R6 = bufferSize;
-		SUB R6, R6, #1					@ R6 = 	bufferSize - 1;
+		SUB R6, R6, #1					@ R6 = bufferSize - 1;
 		MOV R7, R6						@ R7 = bufferSize - 1;
 		SUB R7, R7, R5					@ R7 = bufferSize - 1 - delay_samples;
 		LDRSH R8, [R0, R6, LSL #1]		@ R8 = vectorIn[bufferSize - 1];
 		LDRSH R9, [R0, R7, LSL #1]		@ R9 = vectorIn[bufferSize - 1 - delay_samples;
 		ADD R8, R8, R9, ASR #1			@ R8 = vectorIn[bufferSize - 1] + vectorIn[bufferSize - 1 - delay_samples] / 2;
 		STRH R8, [R1, R6, LSL #1]		@ vectorOut[bufferSize - 1] = R8;
-		B asm_eco_end_if				@ cuando termina el if, se va al final
+		B asm_ecoV1_end_if				@ cuando termina el if, se va al final
 
-	asm_eco_else:
+	asm_ecoV1_else:
 		MOV R6, R2						@ R6 = bufferSize;
-		SUB R6, R6, #1					@ R6 = 	bufferSize - 1;
+		SUB R6, R6, #1					@ R6 = bufferSize - 1;
 		LDRSH R7, [R0, R6, LSL #1]		@ R7 = vectorIn[bufferSize - 1];
 		STRH R7, [R1, R6, LSL #1]		@ vectorOut[bufferSize - 1] = R7;
 
-	asm_eco_end_if:
+	asm_ecoV1_end_if:
 		SUBS R2, R2, #1					@ bufferSize--;
 		CMP R2, #0						@ bufferSize - 0;
-		BNE asm_eco_loop				@ if(bufferSize > 0) --> repetir bucle
+		BNE asm_ecoV1_loop				@ if(bufferSize > 0) --> repetir bucle
+
+		POP {R4 - R9}					@ se recuperan registros desde STACK
+		BX LR							@ retornar a la función llamadora (caller)
+
+
+/* EJERCICIO 10.2 ---------------------------------------------------------------*/
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_ecoV2(int16_t *vectorIn, int16_t *vectorOut, uint16_t bufferSize, uint16_t samplingRate, uint16_t delay_ms);
+@
+@ Parámetros recibidos:
+@   R0: vectorIn
+@	R1: vectorOut
+@	R2: bufferSize
+@	R3: samplingRate
+@	STACK: delay_ms
+@
+@ Valor de retorno:
+@   R0: -
+@
+.thumb_func
+	asm_ecoV2:
+		PUSH {R4 - R8}					@ se resguardan registros en STACK
+		LDRH R4, [SP, #20]				@ se obtiene el quinto parámetro. Se toma 20 biytes arriba porque
+										@ se han guardado R4 A R8 en el stack.
+		MUL R5, R3, R4					@ delay_samples = samplingRate * delay_ms;
+		MOV R6, #1000					@ R6  = 1000;
+		UDIV R5, R5, R6					@ delay_samples = delay_samples / 1000;
+		MOV R6, #0						@ i = 0;
+
+	asm_ecoV2_loop:						@ loop
+		CMP R5, R6						@ delay_samples - i;
+		BLS asm_ecoV2_else				@ if(i >= delay_samples) --> ir al else
+		LDRSH R7, [R0, R6, LSL #1]		@ R7 = vectorIn[i];
+		STRH R7, [R1, R6, LSL #1]		@ vectorOut[i] = R7;
+		B asm_ecoV2_end_if				@ cuando termina el if, se va al final
+
+	asm_ecoV2_else:
+		SUB R7, R6, R5					@ aux = i - delay_samples;
+		LDRSH R7, [R0, R7, LSL #1]		@ aux = vectorIn[aux];
+		MOV R7, R7, LSR #1				@ aux /= 2;
+		LDRSH R8, [R0, R6, LSL #1]		@ R8 = vectorIn[i];
+		ADD R8, R8, R7					@ R8 = vectorIn[i] + aux;
+		STRH R8, [R1, R6, LSL #1]		@ vectorOut[i] = R8;
+
+	asm_ecoV2_end_if:
+		ADDS R6, R6, #1					@ i++;
+		CMP R2, R6						@ bufferSize - i;
+		BHI asm_ecoV2_loop				@ if(bufferSize > i) --> repetir bucle
+
+		POP {R4 - R8}					@ se recuperan registros desde STACK
+		BX LR							@ retornar a la función llamadora (caller)
+
+
+/* EJERCICIO 10.3 ---------------------------------------------------------------*/
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_ecoV3(int16_t *vectorIn, int16_t *vectorOut, uint16_t bufferSize, uint16_t samplingRate, uint16_t delay_ms);
+@
+@ Parámetros recibidos:
+@   R0: vectorIn
+@	R1: vectorOut
+@	R2: bufferSize
+@	R3: samplingRate
+@	STACK: delay_ms
+@
+@ Valor de retorno:
+@   R0: -
+@
+.thumb_func
+	asm_ecoV3:
+		PUSH {R4 - R9}					@ se resguardan registros en STACK
+		LDRH R4, [SP, #24]				@ se obtiene el quinto parámetro. Se toma 24 biytes arriba porque
+										@ se han guardado R4 A R9 en el stack.
+		MOV R2, R2, LSR #1				@ bufferSize = bufferSize / 2;
+		MOV R3, R3, LSR #1				@ samplingRate = samplingRate / 2;
+		MUL R5, R3, R4					@ delay_samples = samplingRate * delay_ms;
+		MOV R6, #1000					@ R6  = 1000;
+		UDIV R5, R5, R6					@ delay_samples = delay_samples / 1000;
+		MOV R6, #0						@ i = 0;
+		MOV R9, #0						@ aux2 = 0;
+
+	asm_ecoV3_loop:						@ loop
+		CMP R5, R6						@ delay_samples - i;
+		BLS asm_ecoV3_else				@ if(i >= delay_samples) --> ir al else
+		LDR R7, [R0, R6, LSL #2]		@ R7 = vectorIn[i];
+		STR R7, [R1, R6, LSL #2]		@ vectorOut[i] = R7;
+		B asm_ecoV3_end_if				@ cuando termina el if, se va al final
+
+	asm_ecoV3_else:
+		SUB R7, R6, R5					@ aux = i - delay_samples;
+		LDR R7, [R0, R7, LSL #2]		@ aux = vectorIn[aux];
+		SHADD16 R7, R7, R9				@ aux = (aux + 0) / 2;
+		LDR R8, [R0, R6, LSL #2]		@ R8 = vectorIn[i];
+		SADD16 R8, R8, R7				@ R8 = vectorIn[i] + aux;
+		STR R8, [R1, R6, LSL #2]		@ vectorOut[i] = R8;
+
+	asm_ecoV3_end_if:
+		ADDS R6, R6, #1					@ i++;
+		CMP R2, R6						@ bufferSize - i;
+		BHI asm_ecoV3_loop				@ if(bufferSize > i) --> repetir bucle
+
 
 		POP {R4 - R9}					@ se recuperan registros desde STACK
 		BX LR							@ retornar a la función llamadora (caller)
