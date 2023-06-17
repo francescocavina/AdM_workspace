@@ -1,0 +1,127 @@
+/*
+ * c_func_tester.c
+ *
+ *  Created on: Jun 17, 2023
+ *      Author: Francesco Cavina
+ */
+
+#include "c_func_tester.h"
+
+
+/* EJERCICIO 1 ---------------------------------------------------------------*/
+void c_zeros_tester(void) {
+
+	uint32_t myVec[] = {1, 3, 5, 7, 9, 11};
+
+	c_zeros(myVec, sizeof(myVec) / sizeof(myVec[0]));
+}
+
+
+/* EJERCICIO 2 ---------------------------------------------------------------*/
+void c_productoEscalar32_tester(void) {
+
+	uint32_t myVecIn[] = {1, 3, 5, 7, 9, 11};
+	uint32_t myVecSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
+	uint32_t myVecOut[myVecSize];
+	uint32_t scalar = 8;
+
+	c_productoEscalar32(myVecIn, myVecOut, myVecSize, scalar);
+}
+
+
+/* EJERCICIO 3 ---------------------------------------------------------------*/
+void c_productoEscalar16_tester(void) {
+
+	uint16_t myVecIn[] = {1, 3, 5, 7, 9, 11};
+	uint16_t myVecSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
+	uint16_t myVecOut[myVecSize];
+	uint16_t scalar = 4;
+
+	c_productoEscalar16(myVecIn, myVecOut, myVecSize, scalar);
+}
+
+
+/* EJERCICIO 4 ---------------------------------------------------------------*/
+void c_productoEscalar16Sat_tester(void) {
+
+	uint16_t myVecIn[] = {1, 3, 5, 7, 9, 11};
+	uint16_t myVecSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
+	uint16_t myVecOut[myVecSize];
+	uint16_t scalar = 4;
+
+	c_productoEscalarSat16(myVecIn, myVecOut, myVecSize, scalar);
+}
+
+
+/* EJERCICIO 5 ---------------------------------------------------------------*/
+void c_filtroVentana10_tester(void) {
+
+	uint16_t myVecIn[] = {1, 3, 5, 4, 6, 2, 8, 12, 7, 16};
+	uint16_t myVecInSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
+
+	uint16_t myVecOut[myVecInSize];
+
+	c_filtroVentana10(myVecIn, myVecOut, myVecInSize);
+}
+
+
+/* EJERCICIO 6 ---------------------------------------------------------------*/
+void c_pack32to16_tester(void) {
+
+	uint32_t myVecIn[] = {32500, 439000, 65500, 7010000, 115400, 4000450, 3990705493, 1200, 815440, 340444};
+	uint32_t myVecInSize = sizeof(myVecIn) / sizeof(myVecIn[0]);
+
+	uint16_t myVecOut[myVecInSize];
+
+	c_pack32to16(myVecIn, myVecOut, myVecInSize);
+}
+
+
+/* EJERCICIO 7 ---------------------------------------------------------------*/
+void c_max_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 8 ---------------------------------------------------------------*/
+void c_downsampleM_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 9 ---------------------------------------------------------------*/
+void c_invertir_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 10.1 ------------------------------------------------------------*/
+void c_ecoV1_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 10.2 ------------------------------------------------------------*/
+void c_ecoV2_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 10.3 ------------------------------------------------------------*/
+void c_ecoV3_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 11 --------------------------------------------------------------*/
+void c_corr_tester(void) {
+
+
+}
+

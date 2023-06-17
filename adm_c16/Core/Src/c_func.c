@@ -1,0 +1,180 @@
+/*
+ * c_func.c
+ *
+ *  Created on: Jun 17, 2023
+ *      Author: Francesco Cavina
+ */
+
+
+#include <c_func.h>
+
+
+#define MAX_BITS_SATURATION 	12		// EJERCICIO 4
+#define WINDOWSIZE 				11		// EJERCICIO 5
+#define MAXSIZE 				65536	// EJERCICIO 6
+#define MAXSIZEBITS 			16		// EJERCICIO 6
+
+
+
+/* EJERCICIO 1 ---------------------------------------------------------------*/
+void c_zeros(uint32_t *vector, uint32_t longitud) {
+
+	for(; longitud > 0; longitud--) {
+		vector[longitud-1] = 0;
+	}
+}
+
+
+/* EJERCICIO 2 ---------------------------------------------------------------*/
+void c_productoEscalar32(uint32_t *vectorIn, uint32_t *vectorOut, uint32_t longitud, uint32_t escalar) {
+
+	for(; longitud > 0; longitud--) {
+		vectorOut[longitud-1] = vectorIn[longitud-1] * escalar;
+	}
+}
+
+
+/* EJERCICIO 3 ---------------------------------------------------------------*/
+void c_productoEscalar16(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar) {
+
+	for(; longitud > 0; longitud--) {
+		vectorOut[longitud-1] = vectorIn[longitud-1] * escalar;
+	}
+}
+
+
+/* EJERCICIO 4 ---------------------------------------------------------------*/
+void c_productoEscalarSat16(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar) {
+
+	int result = 0;
+
+	for(; longitud > 0; longitud--) {
+
+		result = vectorIn[longitud-1] * escalar;
+
+		if(result >= 0 && result <= ((uint16_t) pow(2, MAX_BITS_SATURATION) - 1)) {
+			vectorOut[longitud-1] = result;
+		} else {
+			vectorOut[longitud-1] = ((uint16_t) pow(2, MAX_BITS_SATURATION - 1));
+		}
+	}
+}
+
+
+/* EJERCICIO 5 ---------------------------------------------------------------*/
+void c_filtroVentana10(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitudVectorIn) {
+
+	uint16_t sum;
+
+	longitudVectorIn--;
+
+	for(int16_t i = longitudVectorIn; i >= 0; i--) {
+
+		sum = 0;
+
+		int16_t upperLimit = i + (WINDOWSIZE / 2);
+		int16_t lowerLimit = i - (WINDOWSIZE / 2);
+
+		for(int16_t j = upperLimit; j >= lowerLimit; j--) {
+
+			if(j >= 0 && j <= longitudVectorIn) {
+
+				sum += vectorIn[j];
+			}
+		}
+
+		vectorOut[i] = sum / WINDOWSIZE;
+	}
+}
+
+
+/* EJERCICIO 6 ---------------------------------------------------------------*/
+void c_pack32to16(int32_t * vectorIn, int16_t *vectorOut, uint32_t longitud) {
+
+	uint32_t aux = 0;
+
+	for(; longitud > 0; longitud--) {
+
+		aux = vectorIn[longitud - 1];
+		aux = (aux >> 16) & 0xFFFF;
+		vectorOut[longitud - 1] = aux;
+	}
+}
+
+
+/* EJERCICIO 7 ---------------------------------------------------------------*/
+int32_t c_max(int32_t * vectorIn, uint32_t longitud) {
+
+	int32_t max = vectorIn[0];
+
+	for(; longitud > 0; longitud--) {
+
+		if(vectorIn[longitud - 1] > max) {
+
+			max = vectorIn[longitud - 1];
+		}
+	}
+
+	return max;
+}
+
+
+/* EJERCICIO 8 ---------------------------------------------------------------*/
+void c_downsampleM(int32_t * vectorIn, int32_t * vectorOut, uint32_t longitud, uint32_t N) {
+
+	uint32_t index = 0;
+
+	/* Downsampling */
+	for(uint32_t i = 1; i <= longitud; i++) {
+
+		if(i % N != 0) {
+
+			vectorOut[index] = vectorIn[i-1];
+			index++;
+		}
+	}
+
+	/* The remaining elements are initialized to 0 */
+	for(; index < longitud; index++) {
+
+		vectorOut[index] = 0;
+	}
+}
+
+/* EJERCICIO 9 ---------------------------------------------------------------*/
+void c_invertir(uint16_t *vector, uint32_t longitud) {
+
+	uint16_t aux;
+
+	for(uint32_t i = 0; i < longitud / 2; i++) {
+
+		aux = vector[i];
+		vector[i] = vector[longitud-1-i];
+		vector[longitud-1-i] = aux;
+	}
+}
+
+/* EJERCICIO 10 --------------------------------------------------------------*/
+void c_eco(int16_t *vectorIn, int16_t *vectorOut, uint16_t bufferSize, uint16_t samplingRate, uint16_t delay_ms) {
+
+	uint16_t delay_samples = samplingRate * delay_ms / 1000;
+	int16_t aux;
+
+	for(uint16_t i = 0; i < bufferSize; i++) {
+
+		if(i < delay_samples) {
+
+			vectorOut[i] = vectorIn[i];
+		} else {
+			aux = i - delay_samples;
+			aux = vectorIn[aux];
+			aux /= 2;
+
+			vectorOut[i] = vectorIn[i] + aux;
+		}
+	}
+}
+
+
+/* EJERCICIO 11 --------------------------------------------------------------*/
+

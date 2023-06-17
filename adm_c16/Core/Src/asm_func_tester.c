@@ -138,7 +138,7 @@ void asm_ecoV1_tester(void) {
 
 	asm_ecoV1(myVecIn, myVecOut, bufferSize, samplingRate, delay_ms);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 73.530 ciclos
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 73.530 ciclos en modo Debug
 }
 
 
@@ -163,7 +163,7 @@ void asm_ecoV2_tester(void) {
 
 	asm_ecoV2(myVecIn, myVecOut, bufferSize, samplingRate, delay_ms);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 74978 ciclos
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 74978 ciclos en modo Degug
 }
 
 /* EJERCICIO 10.3 ------------------------------------------------------------*/
@@ -187,7 +187,7 @@ void asm_ecoV3_tester(void) {
 
 	asm_ecoV3(myVecIn, myVecOut, bufferSize, samplingRate, delay_ms);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 37495 ciclos
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 37497 ciclos en modo Debug
 }
 
 

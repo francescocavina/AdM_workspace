@@ -13,7 +13,7 @@ int main(void) {
 
 void zeros(uint32_t *vector, uint32_t longitud) {
 
-	for(; longitud > 0; i--) {
+	for(; longitud > 0; longitud--) {
 		vector[longitud-1] = 0;
 	}
 }

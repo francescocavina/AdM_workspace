@@ -1,0 +1,58 @@
+/*
+ * c_func_tester.h
+ *
+ *  Created on: Jun 17, 2023
+ *      Author: Francesco Cavina
+ */
+
+#ifndef INC_C_FUNC_TESTER_H_
+#define INC_C_FUNC_TESTER_H_
+
+
+#include <stdint.h>
+#include <stdlib.h>
+#include "asm_func.h"
+#include "main.h"
+
+
+/* EJERCICIO 1 ---------------------------------------------------------------*/
+void c_zeros_tester(void);
+
+/* EJERCICIO 2 ---------------------------------------------------------------*/
+void c_productoEscalar32_tester(void);
+
+/* EJERCICIO 3 ---------------------------------------------------------------*/
+void c_productoEscalar16_tester(void);
+
+/* EJERCICIO 4 ---------------------------------------------------------------*/
+void c_productoEscalar16Sat_tester(void);
+
+/* EJERCICIO 5 ---------------------------------------------------------------*/
+void c_filtroVentana10_tester(void);
+
+/* EJERCICIO 6 ---------------------------------------------------------------*/
+void c_pack32to16_tester(void);
+
+/* EJERCICIO 7 ---------------------------------------------------------------*/
+void c_max_tester(void);
+
+/* EJERCICIO 8 ---------------------------------------------------------------*/
+void c_downsampleM_tester(void);
+
+/* EJERCICIO 9 ---------------------------------------------------------------*/
+void c_invertir_tester(void);
+
+/* EJERCICIO 10.1 ------------------------------------------------------------*/
+void c_ecoV1_tester(void);
+
+/* EJERCICIO 10.2 ------------------------------------------------------------*/
+void c_ecoV2_tester(void);
+
+/* EJERCICIO 10.3 ------------------------------------------------------------*/
+void c_ecoV3_tester(void);
+
+/* EJERCICIO 11 --------------------------------------------------------------*/
+void c_corr_tester(void);
+
+
+#endif /* INC_C_FUNC_TESTER_H_ */

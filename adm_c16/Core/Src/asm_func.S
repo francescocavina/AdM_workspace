@@ -505,7 +505,6 @@
 		CMP R2, R6						@ bufferSize - i;
 		BHI asm_ecoV3_loop				@ if(bufferSize > i) --> repetir bucle
 
-
 		POP {R4 - R9}					@ se recuperan registros desde STACK
 		BX LR							@ retornar a la función llamadora (caller)
 

@@ -1,0 +1,52 @@
+/*
+ * c_func.h
+ *
+ *  Created on: Jun 17, 2023
+ *      Author: Francesco Cavina
+ */
+
+#ifndef INC_C_FUNC_H_
+#define INC_C_FUNC_H_
+
+
+/* EJERCICIO 1 ---------------------------------------------------------------*/
+void c_zeros(uint32_t *vector, uint32_t longitud);
+
+/* EJERCICIO 2 ---------------------------------------------------------------*/
+void c_productoEscalar32_tester(void);
+
+/* EJERCICIO 3 ---------------------------------------------------------------*/
+void c_productoEscalar16_tester(void);
+
+/* EJERCICIO 4 ---------------------------------------------------------------*/
+void c_productoEscalar16Sat_tester(void);
+
+/* EJERCICIO 5 ---------------------------------------------------------------*/
+void c_filtroVentana10_tester(void);
+
+/* EJERCICIO 6 ---------------------------------------------------------------*/
+void c_pack32to16_tester(void);
+
+/* EJERCICIO 7 ---------------------------------------------------------------*/
+void c_max_tester(void);
+
+/* EJERCICIO 8 ---------------------------------------------------------------*/
+void c_downsampleM_tester(void);
+
+/* EJERCICIO 9 ---------------------------------------------------------------*/
+void c_invertir_tester(void);
+
+/* EJERCICIO 10.1 ------------------------------------------------------------*/
+void c_ecoV1_tester(void);
+
+/* EJERCICIO 10.2 ------------------------------------------------------------*/
+void c_ecoV2_tester(void);
+
+/* EJERCICIO 10.3 ------------------------------------------------------------*/
+void c_ecoV3_tester(void);
+
+/* EJERCICIO 11 --------------------------------------------------------------*/
+void c_corr_tester(void);
+
+
+#endif /* INC_C_FUNC_H_ */

@@ -16,11 +16,11 @@ int main(void) {
 	return 0;
 }
 
-void productoEscalar16(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar) {
+void productoEscalarSat16(uint16_t *vectorIn, uint16_t *vectorOut, uint16_t longitud, uint16_t escalar) {
 
 	int result = 0;
 	
-	for(; longitud > 0; i--) {
+	for(; longitud > 0; longitud--) {
 	
 		result = vectorIn[longitud-1] * escalar;
 		

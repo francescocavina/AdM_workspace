@@ -1,0 +1,102 @@
+/*
+ * c_func_tester.c
+ *
+ *  Created on: Jun 17, 2023
+ *      Author: Francesco Cavina
+ */
+
+#include "c_func_tester.h"
+
+
+/* EJERCICIO 1 ---------------------------------------------------------------*/
+void c_zeros_tester(void) {
+
+	uint32_t myVec[] = {1, 3, 5, 7, 9, 11};
+
+	zeros(myVec, sizeof(myVec) / sizeof(myVec[0]);
+}
+
+
+/* EJERCICIO 2 ---------------------------------------------------------------*/
+void c_productoEscalar32_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 3 ---------------------------------------------------------------*/
+void c_productoEscalar16_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 4 ---------------------------------------------------------------*/
+void c_productoEscalar16Sat_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 5 ---------------------------------------------------------------*/
+void c_filtroVentana10_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 6 ---------------------------------------------------------------*/
+void c_pack32to16_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 7 ---------------------------------------------------------------*/
+void c_max_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 8 ---------------------------------------------------------------*/
+void c_downsampleM_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 9 ---------------------------------------------------------------*/
+void c_invertir_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 10.1 ------------------------------------------------------------*/
+void c_ecoV1_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 10.2 ------------------------------------------------------------*/
+void c_ecoV2_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 10.3 ------------------------------------------------------------*/
+void c_ecoV3_tester(void) {
+
+
+}
+
+
+/* EJERCICIO 11 --------------------------------------------------------------*/
+void c_corr_tester(void) {
+
+
+}
+

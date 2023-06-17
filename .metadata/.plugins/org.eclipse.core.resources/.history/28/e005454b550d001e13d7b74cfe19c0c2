@@ -1,0 +1,18 @@
+/*
+ * c_func.c
+ *
+ *  Created on: Jun 17, 2023
+ *      Author: Francesco Cavina
+ */
+
+
+#include <c_func.h>
+
+
+/* EJERCICIO 1 ---------------------------------------------------------------*/
+void c_zeros(uint32_t *vector, uint32_t longitud) {
+
+	for(; longitud > 0; i--) {
+		vector[longitud-1] = 0;
+	}
+}

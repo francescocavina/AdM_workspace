@@ -1,0 +1,11 @@
+../Core/Src/c_func_tester.c:17:6:c_zeros_tester	40	static
+../Core/Src/c_func_tester.c:26:6:c_productoEscalar32_tester	80	dynamic
+../Core/Src/c_func_tester.c:38:6:c_productoEscalar16_tester	64	dynamic
+../Core/Src/c_func_tester.c:50:6:c_productoEscalar16Sat_tester	64	dynamic
+../Core/Src/c_func_tester.c:62:6:c_filtroVentana10_tester	72	dynamic
+../Core/Src/c_func_tester.c:74:6:c_pack32to16_tester	96	dynamic
+../Core/Src/c_func_tester.c:86:6:c_max_tester	64	static
+../Core/Src/c_func_tester.c:96:6:c_downsampleM_tester	152	dynamic
+../Core/Src/c_func_tester.c:108:6:c_invertir_tester	40	static
+../Core/Src/c_func_tester.c:118:6:c_eco_tester	16408	static
+../Core/Src/c_func_tester.c:136:6:c_corr_tester	4	static
