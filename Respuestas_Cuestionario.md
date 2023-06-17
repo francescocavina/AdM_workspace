@@ -63,7 +63,7 @@ Los procesadores Cortex utilizan una memoria que se dirección por 32 bits, lo q
 
 ### 5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP? 
 
-MSP es el Stack Pointer general del programa y el PSP es el Stack Pointer que utiliza la tarea. Ambos son registros.
+MSP es el Stack Pointer general del programa y el PSP es el Stack Pointer que utilizan las tarea. Ambos son registros.
 
 Recordar que el SP es un registro que guarda la dirección de memoria del stack. Apenas inicia tendrá la dirección inicial del Stack.
 
@@ -98,11 +98,15 @@ El Stack es memoria dinámica que se utiliza para guardar el estado arquitectón
 
 Por defecto, los parámetros a funciones se pasan desde el registro R0 al R3 (R0, R1, R2 y R3). En el caso de querer pasar un quinto parámetro, esto se debe hacer a través del Stack. Por otra parte, los valores de retorno de la función se hacen con el registro R0. Todo esto es una convención y se lo conoce como "Procedure Call Standard" y es específico de la arquitectura ARM.
 
-El stack es una estructura de datos LIFO (Last In First Out) o pila, en español. Los datos se guardan aquí de a 32 bits, pero es direccionable de a byte (8 bits). 
+El Stack es una estructura de datos LIFO (Last In First Out) o pila, en español. Como en una pila, el nuevo dato se apila sobre el anterior y cuando se extrae un dato es el último que se agregó. Los datos se guardan aquí de a 32 bits, pero es direccionable de a byte (8 bits). 
 
-Una función recursiva mal diseñada puede aumentar rápidamente el Stack y no liberar el espacio nunca. Si se está en el modo privilegiado y se desborda el Stack (conocido como stack overflow), se va a empezar a pisar los datos contenidos en la otra memoria dinámica Heap. El Stack estaría utilizando espacio más allá de lo que le corresponde, y podría entonces corromper los datos contenidos allí. Al revez podría suceder también que el Heap pise datos del Stack y las funciones devuelvan valores erróneos. 
+En ARM se utiliza el registro R13 o SP (Stack Pointer) para el manejo del STACK, este registro contendrá la dirección del último dato guardado. Además por cada dato agregado, el Stack se expandirá a posiciones de memoria mas bajas. El espacio ocupado por una función dentro del Stack se denomina "Stack Frame". Y cada función puede acceder a su Stack Frame y no al de otras funciones. 
+
+Una función recursiva mal diseñada puede aumentar rápidamente el Stack y no liberar el espacio nunca. Si se está en el modo privilegiado y se desborda el Stack (conocido como stack overflow), se va a empezar a pisar los datos contenidos en la otra memoria dinámica Heap. El Stack estaría utilizando espacio más allá de lo que le corresponde, y podría entonces corromper los datos contenidos allí. Al revez podría suceder también que el Heap pise datos del Stack (conocido como memory leak) y las funciones devuelvan valores erróneos. 
 
 Es muy importante calcular el tamaño que se necesita para el Stack. Esto es así cuando se utilizan Sistemas Operativos de Tiempo Real y muchos fallos pueden darse por este problema. Es necesario tenerlo en cuenta, primero para que no suceda y si sucede, que la falla sea en modo seguro. Recordar que los sistemas críticos son aquellos de los cuáles dependen vidas humanas. 
+
+Aunque se recomienda no utilizar memoria dinámica en sistemas embebidos, en las arquitecturas más nuevas ocurren una excpeción cuando se llega al límite del Stack. 
 
 
 ### 11. Describa la secuencia de reset del microprocesador. 
@@ -128,6 +132,8 @@ En un sistema embebido, la posición 0 tiene el SP inicial que a su vez es el va
 
 
 ### 16. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
+
+
 
 
 ### 17. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
@@ -218,9 +224,59 @@ Esta funcionalidad se podría realizar por software, pero es aconsejable utiliza
 
 ### 4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?
 
+Es posible escribir código Assembly junto al código en C y esto se conoce como "Assembly inline". Sin embargo, en general se utilizan archivos separados para escribir código en Assembly. Estos archivos pueen ser con extensión ".s" ó ".S". La diferencia está en que el segundo, el ensamblador pasa primero el código por el pre-procesador de C y esto permite enotnces incluir archivos header con "#include" y utlizar constantes definidas con "#define".
 
+El código de DSP (Digital Signal Processing) se suele hacer en Assembly, ya que es mucho más eficiente. Tener en cuenta que cuando uno escribre código en Assembly, no escribe programas enteros, sino que optimiza funciones específicas. 
+
+Ejemplos de "Assembly inline":
+
+```
+__asm volatile(“ /* assembly instruction 1 */ “);
+__asm volatile(“ /* assembly instruction 2 */ “);
+__asm volatile(“ /* assembly instruction 3 */ “);
+
+__asm volatile(“ MOV R0, %0“ :: “r”(variable)); // se re-asignan los parámetros a los registros. Esto empeoraría la eficiencia.
+
+```
+
+Por otra pate, los "intrinsics" permiten llamar a funciones de Assembly desde el código en C. Esto es una gran ventaja, porque sepodría utilizar la función USAT (de aritmética saturada) en C. 
+
+Por último, y como se nombró anteriormente, se utiliza la convención "Procedure Call Standard" para establecer como se pasan los parámetros a funciones y cómo estas devuelven los valores de retorno. Siguiente estos criterios, los parámteros se pasan a las funciones en los registros R0, R1, R2 y R3, y en el caso de haber más de 4 parámetros, se pasan a través del Stack. Y los valores de retorno se guardan en R0 antes de salir de la función. 
+
+Como una función no debe afectar ningún registro o zona de memoria utilizada por el programa que llamó a la función, la función llamada deberá guardar en el Stack los registros utilizados dentro de la misma para recuperar su valor antes de retornar el programa a la función que la llamó. 
+
+ARM divide los registros en preservados y no preservados:
+
++ **Preservados:** R4 a R11, SP y LR, una función debe guardar estos registros antes de ser modificados y restaurar su valor antes de salir de la función. El código que llama a una función supone que ésta no va a modificar estos registros.
++ **No Preservados:** R0 a R3 y R12 pueden ser modificados libremente, no se puede asumir que no serán modificados luego de llamar a una función. Por lo tanto, será obligación de la función llamadora (caller) resguardarlos en el Stack si no se quiere que sean modificados. 
 
 
 ### 5. ¿Qué es una instrucción SIMD? ¿En qué se aplican y que ventajas reporta su uso? Dé un ejemplo.
 
+SIMD (Single Instruction, Multiple Data) es una técnica computacional para procesar una cantidad de valores de datos (generalmente una potencia de dos) usando una sola instrucción. Por lo tanto, una instrucción SIMD puede hacer el trabajo de muchas instrucciones separadas. 
+
+Los elementos de datos pueden tener un tamaño inferior a 32 bits. Los datos de píxeles de 8 bits son comunes en el procesamiento de video, gráficos e imágenes, las muestras de 16 bits en los códecs de audio. En tales casos, las operaciones a realizar son simples, se repiten muchas veces y requieren poco código de control. SIMD puede ofrecer mejoras de rendimiento considerables para este tipo de procesamiento de datos. 
+
+SIMD permite que una sola instrucción trate un valor de registro como elementos de datos múltiples (por ejemplo, como cuatro valores de 8 bits en un registro de 32 bits) y realice múltiples operaciones idénticas en esos elementos.
+
+Por ejemplo, si se tiene un registro R1 y otro R2 de 32 bits, se podría hacer la suma como:
+
+```
+ADD R0, R1, R2
+```
+
+Pero sucede muchas veces que no es necesario utilizar datos de 32 bits de largo, como se dijo anteriormente, sino que podría ser por ejemplo, de 16 bits. En este caso, cada registro almacenaría dos datos. No utilizando SIMD, se debería tener un registro para cada dato de 16 bits y hacer la siguiente operación:
+
+```
+ADD R0, R1, R2
+ADD R3, R4, R5
+```
+
+Utilizando SIMD de 16 bits, la primera parte de R1 contendría un dato de 16 bits y la segunda parte otro dato de 16 bits. De la misma manera, R2 contendría un datos de 16 bits en la primera parte y otro dato de 16 bits en la segunda parte. Bajo este contexto, se podría utilizar la siguiente instrucción:
+
+```
+SADD16 R0, R1, R2
+```
+
+En este caso, utilizando datos de 16 bits, la cantidad de instrucciones se divide a la mitad. En el caso de utilizar datos de 8 bits, la cantidad de instrucciones se divide en 4. Esto trae considerables mejoras en performance, si estas instrucciones se ejecutan repetidamente dentro de un búcle. 
 
