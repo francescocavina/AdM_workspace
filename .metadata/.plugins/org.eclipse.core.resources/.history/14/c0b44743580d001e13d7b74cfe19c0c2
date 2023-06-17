@@ -46,5 +46,4 @@ void c_eco(int16_t *vectorIn, int16_t *vectorOut, uint16_t bufferSize, uint16_t 
 /* EJERCICIO 11 --------------------------------------------------------------*/
 
 
-
 #endif /* INC_C_FUNC_H_ */

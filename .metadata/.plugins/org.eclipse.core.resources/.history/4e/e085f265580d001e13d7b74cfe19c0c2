@@ -159,35 +159,34 @@ int main(void)
 
   /* Funciones en Assembly ---------------------------------------------------*/
   PrivilegiosSVC();
-  asm_sum_tester();
-  asm_zeros_tester();					// EJERCICIO 1
-  asm_productoEscalar32_tester();		// EJERCICIO 2
-  asm_productoEscalar16_tester();		// EJERCICIO 3
-  asm_productoEscalar16Sat_tester();	// EJERCICIO 4
-  asm_filtroVentana10_tester(); 		// EJERCICIO 5
-  asm_pack32to16_tester(); 				// EJERCICIO 6
-  asm_max_tester(); 					// EJERCICIO 7
-  asm_downsampleM_tester();				// EJERCICIO 8
-  asm_invertir_tester();				// EJERCICIO 9
-  asm_ecoV1_tester();					// EJERCICIO 10.1
-  asm_ecoV2_tester();					// EJERCICIO 10.2
-  asm_ecoV3_tester();					// EJERCICIO 10.3
-  asm_corr_tester();					// EJERCICIO 11
+  //asm_sum_tester();
+  //asm_zeros_tester();					// EJERCICIO 1
+  //asm_productoEscalar32_tester();		// EJERCICIO 2
+  //asm_productoEscalar16_tester();		// EJERCICIO 3
+  //asm_productoEscalar16Sat_tester();	// EJERCICIO 4
+  //asm_filtroVentana10_tester(); 		// EJERCICIO 5
+  //asm_pack32to16_tester(); 			// EJERCICIO 6
+  //asm_max_tester(); 					// EJERCICIO 7
+  //asm_downsampleM_tester();			// EJERCICIO 8
+  //asm_invertir_tester();				// EJERCICIO 9
+  //asm_ecoV1_tester();					// EJERCICIO 10.1
+  //asm_ecoV2_tester();					// EJERCICIO 10.2
+  //asm_ecoV3_tester();					// EJERCICIO 10.3
+  //asm_corr_tester();					// EJERCICIO 11
 
 
   /* Funciones en C ----------------------------------------------------------*/
-  c_zeros_tester();						// EJERCICIO 1
-  c_productoEscalar32_tester();			// EJERCICIO 2
-  c_productoEscalar16_tester();			// EJERCICIO 3
-  c_productoEscalar16Sat_tester();		// EJERCICIO 4
-  c_filtroVentana10_tester(); 			// EJERCICIO 5
-  c_pack32to16_tester(); 				// EJERCICIO 6
-  c_max_tester(); 						// EJERCICIO 7
-  c_downsampleM_tester();				// EJERCICIO 8
-  c_invertir_tester();					// EJERCICIO 9
-  c_eco_tester();						// EJERCICIO 10
-  c_corr_tester();						// EJERCICIO 11
-
+  c_zeros_tester();					// EJERCICIO 1
+  c_productoEscalar32_tester();		// EJERCICIO 2
+  c_productoEscalar16_tester();		// EJERCICIO 3
+  c_productoEscalar16Sat_tester();	// EJERCICIO 4
+  c_filtroVentana10_tester(); 		// EJERCICIO 5
+  c_pack32to16_tester(); 			// EJERCICIO 6
+  c_max_tester(); 					// EJERCICIO 7
+  c_downsampleM_tester();			// EJERCICIO 8
+  c_invertir_tester();				// EJERCICIO 9
+  c_eco_tester();					// EJERCICIO 10
+  c_corr_tester();					// EJERCICIO 11
 
   /* USER CODE END 2 */
 

@@ -188,7 +188,6 @@ int main(void)
   c_eco_tester();						// EJERCICIO 10
   c_corr_tester();						// EJERCICIO 11
 
-
   /* USER CODE END 2 */
 
   /* Infinite loop */

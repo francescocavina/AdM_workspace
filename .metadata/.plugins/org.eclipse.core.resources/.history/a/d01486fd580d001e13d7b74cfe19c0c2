@@ -132,7 +132,7 @@ void c_eco_tester(void) {
 
 	c_eco(myVecIn, myVecOut, BUFFER_SIZE, SAMPLING_RATE, DELAY_MS);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 282900 ciclos en modo Debug!!!
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 282900 ciclos en modo Debug
 }
 
 

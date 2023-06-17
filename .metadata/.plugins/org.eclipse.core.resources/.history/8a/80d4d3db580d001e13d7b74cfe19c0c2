@@ -163,7 +163,7 @@ void asm_ecoV2_tester(void) {
 
 	asm_ecoV2(myVecIn, myVecOut, bufferSize, samplingRate, delay_ms);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 74978 ciclos en modo Debug
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 74978 ciclos en modo Degug
 }
 
 /* EJERCICIO 10.3 ------------------------------------------------------------*/

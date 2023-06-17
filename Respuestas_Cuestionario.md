@@ -47,7 +47,9 @@ Estas arquitecturas carecen entonces de instrucciones que permitan realizar oper
 	3) Guardar el dato del registro resultado en memoria.
 
 
-### 4. ¿Cómo es el mapa de memoria de la familia? ***
+### 4. ¿Cómo es el mapa de memoria de la familia? 
+
+La memoria es toda continua y todos los periféricos se mapean en ella. Esto no es la regla para todas las arquitecturas. El hecho de poder acceder a los periféricos, configuración y dispositivos externos es algo destacable de la familia Cortex. 
 
 
 ### 5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP? ***
@@ -96,6 +98,12 @@ Se refiere a una característica del conjunto de instrucciones ARM en el que tod
 
 
 ### 17. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
+
+El systick es un temporizador integrado en varios microcontroladores, incluidos los de la familia ARM Cortex_M. Su función principal es proporcionar una interrupción periódica al procesador. Esto permite al sistema operativo o al firmware realizar tareas en intervalos de tiempo regulares. Es más que todo importante en sistemas operativos. 
+
+Este temportizador está definido por ARM y es estándar. Por lo tanto, todos los fabricantes deben respetar su diseño para lograr mayor portabilidad.
+
+Algunos microcontroladores M0 no tiene systick y no son una buena elección para utilizar un RTOS, porque se debería utilizar otro timer y esto puede traer problemas. 
 
 
 ### 18. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?
@@ -172,6 +180,8 @@ En el segundo caso, el resultado queda saturado en el máximo valor posible, ya 
 
 
 ### 4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?
+
+
 
 
 ### 5. ¿Qué es una instrucción SIMD? ¿En qué se aplican y que ventajas reporta su uso? Dé un ejemplo.
