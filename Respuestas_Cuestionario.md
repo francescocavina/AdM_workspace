@@ -51,8 +51,27 @@ Estas arquitecturas carecen entonces de instrucciones que permitan realizar oper
 
 La memoria es toda continua y todos los periféricos se mapean en ella. Esto no es la regla para todas las arquitecturas. El hecho de poder acceder a los periféricos, configuración y dispositivos externos es algo destacable de la familia Cortex. 
 
+Los procesadores Cortex utilizan una memoria que se dirección por 32 bits, lo que significa que se puede direccionar hasta 4GB de memoria (2^32 = 4.294.967.296 bits). Esta memoria a su vez, se divide en regiones que tienen cada una su propósito y carecterísticas:
 
-### 5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP? ***
++ **Code:** almacena el código ejecutable del programa, como instrucciones y datos de solo lectura.
++ **Data:** almacena datos modificables durante la ejecución del programa, como variables y estructura de datos. Cabe destacar que es memoria estática, es decir, se conoce qué posición de memoria y qué cantidad de memoria tendrá antes de que arranque el programa. 
++ **Stack (pila):** almacena los datos de los registros durante las llamadas a funciones y también posee datos de variables locales en las funciones. Es memoria dinámica y se gestiona en tiempo de ejecución. 
++ **Heap:** almacena datos generados en la aplicación de forma dinámica. Eso se da cuando se utilizan funciones como malloc() en C o new() en C++;
++ **Shared Memory (memoria compartida):** se utiliza para compartir datos entre diferentes componentes y procesos.
++ **Peripheral Memory (memoria de los periféricos):** donde se encuentran mapeados todos los dispositivos periféricos, como puertos de entra/salida (GPIO). 
+
+
+### 5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP? 
+
+MSP es el Stack Pointer general del programa y el PSP es el Stack Pointer que utiliza la tarea. Ambos son registros.
+
+Recordar que el SP es un registro que guarda la dirección de memoria del stack. Apenas inicia tendrá la dirección inicial del Stack.
+
+En modo privilegiado el SP es el MSP puede acceder a todo, en modo no privilegiado el SP es el PSP y queda acotado a lo que puede acceder.
+
+SP se puede apuntar a MSP o PSP (que están en memoria) según un bit en un registro de control. Sólo una a la vez.  
+
+En un sistema embebido, la posición 0 tiene el SP inicial que a su vez es el valor de MSP.
 
 
 ### 6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado. ***
@@ -75,8 +94,22 @@ Se refiere a una característica del conjunto de instrucciones ARM en el que tod
 
 ### 10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?
 
+El Stack es memoria dinámica que se utiliza para guardar el estado arquitectónico del microcontrolador a la hora de hacer un cambio de contexto. Eso se da por ejemplo, cuando se llama a una función. Aquí es necesario resguardar los registros que no se quiere que sean modificados por la función. Esta acción debe realizarse al inicio de cada función y esto incluye a todos los registros. 
 
-### 11. Describa la secuencia de reset del microprocesador. ***
+Por defecto, los parámetros a funciones se pasan desde el registro R0 al R3 (R0, R1, R2 y R3). En el caso de querer pasar un quinto parámetro, esto se debe hacer a través del Stack. Por otra parte, los valores de retorno de la función se hacen con el registro R0. Todo esto es una convención y se lo conoce como "Procedure Call Standard" y es específico de la arquitectura ARM.
+
+El stack es una estructura de datos LIFO (Last In First Out) o pila, en español. Los datos se guardan aquí de a 32 bits, pero es direccionable de a byte (8 bits). 
+
+Una función recursiva mal diseñada puede aumentar rápidamente el Stack y no liberar el espacio nunca. Si se está en el modo privilegiado y se desborda el Stack (conocido como stack overflow), se va a empezar a pisar los datos contenidos en la otra memoria dinámica Heap. El Stack estaría utilizando espacio más allá de lo que le corresponde, y podría entonces corromper los datos contenidos allí. Al revez podría suceder también que el Heap pise datos del Stack y las funciones devuelvan valores erróneos. 
+
+Es muy importante calcular el tamaño que se necesita para el Stack. Esto es así cuando se utilizan Sistemas Operativos de Tiempo Real y muchos fallos pueden darse por este problema. Es necesario tenerlo en cuenta, primero para que no suceda y si sucede, que la falla sea en modo seguro. Recordar que los sistemas críticos son aquellos de los cuáles dependen vidas humanas. 
+
+
+### 11. Describa la secuencia de reset del microprocesador. 
+
+El programa no empieza en la función "main", sino en la rutina de inicialización o reset. 
+
+En un sistema embebido, la posición 0 tiene el SP inicial que a su vez es el valor de MSP. Cuando se llama la función reset, esta configurará los periféricos y llamará a main(). Seguramente después de main() no haya nada, ninguna instrucción. Va a ver todo 0, y generará una excepción, seguramente el programa termina. 
 
 
 ### 12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?
@@ -108,7 +141,9 @@ Algunos microcontroladores M0 no tiene systick y no son una buena elección para
 
 ### 18. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?
 
-MPU (Memory Protecion Unit) es implementada en Cortex y se utiliza para proteger a la memoria desde una dirección hasta otra dirección determinadas. Poder acceder toda la memoria es solo posible si el modo de ejecución es privilegiado. Cuando una tarea en modo no privilegiado quiere acceder a un espacio de memoria protegido, se producirá una excepción que la deberá manejar el SO.
+MPU (Memory Protecion Unit) es implementada en Cortex y se utiliza para proteger a la memoria desde una dirección hasta otra dirección determinadas. Poder acceder toda la memoria es solo posible si el modo de ejecución es privilegiado. Cuando una tarea en modo no privilegiado y quiere acceder a un espacio de memoria protegido, se producirá una excepción que la deberá manejar el SO.
+
+Por otra parte, el Heap es memoria dinámica que el programa puede utilizar (recordar la función malloc()) y se ubica apenas termina la memoria estática. En el caso de utilizar la función malloc(), por ejemplo, esta no puede utilizar toda la memoria que quiere. En un SO es necesario primero pedrile memoria, ya que esta la gestiona. En este caso la aplicación trabaja en modo no privilegiado y el SO, que gestiona los recursos del microcontrolado, trabaja en modo privilegiado. Aquí también es un caso donde se utiliza la protección de memoria. 
 
 
 ### 19. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?
@@ -177,6 +212,8 @@ En el segundo caso, el resultado queda saturado en el máximo valor posible, ya 
 
 + Números positivos: 0 - 127
 + Números negativos: 128 - 256
+
+Esta funcionalidad se podría realizar por software, pero es aconsejable utilizar la menor cantidad de condicionales posibles debido a la performance. Además, las banderas indican overflow y se podría consultar en el registro PCR todo el tiempo, pero no es aconsejable tampoco si se quiere performance. 
 
 
 ### 4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?
