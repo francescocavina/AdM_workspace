@@ -92,7 +92,7 @@ A continuación, se muestra un diagrama en bloques de los diferentes modos de op
 
 Si se quiere pasar de no privilegiado a privilegiado cambiando el bit 0 en el registro de control, el microcontrolador lo va a ignorar. La forma correcta de hacerlo es pidiéndoselo con el llamado de un manejador de excepción. Ejecutando el programa en modo Thread no privilegiado, la unica forma de ponerlo en modo privilegiado o de realizar cualquier cambio que requiera modo privilegiado, es pidiendo ese servicio a un hipotético RTOS. Para esto se incova por software la interrupción SVC (Supervisor Call) y debe hacerse mediante una función en assembler. 
 
-
+En el registo de control, se puede ver el valor del bit 0. En modo de ejecución Thread, privilegiado = 0 y no privilegiado = 1. 
 
 
 ### 7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo.
@@ -225,10 +225,10 @@ void EXTI0_IRQHandler(void) { // Rutina de interrupción para el pin GPIO
 Cuando se termine de ejecutar este manejador, se volverá al contexto que se estaba ejecutando antes de atender esta exceción. 
 
 
-### 17. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
+### 16. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
 
 
-### 16. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
+### 17. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
 
 "Tail chaining" se da cuando se quiere atender consecutivamente dos excepciones sin sobrecargar al micro con restaurar los contextos  entre las interrupciones. El procesador va a omitir hacer el POP y PUSH de los regsitros cuando sale de un ISR y entra en otro, porque esto no tiene efecto en el contenido del Stack. 
 
@@ -236,7 +236,7 @@ Cuando se termine de ejecutar este manejador, se volverá al contexto que se est
 "Late arrival" se da cuando una interrupción llega tarde después que el procesador ya ha iniciado el procesamiento para manejar la excepción. Si la interrupción que llega tarde tiene una prioridad más alta que la que el procesador ya está atendiendo, la inserción de los datos en el Stack continuará lo mismo.
 
 
-### 17. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
+### 18. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
 
 El systick es un temporizador integrado en varios microcontroladores, incluidos los de la familia ARM Cortex M. Su función principal es proporcionar una interrupción periódica al procesador. Esto permite al sistema operativo o al firmware realizar tareas en intervalos de tiempo regulares. Es más que todo importante en sistemas operativos. 
 
@@ -247,19 +247,19 @@ El objetivo principal de este temporizador es generar una interrupción periódi
 Como es un componente estándar en la arquitectura Cortex M, se puede decir que favore la portabilidad para los RTOS. 
 
 
-### 18. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?
+### 19. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?
 
 MPU (Memory Protecion Unit) es implementada en Cortex y se utiliza para proteger a la memoria desde una dirección hasta otra dirección determinadas. Poder acceder toda la memoria es solo posible si el modo de ejecución es privilegiado. Cuando una tarea en modo no privilegiado y quiere acceder a un espacio de memoria protegido, se producirá una excepción que la deberá manejar el SO.
 
 Por otra parte, el Heap es memoria dinámica que el programa puede utilizar (recordar la función malloc()) y se ubica apenas termina la memoria estática. En el caso de utilizar la función malloc(), por ejemplo, esta no puede utilizar toda la memoria que quiere. En un SO es necesario primero pedrile memoria, ya que esta la gestiona. En este caso la aplicación trabaja en modo no privilegiado y el SO, que gestiona los recursos del microcontrolado, trabaja en modo privilegiado. Aquí también es un caso donde se utiliza la protección de memoria. 
 
 
-### 19. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?
+### 20. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?
 
 
 
 
-### 20. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo.
+### 21. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo.
 
 PendSV es una excepción que tiene la prioridad más baja (aunque es configurable) y se utiliza para hacer llamadas al sistema operativo. Utilizando PendSV se puede lograr el context switching (cambio de contexto) entre tareas cuando se utiliza un Sistema Operativo de Tiempo Real. Generalmente el cambio de contexto ocurre con el systick. Como PendSV tiene prioridad baja, solo va a comenzar el cambio de contexto cuando terminen de ejecutarse otras interrupciones (si las hubiera en ese momento). Esto garantiza que el cambio de contexto no se produzca durante el systick o en el medio de una interrupción importante. 
 
@@ -297,7 +297,7 @@ void PendSV_Handler(void) {
 ```
 
 
-### 21. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.
+### 22. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.
 
 SVC es un mecanismo de excepción proporcionado por el núcleo del procesador ARM Cortex-M. La ejecución de una instrucción SVC genera una llamada de supervisor, que se utiliza para llevar a cabo operaciones privilegiadas desde dentro de un núcleo de sistema operativo.  Esto permite al código de la aplicación acceder a los recursos del procesador y controlarlos.
 
