@@ -76,7 +76,19 @@ En un sistema embebido, la posición 0 tiene el SP inicial que a su vez es el va
 
 ### 6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado. 
 
+El procesador puede operar en uno de dos estados de operación: 
 
++ **Estado Thumb:** es el estado normal donde se ejecutan instrucciones Thumb de 16 y 32 bits.
++ **Estado Debug:** es el estado cuando el procesador para el debugging. Y es solo posible si el debugger está conectado. 
+
+Dento del estado Thumb, el procesador admite dos modos de operación, el modo Thread y el modo Handler:
+
++ El procesador ingresa al modo Thread en el reset o al volver de manejar una excepción. El código con privilegios y sin privilegios puede ejecutarse en modo Thread.
++ El procesador ingresa al modo Handler como resultado de una excepción. Todo el código tiene privilegio en el modo Handlers.
+
+A continuación, se muestra un diagrama en bloques de los diferentes modos de operación. 
+
+![Diagrama en bloques de los modos de ejecución.](/IMG_cuestionario/diagrama_modos.png)
 
 
 ### 7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo.
