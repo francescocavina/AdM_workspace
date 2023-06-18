@@ -77,6 +77,8 @@ En un sistema embebido, la posición 0 tiene el SP inicial que a su vez es el va
 ### 6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado. 
 
 
+
+
 ### 7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo.
 
 Se refiere a una característica del conjunto de instrucciones ARM en el que todos los registros generales se pueden utilizar de la misma manera en cualquier contexto o modo de ejecución. Esto significa que los registros se pueden utilizar para almacenar datos, direcciones de memoria, punteros, resultados intermedios, entre otros, en cualquier contexto sin restricciones especiales. Algunos ejemplos son:
@@ -125,6 +127,13 @@ Es muy importante calcular el tamaño que se necesita para el Stack. Esto es as�
 
 Aunque se recomienda no utilizar memoria dinámica en sistemas embebidos, en las arquitecturas más nuevas ocurren una excpeción cuando se llega al límite del Stack. 
 
+En resumen, las funciones más importantes del Stack son:
+
++ Pasar datos a funciones o subrutinas.
++ Guardar variables locales.
++ Salvaguardar el estado del procesador y de los registros de propósito general cuando ocurre una interrupción.
++ Guardar temporalmente el valor de registros previo a su reutilización. 
+
 
 ### 11. Describa la secuencia de reset del microprocesador. 
 
@@ -142,7 +151,24 @@ En conclusión, el programa no empieza en la función main(), sino en la rutina 
 ### 12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?
 
 
+
+
 ### 13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo. 
+
+Lo primero que tiene la memoria FLASH es el vector de interrupciones y éstas se ordenan por prioridad. Aquí son más prioritarias las primeras (las que tengan el número más bajo). Hay interrupciones que poseen prioridad configurable y otras no. 
+
+Estas prioridades sirven para determinar cuál interrupción se debería atender primera en el caso de que dos o más ocurran al mismo tiempo. 
+
+En este vector de interrupciones no se tiene el manejador en sí, sino la dirección de memoria de la función que la atiende o maneja. 
+
+ARM define una serie de excepciones que son las primeras 15. Siempre la primera es la de reset y la que tiene mayor prioridad. Las excepciones a partir de la 16 las define el fabricante y generalmente cambian de nombre dependiendo del fabricante. 
+
++ **Reset:** tiene prioridad -3 (la  más alta) y no es configurable.
++ **NMI:** tiene prioridad -2 y no es configurable.
++ **HardFault:** tiene prioridad -1 y no es configurable.
++ **MemManage, BusFault, UsageFault, SVC, PendSV, Systick:** son las que siguen y tienen prioridad configurable. 
+
+Desde la excepción 1 a 15 (en la tabla de excepciones) se las conoce directamente como excepciones del sistema. Desde el número 16 en adelante se las considera como interrupciones. 
 
 
 ### 14. ¿Qué es el CMSIS? ¿Qué función cumple? ¿Quién lo provee? ¿Qué ventajas aporta? 
@@ -151,8 +177,36 @@ CMSIS es el estándar de interfaz de software de microcontroladores Cortex. Su o
 
 CMSIS se define en estrecha colaboración con varios proveedores de software y hardware y proporciona un enfoque común para la interfaz con periféricos, sistemas operativos en tiempo real y componentes de software intermedio. Su objetivo es permitir la interoperabilidad de los componentes de software de múltiples proveedores.
 
+Por otra parte, con el tiempo se fue agregando CMSIS-DSP, que permite funciones iguales para el procesamiento digital de señales en todos los microcontroladores ARM. La velocidad con la que se ejecutará esa función dependerá de cada microcontrolador, pero será siempre implementado de la misma manera. 
+
+También existe CMSIS-RTOS con lo que se puede utilizar el RTOS en cualquier microcontrolador Cortex (siempre que sus capacidades lo permita) sin cambiar el código. 
+
 
 ### 15. Cuando ocurre una interrupción, asumiendo que está habilitada ¿Cómo opera el microprocesador para atender a la subrutina correspondiente? Explique con un ejemplo.
+
+Las excepciones son eventos que no tienen que ver con la ejecución del programa. Tiene que ver con cambios de estado en un pin, alertas de tensión baja, etc. Estos pueden suceder en cualquier momento y en cualquier parte del programa. Y cuando suceden, alguna parte del código se tiene que encargar de manejarlo. 
+
+Las excepciones son una generalización de las interrupciones clásicas. No todo se dá porque cambia el estado en un pin, sino a veces también hay errores de software que deben ser manejados. 
+
+Desde que aparece la interrupción hasta que se la atienda y se vuelve a la ejecución del programa, pasa un tiempo debido a todo el proceso implicado. Este tiempo se lo conoce como latencia de la interrupción. En un Cortex M, en promedio esta latencia es de 16 ciclos de reloj, lo cuál es muy poco comparado con la velocidad que tiene el microcontrolador.
+
+Cuando ocurre una excepción, el procesador suspende lo que esté haciendo y ejecuta una parte del programa llamada manejador de la excepción. Luego, de que la ejecución del manejador de la excepción se ha completado, se vuelve a la ejecución normal del programa. 
+
+En el caso de las interrupciones (caso especial de las excepciones) el manejador se conoce como Interrupt Service Rutine (ISR). Estas excepciones son manejadas por el NVIC o el NMI. Cada tipo de excepción tiene asociado un número y es utilizado para determinar la dirección del vector de excepción. Estos vectores son guardados en una tabla de vectores y el procesador lee esta tabla para determinar la dirección en la cuál empieza el manejador de la excepción. 
+
+Todo lo que se ejecute desde el vector de interrupciones se hace en  modo de operación Handler que es siempre en modo privilegiado. 
+
+Por ejemplo, una interrupción podría darse si se asocia una interrupción a un pin GPIO de entrada que podría ser el pulsador de la placa NUCLEO. Cuando se presione el interruptor, el procesador va a llevar a cabo todo lo que se mencionó anteriormente y se terminará ejecutando el manejador de dicha interrupción. Un ejemplo de manejador podría ser el siguiente:
+
+```
+void EXTI0_IRQHandler(void) { // Rutina de interrupción para el pin GPIO
+
+    // Manejar la interrupción aquí
+    // ...
+}
+```
+
+Cuando se termine de ejecutar este manejador, se volverá al contexto que se estaba ejecutando antes de atender esta exceción. 
 
 
 ### 17. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
