@@ -187,7 +187,44 @@ Por otra parte, el Heap es memoria dinámica que el programa puede utilizar (rec
 ### 19. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?
 
 
+
+
 ### 20. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo.
+
+PendSV es una excepción que tiene la prioridad más baja (aunque es configurable) y se utiliza para hacer llamadas al sistema operativo. Utilizando PendSV se puede lograr el context switching (cambio de contexto) entre tareas cuando se utiliza un Sistema Operativo de Tiempo Real. Generalmente el cambio de contexto ocurre con el systick. Como PendSV tiene prioridad baja, solo va a comenzar el cambio de contexto cuando terminen de ejecutarse otras interrupciones (si las hubiera en ese momento). Esto garantiza que el cambio de contexto no se produzca durante el systick o en el medio de una interrupción importante. 
+
+A continuación, se presenta un ejemplo:
+
+```
+#include <stdint.h>
+
+// Prototipo de la función de servicio de PendSV
+void PendSV_Handler(void);
+
+// Dirección del registro de control de interrupciones pendientes
+#define SCB_ICSR (*((volatile uint32_t*)0xE000ED04))
+
+int main(void) {
+    // Configurar el valor de prioridad de PendSV
+    uint32_t* pPendSV_Priority = (uint32_t*)0xE000ED22;
+    *pPendSV_Priority = 0xFF;
+
+    // Simular una solicitud de interrupción PendSV
+    SCB_ICSR |= (1 << 28);
+
+    // Resto del código...
+
+    while (1) {
+        // Bucle principal del programa
+    }
+}
+
+// Implementación de la función de servicio de PendSV
+void PendSV_Handler(void) {
+    // Código de servicio de PendSV
+    // Realizar tareas de baja prioridad o cambio de contexto aquí
+}
+```
 
 
 ### 21. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.
@@ -195,7 +232,6 @@ Por otra parte, el Heap es memoria dinámica que el programa puede utilizar (rec
 SVC es un mecanismo de excepción proporcionado por el núcleo del procesador ARM Cortex-M. La ejecución de una instrucción SVC genera una llamada de supervisor, que se utiliza para llevar a cabo operaciones privilegiadas desde dentro de un núcleo de sistema operativo.  Esto permite al código de la aplicación acceder a los recursos del procesador y controlarlos.
 
 Normalmente, en un sistema de alta fiabilidad, la tarea de aplicación se ejecuta en un nivel sin privilegios. Algunos de los recursos de hardware están protegidos y se utiliza una unidad de protección de memoria (MPU) para proteger determinadas regiones de memoria. Si la aplicación intenta acceder directamente a estos recursos protegidos, puede producirse una violación de acceso que provoque una excepción o un fallo. En tales casos, el acceso a los recursos sólo es posible a través de los servicios proporcionados por el sistema operativo. Por lo tanto, la aplicación llama a estos servicios y el SO ejecuta código para llevar a cabo el servicio requerido. El SVC proporciona este mecanismo de servicio. El código de servicio se encuentra en el controlador de excepciones SVC, que se activa mediante la instrucción SVC.
-
 
 
 ## ISA (Instruction Set Architecture)
