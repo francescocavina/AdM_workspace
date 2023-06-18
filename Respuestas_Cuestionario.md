@@ -74,7 +74,7 @@ SP se puede apuntar a MSP o PSP (que están en memoria) según un bit en un regi
 En un sistema embebido, la posición 0 tiene el SP inicial que a su vez es el valor de MSP.
 
 
-### 6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado. ***
+### 6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado. 
 
 
 ### 7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo.
@@ -87,6 +87,18 @@ Se refiere a una característica del conjunto de instrucciones ARM en el que tod
 	MOV PC, LR
 
 ### 8. ¿Qué ventajas presenta el uso de intrucciones de ejecución condicional (IT)? Dé un ejemplo.
+
+La ventaja del uso de instrucciones de ejecución condicional es que se puede ejecutar códido o no dependiendo de alguna determinada condición. Esto es lo mismo que se logra utlizando secuencias como if, if/else o switch. Se realiza una operación de procesamiento de datos y se setean las banderas o se hace una comparación entre registros que setea automáticamente las banderas. Luego, dependiendo del resultado y las banderas seteadas, es posible ejecutar el código o no. Por ejemplo:
+
+```
+MOV R0, #10		@ R0 = 10;
+MOV R1, #5		@ R1 = 5;
+SUBS R2, R0, R1		@ R2 = R0 - R1; // Y se setean las banderas en función del resultado obtenido
+ADDGE R0, R0, #1	@ if(R0 >= R1) { R0++; } // Se ejecutará esta instrucción si R0 es mayor igual a R1	
+
+```
+
+La condición se estable utilizando sufijos junto al nemónico de la instrucción. Estas condiciones se pueden utilizar junto a todas las instrucciones. 
 
 
 ### 9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault).
@@ -111,18 +123,28 @@ Aunque se recomienda no utilizar memoria dinámica en sistemas embebidos, en las
 
 ### 11. Describa la secuencia de reset del microprocesador. 
 
-El programa no empieza en la función "main", sino en la rutina de inicialización o reset. 
+En Cortex M existen tres tipos de resets:
 
-En un sistema embebido, la posición 0 tiene el SP inicial que a su vez es el valor de MSP. Cuando se llama la función reset, esta configurará los periféricos y llamará a main(). Seguramente después de main() no haya nada, ninguna instrucción. Va a ver todo 0, y generará una excepción, seguramente el programa termina. 
++ **Reseteo en encendido:** se resetea todo. Esto incluye el procesador, el componente de debugging y periféricos. 
++ **Reseteo del sistema:** se resetea solo el procesador y los periféricos.
++ **Reseteo del procesador:** se resetea solo el procesador.
+
+Luego del reseteo y antes de que el procesador comience a ejecutar el programa, se lee las primeras dos palabras de la memoria. El principio de la memoria contiene la tabla de vectores y los dos primeros valores en esta tabla contiene el valor inicial del Stack Pointer (MSP) y el vector de reset, que sería la dirección inicial donde se ecuentra el Handler del reset. Después de leer estas dos palabras, se setea el MSP y el Program Counter (PC) con estos valores. Esto es necesario porque algunas excepciones como NMI o HardDefault podrían ocurrir justo al termina el reset.  
+
+En conclusión, el programa no empieza en la función main(), sino en la rutina de inicialización o reset. Seguramente después de main() no haya nada, ninguna instrucción. Va a ver todo 0 en memoria, y se generará una excepción donde seguramente el programa termina. 
 
 
 ### 12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?
 
 
-### 13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo. ***
+### 13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo. 
 
 
-### 14. ¿Qué es el CMSIS? ¿Qué función cumple? ¿Quién lo provee? ¿Qué ventajas aporta? ***
+### 14. ¿Qué es el CMSIS? ¿Qué función cumple? ¿Quién lo provee? ¿Qué ventajas aporta? 
+
+CMSIS es el estándar de interfaz de software de microcontroladores Cortex. Su objetivo es simplificar el desarrollo de software para los microcontroladores y porporcionar una interfaz uniforme y eficiente para los desarrolladores, especialmente si se trabaja con Cortex M y Cortex A. También promueve la reutilización, portabilidad y interoperabilidad de código, lo que permite a los desarrolladores centrarse en la lógica a nivel de aplicación en lugar de ocuparse en detalles de hardware de bajo nivel. 
+
+CMSIS se define en estrecha colaboración con varios proveedores de software y hardware y proporciona un enfoque común para la interfaz con periféricos, sistemas operativos en tiempo real y componentes de software intermedio. Su objetivo es permitir la interoperabilidad de los componentes de software de múltiples proveedores.
 
 
 ### 15. Cuando ocurre una interrupción, asumiendo que está habilitada ¿Cómo opera el microprocesador para atender a la subrutina correspondiente? Explique con un ejemplo.
@@ -133,16 +155,21 @@ En un sistema embebido, la posición 0 tiene el SP inicial que a su vez es el va
 
 ### 16. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
 
+"Tail chaining" se da cuando se quiere atender consecutivamente dos excepciones sin sobrecargar al micro con restaurar los contextos  entre las interrupciones. El procesador va a omitir hacer el POP y PUSH de los regsitros cuando sale de un ISR y entra en otro, porque esto no tiene efecto en el contenido del Stack. 
 
+
+"Late arrival" se da cuando una interrupción llega tarde después que el procesador ya ha iniciado el procesamiento para manejar la excepción. Si la interrupción que llega tarde tiene una prioridad más alta que la que el procesador ya está atendiendo, la inserción de los datos en el Stack continuará lo mismo.
 
 
 ### 17. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
 
-El systick es un temporizador integrado en varios microcontroladores, incluidos los de la familia ARM Cortex_M. Su función principal es proporcionar una interrupción periódica al procesador. Esto permite al sistema operativo o al firmware realizar tareas en intervalos de tiempo regulares. Es más que todo importante en sistemas operativos. 
+El systick es un temporizador integrado en varios microcontroladores, incluidos los de la familia ARM Cortex M. Su función principal es proporcionar una interrupción periódica al procesador. Esto permite al sistema operativo o al firmware realizar tareas en intervalos de tiempo regulares. Es más que todo importante en sistemas operativos. 
 
-Este temportizador está definido por ARM y es estándar. Por lo tanto, todos los fabricantes deben respetar su diseño para lograr mayor portabilidad.
+Este temportizador está definido por ARM y es estándar. Por lo tanto, todos los fabricantes deben respetar su diseño para lograr mayor portabilidad.  Es un temporizador de cuenta regresiva de 24 bits con recarga automática. Es decir, cuando llegua a cero, genera una interrupción y se carga un nuevo valor de conteo desde el registro de recarga.
 
-Algunos microcontroladores M0 no tiene systick y no son una buena elección para utilizar un RTOS, porque se debería utilizar otro timer y esto puede traer problemas. 
+El objetivo principal de este temporizador es generar una interrupción periódica para un sistema operativo en tiempo real (RTOS) u otra aplicación controlada por eventos. Algunos microcontroladores M0 no tiene systick y no son una buena elección para utilizar un RTOS, porque se debería utilizar otro timer y esto puede traer problemas. 
+
+Como es un componente estándar en la arquitectura Cortex M, se puede decir que favore la portabilidad para los RTOS. 
 
 
 ### 18. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?
@@ -272,7 +299,7 @@ ADD R0, R1, R2
 ADD R3, R4, R5
 ```
 
-Utilizando SIMD de 16 bits, la primera parte de R1 contendría un dato de 16 bits y la segunda parte otro dato de 16 bits. De la misma manera, R2 contendría un datos de 16 bits en la primera parte y otro dato de 16 bits en la segunda parte. Bajo este contexto, se podría utilizar la siguiente instrucción:
+Utilizando SIMD de 16 bits, la primera parte de R1 contendría un dato de 16 bits y la segunda parte otro dato de 16 bits. De la misma manera, R2 contendría un dato de 16 bits en la primera parte y otro dato de 16 bits en la segunda parte. Bajo este contexto, se podría utilizar la siguiente instrucción, danto como resultado tambień un registro de 32 bits con dos datos de 16 bits. 
 
 ```
 SADD16 R0, R1, R2
