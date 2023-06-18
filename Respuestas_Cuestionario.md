@@ -103,6 +103,11 @@ La condición se estable utilizando sufijos junto al nemónico de la instrucció
 
 ### 9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault).
 
++ **Reset:** ocurre cuando se setea el pin de reinicio del procesador, cuando se invoca por software el reseteo o cuando se alimenta el procesador. Esta excepción solo se espera que ocurra para señalar el encendido o para reiniciar como si el procesador acabara de encenderse. Durante esta excepción se configura el procesador, se inicializan los periféricos y se comienza con la ejecución del programa. 
+
++ **NMI:** es una interrupción no enmascarable y puede ser señalada por un periférico o desencadenada por software. Está permanentemente habilitada y tiene una prioridad fija de -2. Esta excepción no puede ser enmascarada o impedida su activación por cualquier otra excepción y no puede ser anulada por otra excepción que no sea la de Reset. 
+
++ **Hardfault:** se produce debido a un error durante la ejecución normal del programa y tiene pioridad fija de -1. Las causas más comunes debido a erroes del usuario son: ejecución de una instrucción no definida, intento de carga o almacenamiento en una dirección no válida o ejecución de una instrucción desde una dirección de memoria. 
 
 ### 10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?
 
