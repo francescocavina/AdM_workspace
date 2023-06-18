@@ -81,7 +81,7 @@ El procesador puede operar en uno de dos estados de operación:
 + **Estado Thumb:** es el estado normal donde se ejecutan instrucciones Thumb de 16 y 32 bits.
 + **Estado Debug:** es el estado cuando el procesador para el debugging. Y es solo posible si el debugger está conectado. 
 
-Dento del estado Thumb, el procesador admite dos modos de operación, el modo Thread y el modo Handler:
+Dentro del estado Thumb, el procesador admite dos modos de operación, el **modo Thread** y el **modo Handler**:
 
 + El procesador ingresa al modo Thread en el reset o al volver de manejar una excepción. El código con privilegios y sin privilegios puede ejecutarse en modo Thread.
 + El procesador ingresa al modo Handler como resultado de una excepción. Todo el código tiene privilegio en el modo Handlers.
@@ -89,6 +89,10 @@ Dento del estado Thumb, el procesador admite dos modos de operación, el modo Th
 A continuación, se muestra un diagrama en bloques de los diferentes modos de operación. 
 
 ![Diagrama en bloques de los modos de ejecución.](/IMG_cuestionario/diagrama_modos.png)
+
+Si se quiere pasar de no privilegiado a privilegiado cambiando el bit 0 en el registro de control, el microcontrolador lo va a ignorar. La forma correcta de hacerlo es pidiéndoselo con el llamado de un manejador de excepción. Ejecutando el programa en modo Thread no privilegiado, la unica forma de ponerlo en modo privilegiado o de realizar cualquier cambio que requiera modo privilegiado, es pidiendo ese servicio a un hipotético RTOS. Para esto se incova por software la interrupción SVC (Supervisor Call) y debe hacerse mediante una función en assembler. 
+
+
 
 
 ### 7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo.
