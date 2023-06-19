@@ -166,7 +166,13 @@ En conclusión, el programa no empieza en la función main(), sino en la rutina 
 
 ### 12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?
 
+Los core peripherals son: 
 
++ **Controlador de interrupciones (NVIC):** es un controlador de interrupciones incorporado que admite el procesamiento de interrupciones de baja latencia.
++ **Temporizador del sistema (systick):** es un temporizador de cuenta regresiva de 24 bits. Es utilizado generalmente para establecer la base de tiempos en sistemas operativos de tiempo real. 
++ **Unidad de protección de memoria (MPU):** mejora la confiabilidad del sistema al definir los atributos de memoria para diferentes regiones de memoria.
+
+Estos periféricos están integrados en el núcleo del procesador. La diferencia con el resto de los periféricos como (GPIO, USART, I2C, SPI, CAN, USB, ADCs, DACs y Timers, entre otros) es que estos últimos depende del fabricante qué cantidad quiere agregarle y cuáles. Además, no se encontrarán en el núcleo del procesador sino en su perifería y se comunicará con éste mediante buses de datos paralelos. Es por ello, que las direcciones de memoria en las cuáles estarán mapeados estos periféricos dependerá del microncontrolador (modelo y fabricante). 
 
 
 ### 13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo. 
