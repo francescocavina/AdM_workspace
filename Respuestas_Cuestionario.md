@@ -251,8 +251,13 @@ Cuando se termine de ejecutar este manejador, se volverá al contexto que se est
 
 ### 16. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
 
+Existen registros específicos para la FPU que se denominan S#. Para la FPU también hay un registros de estado denominado FPSCR.
 
+Si se está utilizando FPU entonces durante el stacking estos registros van a ser guardados automáticamente por el procesador (siempre que en el manejador se utilicen). Si no se utiliza, no los va a guardar. Con esto se ahorra tiempo del procesador. 
 
+Esto se configura en el registro de control (bit 2). Lo hace el procesador automáticamente cuando detecta que se ha hecho una operación de punto flotante.
+
+Suponiendo que la aplicación no usa el CPU, pero sí el manejador, lo podría hacer libremente ya que tienen datos basura nomás.
 
 ### 17. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
 
@@ -260,11 +265,21 @@ Siempre que se esté atendiendo una exepción es posible que parezca otra. Depen
 
 + **Tail chaining** se da cuando se quiere atender consecutivamente dos excepciones sin sobrecargar al micro con restaurar los contextos  entre las interrupciones. El procesador va a omitir hacer el POP y PUSH de los regsitros cuando termine de manejar la excepción y siga con la otra. No se pasa de modo Handler a modo Thread luego de atender la primera excepción, quedará en modo Handler hasta que termine de atender a todas las excepciones pendientes.
 
-Por otra parte, durante el cambio de contexto se guarda todo el contexto actual en el Stack. Esto se denomina "stacking".
+Por otra parte, durante el cambio de contexto se guarda todo el contexto actual (los registros de usos generales (R0-R3, R12, LR), PSR (Program Status Register), registros de unidad de punto flotante, etc.) en el Stack. Este proceso se denomina "stacking".
+
+¿Por qué los otros registros generales no se guardan? Porque se asume que no son necesario y con esto se ahorra tiempo del procesador. Recordar que no se pasan parámetros a los manejadores de excepciones, sino que se guardan para dejarlos disponibles en caso de que se quiera utilizarlos dentro del manejador. 
+
+Es necesario hacer una diferencia de lo que ocurre cuando se llama una función, donde se hace una distinción entre registros resguardados y no resguardados. Aquí no se guardan los registros de forma automática porque reduce la eficiencia del procesador. Esto lo maneja el programador. En cambio, durante el stacking, el procesador los guarda automáticamente.
 
 ![Stacking.](/IMG_cuestionario/stacking.png)
 
-+ **Late arrival** se da cuando una interrupción llega tarde después que el procesador ya ha iniciado el procesamiento para manejar la excepción. Si la interrupción que llega tarde tiene una prioridad más alta que la que el procesador ya está atendiendo, la inserción de los datos en el Stack continuará lo mismo.
+En un momento del proceso de stacking, se va a realizar el vector fetch. Esto es ir a buscar al vector de interrupciones la dirección del manejador de la excepción. 
+
+Luego de esto se va hacer un fetch de las intrucciones del manejador. Se hace el fetch de las instrucciones antes de ejecutarlas, debido al pipeline. No se pierde el tiempo del procesador. 
+
++ **Late arrival** se da cuando una excepción llega tarde después que el procesador ya ha iniciado el proceso de atender la primera excepción. Si la excepción que llega tarde tiene una prioridad más alta que la que el procesador ya está atendiendo, el proceso de stacking continuará lo mismo (porque es igual para todas las excepciones de cualquier prioridad). Ahora, si todavía no se había hecho el vector fetch, entonces se hará para la de más alta prioridad y la debaja prioridad quedará pendiente.
+
+![Late arrival.](/IMG_cuestionario/late_arrival.png)
 
 
 ### 18. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
