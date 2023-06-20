@@ -8,3 +8,4 @@
 ../Core/Src/c_func.c:122:6:c_downsampleM	32	static
 ../Core/Src/c_func.c:145:6:c_invertir	24	static
 ../Core/Src/c_func.c:159:6:c_eco	32	static
+../Core/Src/c_func.c:181:6:c_corr	32	static

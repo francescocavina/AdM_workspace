@@ -156,6 +156,6 @@ void c_corr_tester(void) {
 
 	c_corr(myVecA, myVecB, myVecCorr, myVecASize);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 58497 ciclos en modo Debug.
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta AA ciclos en modo Debug!!!
 }
 

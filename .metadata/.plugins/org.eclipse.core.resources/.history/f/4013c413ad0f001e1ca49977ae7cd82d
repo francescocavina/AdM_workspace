@@ -152,10 +152,6 @@ void c_corr_tester(void) {
 	uint16_t myVecASize = sizeof(myVecA) / sizeof(myVecA[0]);
 	int16_t myVecCorr[myVecASize];
 
-	DWT->CYCCNT = 0;
-
 	c_corr(myVecA, myVecB, myVecCorr, myVecASize);
-
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 58497 ciclos en modo Debug.
 }
 

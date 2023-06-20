@@ -11,4 +11,5 @@
 ../Core/Src/asm_func_tester.c:121:6:asm_ecoV1_tester	80	dynamic
 ../Core/Src/asm_func_tester.c:146:6:asm_ecoV2_tester	80	dynamic
 ../Core/Src/asm_func_tester.c:170:6:asm_ecoV3_tester	80	dynamic
-../Core/Src/asm_func_tester.c:195:6:asm_corr_tester	4	static
+../Core/Src/asm_func_tester.c:195:6:asm_corrV1_tester	200	dynamic
+../Core/Src/asm_func_tester.c:219:6:asm_corrV2_tester	200	dynamic

@@ -172,8 +172,7 @@ int main(void)
   asm_ecoV1_tester();					// EJERCICIO 10.1
   asm_ecoV2_tester();					// EJERCICIO 10.2
   asm_ecoV3_tester();					// EJERCICIO 10.3
-  asm_corrV1_tester();					// EJERCICIO 11.1
-  asm_corrV2_tester();					// EJERCICIO 11.2
+  asm_corr_tester();					// EJERCICIO 11
 
 
   /* Funciones en C ----------------------------------------------------------*/

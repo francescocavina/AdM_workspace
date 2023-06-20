@@ -52,11 +52,8 @@ void asm_ecoV2_tester(void);
 /* EJERCICIO 10.3 ------------------------------------------------------------*/
 void asm_ecoV3_tester(void);
 
-/* EJERCICIO 11.1 ------------------------------------------------------------*/
-void asm_corrV1_tester(void);
-
-/* EJERCICIO 11.2 ------------------------------------------------------------*/
-void asm_corrV2_tester(void);
+/* EJERCICIO 11 --------------------------------------------------------------*/
+void asm_corr_tester(void);
 
 
 #endif /* INC_ASM_FUNC_TESTER_H_ */
