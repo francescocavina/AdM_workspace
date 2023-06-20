@@ -63,6 +63,20 @@ Los procesadores Cortex utilizan una memoria que se dirección por 32 bits, lo q
 
 ### 5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP? 
 
++ MSP = Main Stack Pointer es el SP utilizado para el Kernel del OS e interrupciones. Es el que se utiliza luego del reset o cuando el procesador se encuentra en modo Handler.
++ PSP = Process Stack Pointer es el SP utilizado para tareas de la aplicación. Puede ser solo utilizado en modo Thread. 
+
+De esta manera el Stack utilizado por el Kernel del SO puede ser separado del que usan las tareas de la aplicación. Para aplicaciones simples sin sistema operativo, el MSP puede ser utilizado todo el tiempo. Esto se debe a que no es necesario utilizar un PSP. 
+
+El SP (Stack Pointer) es utilizado para acceder al Stack a través de las intrucciones PUSH y POP. Físicamente existen dos SP ya nombrados: MSP y PSP. Qué SP utilizar se determina a través de un registro especial de control. En este registro el campo SPSEL (bit 1) es el que debe cambiarse para el elegir el tipo de SP, siendo PSP en 1 y MSP en 0. 
+
+![MSP y PSP.](/IMG_cuestionario/sp_types.png)
+
+
+
+
+El valor inicial del PSP es indefinido y el valor inicial del MSP se toma de la primera palbra de la memoria durante la secuencia de reset. 
+
 MSP es el Stack Pointer general del programa y el PSP es el Stack Pointer que utilizan las tarea. Ambos son registros.
 
 Recordar que el SP es un registro que guarda la dirección de memoria del stack. Apenas inicia tendrá la dirección inicial del Stack.
