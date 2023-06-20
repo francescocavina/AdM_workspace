@@ -64,29 +64,31 @@ Los procesadores Cortex utilizan una memoria que se dirección por 32 bits, lo q
 ### 5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP? 
 
 + MSP = Main Stack Pointer es el SP utilizado para el Kernel del OS e interrupciones. Es el que se utiliza luego del reset o cuando el procesador se encuentra en modo Handler.
-+ PSP = Process Stack Pointer es el SP utilizado para tareas de la aplicación. Puede ser solo utilizado en modo Thread. 
++ PSP = Process Stack Pointer es el SP utilizado para tareas de la aplicación. Puede ser solo utilizado en modo Thread. En modo privilegiado el SP es el MSP y puede acceder a todo. En modo no privilegiado el SP es el PSP y queda acotado a lo que puede acceder. Durante el cambio de contexto en un RTOS se modifica el PSP cada vez que esto sucede.
 
-De esta manera el Stack utilizado por el Kernel del SO puede ser separado del que usan las tareas de la aplicación. Para aplicaciones simples sin sistema operativo, el MSP puede ser utilizado todo el tiempo. Esto se debe a que no es necesario utilizar un PSP. 
+De esta manera el Stack utilizado por el Kernel del SO puede ser separado del que usan las tareas de la aplicación. Para aplicaciones simples sin sistema operativo, el MSP puede ser utilizado todo el tiempo. Esto se debe a que no es necesario utilizar un PSP. Shadowed Stack Pointer significa que hay dos SP disponibles.
 
-El SP (Stack Pointer) es utilizado para acceder al Stack a través de las intrucciones PUSH y POP. Físicamente existen dos SP ya nombrados: MSP y PSP. Qué SP utilizar se determina a través de un registro especial de control. En este registro el campo SPSEL (bit 1) es el que debe cambiarse para el elegir el tipo de SP, siendo PSP en 1 y MSP en 0. 
+El SP (Stack Pointer) es un registro (R13) de 32 bits utilizado para acceder al Stack a través de las intrucciones PUSH y POP. Físicamente existen dos SP ya nombrados: MSP y PSP. Qué SP utilizar se determina a través de un registro especial de control. En este registro el campo SPSEL (bit 1) es el que debe cambiarse para el elegir el tipo de SP, siendo PSP en 1 y MSP en 0. 
+
+El valor inicial del PSP es indefinido y el valor inicial del MSP se toma de la primera palabra de la memoria durante la secuencia de reset. 
 
 ![MSP y PSP.](/IMG_cuestionario/sp_types.png)
 
+Aunque sólo un SP es visible a la vez (a través del registro R13) es posible escribir y leer directamente el MSP o PSP. Existen funciones CMSIS para hacer esto, aunque no es recomendado.
 
+```
+x = __get_MSP(); // Read the value of MSP
+__set_MSP(x); // Set the value of MSP
+x = __get_PSP(); // Read the value of PSP
+__set_PSP(x); // Set the value of PSP
+```
 
+Esta idea de shadowd pointers trae algunos beneficios:
 
-El valor inicial del PSP es indefinido y el valor inicial del MSP se toma de la primera palbra de la memoria durante la secuencia de reset. 
-
-MSP es el Stack Pointer general del programa y el PSP es el Stack Pointer que utilizan las tarea. Ambos son registros.
-
-Recordar que el SP es un registro que guarda la dirección de memoria del stack. Apenas inicia tendrá la dirección inicial del Stack.
-
-En modo privilegiado el SP es el MSP puede acceder a todo, en modo no privilegiado el SP es el PSP y queda acotado a lo que puede acceder.
-
-SP se puede apuntar a MSP o PSP (que están en memoria) según un bit en un registro de control. Sólo una a la vez.  
-
-En un sistema embebido, la posición 0 tiene el SP inicial que a su vez es el valor de MSP.
-
++ Si una tarea de la aplicación tiene un problema que lleva a la corrupción del Stack, el Stack utilizado por el Kernel del SO y otras tareas quedarán intactos y esto ayuda a mejorar la confiabilidad del sistema.
++ El Stack utilizado por cada tarea solo tiene que cubrir el máximo Stack definido más un Stack Frame. El Stack necesario para la ISR y manejo de interrupciones anidadas es colocado en el Stack principal solamente.
++ Hace eficiente la creación de un SO.
++ El SO puede utilizar la unidad de protección de memoria (MPU) para definir una región de Stack que la tarea de la aplicación puede utilizar. Si esta tarea tiene un "stack overflow", el MPU puede disparar una excepción de "MemManage fault" y prevenir que la tarea escriba en regiones de memoria más allá de lo que le corresponde.
 
 ### 6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado. 
 
@@ -105,6 +107,8 @@ A continuación, se muestra un diagrama en bloques de los diferentes modos de op
 ![Diagrama en bloques de los modos de ejecución.](/IMG_cuestionario/diagrama_modos.png)
 
 Si se quiere pasar de no privilegiado a privilegiado cambiando el bit 0 en el registro de control, el microcontrolador lo va a ignorar. La forma correcta de hacerlo es pidiéndoselo con el llamado de un manejador de excepción. Ejecutando el programa en modo Thread no privilegiado, la unica forma de ponerlo en modo privilegiado o de realizar cualquier cambio que requiera modo privilegiado, es pidiendo ese servicio a un hipotético RTOS. Para esto se incova por software la interrupción SVC (Supervisor Call) y debe hacerse mediante una función en assembler. 
+
+Un programa en modo privilegiado no puede cambiarse solo a modo privilegiado y esto es esencial para proveer una seguridad básica, donde una aplicación no confiable podría corromper todo el sistema.
 
 En el registo de control, se puede ver el valor del bit 0. En modo de ejecución Thread, privilegiado = 0 y no privilegiado = 1. 
 
