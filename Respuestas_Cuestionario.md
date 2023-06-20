@@ -302,8 +302,15 @@ Por otra parte, el Heap es memoria dinámica que el programa puede utilizar (rec
 
 ### 20. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?
 
+En ARM v7 se puede configurar hasta 8 regiones de memoria. Se pueden condigurar regiones bases que van en el background y dentro de cada región se pueden configurar subregiones que van en el foreground.
 
+Cada región y subregión tiene sus permisos de lectura/escritura/ejecución. Toda la configuración se hace a través de unos puntero a posiciones de memoria. La idea es especificar la región, dirección inicial y permisos.
 
+El región no puede tener cualquier tamaño, sino que debe ser un valor específico múltiplo de 128KB. Además, dependiendo del tamaño seleccionado, le corresponderá una dirección de memoria inicial específica. Por ejemplo, si se utiliza una región de 4GB, la dirección inicial debe ser en 0. O si se utiliza una región de 2GB, las direcciones iniciales pueden ser en 0 o en 2GB.
+
+Si las regiones se suporponen, no hay problema. Debe tenerse en cuenta la hora del diseño. 
+
+En el caso de que una zona de la memoria no sea asignada a una región definida, se podrá acceder de igual manera. El único problema es que no quedará protegida por la MPU.
 
 ### 21. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo.
 
