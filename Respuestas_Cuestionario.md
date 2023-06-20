@@ -252,12 +252,19 @@ Cuando se termine de ejecutar este manejador, se volverá al contexto que se est
 ### 16. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
 
 
+
+
 ### 17. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
 
-"Tail chaining" se da cuando se quiere atender consecutivamente dos excepciones sin sobrecargar al micro con restaurar los contextos  entre las interrupciones. El procesador va a omitir hacer el POP y PUSH de los regsitros cuando sale de un ISR y entra en otro, porque esto no tiene efecto en el contenido del Stack. 
+Siempre que se esté atendiendo una exepción es posible que parezca otra. Dependiendo la prioridad de la nueva excepción, si es mayor se pasará a atender a ésta nueva. Sino se quedará atendiendo a la que ya estaba hasta que termine. Si sucede este último caso, aparece el concepto de "tail chaning":
 
++ **Tail chaining** se da cuando se quiere atender consecutivamente dos excepciones sin sobrecargar al micro con restaurar los contextos  entre las interrupciones. El procesador va a omitir hacer el POP y PUSH de los regsitros cuando termine de manejar la excepción y siga con la otra. No se pasa de modo Handler a modo Thread luego de atender la primera excepción, quedará en modo Handler hasta que termine de atender a todas las excepciones pendientes.
 
-"Late arrival" se da cuando una interrupción llega tarde después que el procesador ya ha iniciado el procesamiento para manejar la excepción. Si la interrupción que llega tarde tiene una prioridad más alta que la que el procesador ya está atendiendo, la inserción de los datos en el Stack continuará lo mismo.
+Por otra parte, durante el cambio de contexto se guarda todo el contexto actual en el Stack. Esto se denomina "stacking".
+
+![Stacking.](/IMG_cuestionario/stacking.png)
+
++ **Late arrival** se da cuando una interrupción llega tarde después que el procesador ya ha iniciado el procesamiento para manejar la excepción. Si la interrupción que llega tarde tiene una prioridad más alta que la que el procesador ya está atendiendo, la inserción de los datos en el Stack continuará lo mismo.
 
 
 ### 18. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
