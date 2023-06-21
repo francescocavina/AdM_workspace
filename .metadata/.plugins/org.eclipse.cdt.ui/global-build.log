@@ -697,3 +697,539 @@ arm-none-eabi-size   adm_c16.elf
   24504	    120	   3512	  28136	   6de8	adm_c16.elf
 Finished building: default.size.stdout
  
+23:10:54 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-size   adm_c16.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24504	    120	   3512	  28136	   6de8	adm_c16.elf
+Finished building: default.size.stdout
+ 
+23:23:38 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/asm_func.d" -MT"Core/Src/asm_func.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func.o" "../Core/Src/asm_func.S"
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24472	    120	   3512	  28104	   6dc8	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:24:08 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/asm_func.d" -MT"Core/Src/asm_func.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func.o" "../Core/Src/asm_func.S"
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24472	    120	   3512	  28104	   6dc8	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:24:46 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-size   adm_c16.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24472	    120	   3512	  28104	   6dc8	adm_c16.elf
+Finished building: default.size.stdout
+ 
+23:29:01 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/asm_func.d" -MT"Core/Src/asm_func.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func.o" "../Core/Src/asm_func.S"
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24472	    120	   3512	  28104	   6dc8	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:29:13 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-size   adm_c16.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24472	    120	   3512	  28104	   6dc8	adm_c16.elf
+Finished building: default.size.stdout
+ 
+23:32:23 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/asm_func.d" -MT"Core/Src/asm_func.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func.o" "../Core/Src/asm_func.S"
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24472	    120	   3512	  28104	   6dc8	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:32:52 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-size   adm_c16.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24472	    120	   3512	  28104	   6dc8	adm_c16.elf
+Finished building: default.size.stdout
+ 
+23:33:28 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-size   adm_c16.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24472	    120	   3512	  28104	   6dc8	adm_c16.elf
+Finished building: default.size.stdout
+ 
+23:37:31 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/asm_func_tester.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/asm_func_tester.d" -MT"Core/Src/asm_func_tester.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func_tester.o"
+../Core/Src/asm_func_tester.c: In function 'asm_sum_tester':
+../Core/Src/asm_func_tester.c:15:11: warning: variable 'resultado' set but not used [-Wunused-but-set-variable]
+   15 |  uint32_t resultado;
+      |           ^~~~~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_max_tester':
+../Core/Src/asm_func_tester.c:94:10: warning: unused variable 'max' [-Wunused-variable]
+   94 |  int32_t max = asm_max(myVecIn, myVecInSize);
+      |          ^~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV1_tester':
+../Core/Src/asm_func_tester.c:141:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  141 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 73.530 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV2_tester':
+../Core/Src/asm_func_tester.c:166:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  166 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 74.978 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV3_tester':
+../Core/Src/asm_func_tester.c:190:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  190 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 37.497 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV1_tester':
+../Core/Src/asm_func_tester.c:214:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  214 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 15.637 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV2_tester':
+../Core/Src/asm_func_tester.c:238:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  238 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta ABC ciclos en modo Debug
+      |                          ^~~~~~
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24632	    120	   3512	  28264	   6e68	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:39:52 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-size   adm_c16.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24632	    120	   3512	  28264	   6e68	adm_c16.elf
+Finished building: default.size.stdout
+ 
+23:42:17 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/asm_func_tester.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/asm_func_tester.d" -MT"Core/Src/asm_func_tester.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func_tester.o"
+../Core/Src/asm_func_tester.c: In function 'asm_sum_tester':
+../Core/Src/asm_func_tester.c:15:11: warning: variable 'resultado' set but not used [-Wunused-but-set-variable]
+   15 |  uint32_t resultado;
+      |           ^~~~~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_max_tester':
+../Core/Src/asm_func_tester.c:94:10: warning: unused variable 'max' [-Wunused-variable]
+   94 |  int32_t max = asm_max(myVecIn, myVecInSize);
+      |          ^~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV1_tester':
+../Core/Src/asm_func_tester.c:141:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  141 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 73.530 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV2_tester':
+../Core/Src/asm_func_tester.c:166:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  166 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 74.978 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV3_tester':
+../Core/Src/asm_func_tester.c:190:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  190 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 37.497 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV1_tester':
+../Core/Src/asm_func_tester.c:214:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  214 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 15.637 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV2_tester':
+../Core/Src/asm_func_tester.c:241:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  241 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta ABC ciclos en modo Debug
+      |                          ^~~~~~
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24460	    120	   3512	  28092	   6dbc	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:42:55 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/asm_func_tester.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/asm_func_tester.d" -MT"Core/Src/asm_func_tester.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func_tester.o"
+../Core/Src/asm_func_tester.c: In function 'asm_sum_tester':
+../Core/Src/asm_func_tester.c:15:11: warning: variable 'resultado' set but not used [-Wunused-but-set-variable]
+   15 |  uint32_t resultado;
+      |           ^~~~~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_max_tester':
+../Core/Src/asm_func_tester.c:94:10: warning: unused variable 'max' [-Wunused-variable]
+   94 |  int32_t max = asm_max(myVecIn, myVecInSize);
+      |          ^~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV1_tester':
+../Core/Src/asm_func_tester.c:141:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  141 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 73.530 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV2_tester':
+../Core/Src/asm_func_tester.c:166:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  166 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 74.978 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV3_tester':
+../Core/Src/asm_func_tester.c:190:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  190 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 37.497 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV1_tester':
+../Core/Src/asm_func_tester.c:214:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  214 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 15.637 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV2_tester':
+../Core/Src/asm_func_tester.c:241:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  241 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta ABC ciclos en modo Debug
+      |                          ^~~~~~
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24496	    120	   3512	  28128	   6de0	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:43:45 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-size   adm_c16.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24496	    120	   3512	  28128	   6de0	adm_c16.elf
+Finished building: default.size.stdout
+ 
+23:45:29 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/asm_func.d" -MT"Core/Src/asm_func.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func.o" "../Core/Src/asm_func.S"
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24496	    120	   3512	  28128	   6de0	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:46:24 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/asm_func.d" -MT"Core/Src/asm_func.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func.o" "../Core/Src/asm_func.S"
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24496	    120	   3512	  28128	   6de0	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:47:26 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Core/Src/asm_func.d" -MT"Core/Src/asm_func.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func.o" "../Core/Src/asm_func.S"
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24496	    120	   3512	  28128	   6de0	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:47:58 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/asm_func_tester.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/asm_func_tester.d" -MT"Core/Src/asm_func_tester.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func_tester.o"
+../Core/Src/asm_func_tester.c: In function 'asm_sum_tester':
+../Core/Src/asm_func_tester.c:15:11: warning: variable 'resultado' set but not used [-Wunused-but-set-variable]
+   15 |  uint32_t resultado;
+      |           ^~~~~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_max_tester':
+../Core/Src/asm_func_tester.c:94:10: warning: unused variable 'max' [-Wunused-variable]
+   94 |  int32_t max = asm_max(myVecIn, myVecInSize);
+      |          ^~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV1_tester':
+../Core/Src/asm_func_tester.c:141:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  141 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 73.530 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV2_tester':
+../Core/Src/asm_func_tester.c:166:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  166 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 74.978 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV3_tester':
+../Core/Src/asm_func_tester.c:190:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  190 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 37.497 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV1_tester':
+../Core/Src/asm_func_tester.c:214:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  214 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 15.637 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV2_tester':
+../Core/Src/asm_func_tester.c:241:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  241 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta ABC ciclos en modo Debug
+      |                          ^~~~~~
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24492	    120	   3512	  28124	   6ddc	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:48:26 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-size   adm_c16.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24492	    120	   3512	  28124	   6ddc	adm_c16.elf
+Finished building: default.size.stdout
+ 
+23:52:48 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/asm_func_tester.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/asm_func_tester.d" -MT"Core/Src/asm_func_tester.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func_tester.o"
+../Core/Src/asm_func_tester.c: In function 'asm_sum_tester':
+../Core/Src/asm_func_tester.c:15:11: warning: variable 'resultado' set but not used [-Wunused-but-set-variable]
+   15 |  uint32_t resultado;
+      |           ^~~~~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_max_tester':
+../Core/Src/asm_func_tester.c:94:10: warning: unused variable 'max' [-Wunused-variable]
+   94 |  int32_t max = asm_max(myVecIn, myVecInSize);
+      |          ^~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV1_tester':
+../Core/Src/asm_func_tester.c:141:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  141 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 73.530 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV2_tester':
+../Core/Src/asm_func_tester.c:166:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  166 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 74.978 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV3_tester':
+../Core/Src/asm_func_tester.c:190:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  190 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 37.497 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV1_tester':
+../Core/Src/asm_func_tester.c:214:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  214 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 15.637 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV2_tester':
+../Core/Src/asm_func_tester.c:241:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  241 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta ABC ciclos en modo Debug
+      |                          ^~~~~~
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24496	    120	   3512	  28128	   6de0	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:54:01 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/asm_func_tester.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/asm_func_tester.d" -MT"Core/Src/asm_func_tester.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func_tester.o"
+../Core/Src/asm_func_tester.c: In function 'asm_sum_tester':
+../Core/Src/asm_func_tester.c:15:11: warning: variable 'resultado' set but not used [-Wunused-but-set-variable]
+   15 |  uint32_t resultado;
+      |           ^~~~~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_max_tester':
+../Core/Src/asm_func_tester.c:94:10: warning: unused variable 'max' [-Wunused-variable]
+   94 |  int32_t max = asm_max(myVecIn, myVecInSize);
+      |          ^~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV1_tester':
+../Core/Src/asm_func_tester.c:141:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  141 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 73.530 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV2_tester':
+../Core/Src/asm_func_tester.c:166:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  166 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 74.978 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV3_tester':
+../Core/Src/asm_func_tester.c:190:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  190 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 37.497 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV1_tester':
+../Core/Src/asm_func_tester.c:214:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  214 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 15.637 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV2_tester':
+../Core/Src/asm_func_tester.c:240:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  240 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta ABC ciclos en modo Debug
+      |                          ^~~~~~
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24508	    120	   3512	  28140	   6dec	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:57:13 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/asm_func_tester.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/asm_func_tester.d" -MT"Core/Src/asm_func_tester.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func_tester.o"
+../Core/Src/asm_func_tester.c: In function 'asm_sum_tester':
+../Core/Src/asm_func_tester.c:15:11: warning: variable 'resultado' set but not used [-Wunused-but-set-variable]
+   15 |  uint32_t resultado;
+      |           ^~~~~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_max_tester':
+../Core/Src/asm_func_tester.c:94:10: warning: unused variable 'max' [-Wunused-variable]
+   94 |  int32_t max = asm_max(myVecIn, myVecInSize);
+      |          ^~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV1_tester':
+../Core/Src/asm_func_tester.c:141:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  141 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 73.530 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV2_tester':
+../Core/Src/asm_func_tester.c:166:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  166 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 74.978 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV3_tester':
+../Core/Src/asm_func_tester.c:190:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  190 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 37.497 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV1_tester':
+../Core/Src/asm_func_tester.c:214:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  214 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 15.637 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV2_tester':
+../Core/Src/asm_func_tester.c:222:285: error: expected ',' or ';' before '}' token
+  222 |  int16_t myVecA[] = {1, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 10, 8, 4, -8, -5, -9, -10, -9, -5, -1, 4, 8, 10, 9, 7, 2, -3, -7, -10, -10, -8, -3, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+      |                                                                                                                                                                                                                                                                                             ^
+../Core/Src/asm_func_tester.c:225:284: error: expected ',' or ';' before '}' token
+  225 |  int16_t myVecB[] = {10, 9, 5, 7, -4, -8, -10, -9, -7, -2, 3, 7, 10, 10, 8, 4, -2, -6, -9, -10, -8, -5, 4, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+      |                                                                                                                                                                                                                                                                                            ^
+../Core/Src/asm_func_tester.c:242:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  242 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta ABC ciclos en modo Debug
+      |                          ^~~~~~
+make: *** [Core/Src/subdir.mk:52: Core/Src/asm_func_tester.o] Error 1
+"make -j20 all" terminated with exit code 2. Build might be incomplete.
+23:57:30 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-gcc "../Core/Src/asm_func_tester.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F429xx -c -I../Core/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/iot/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.0/Drivers/CMSIS/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include -I/home/francesco/STM32Cube/Repository/STM32Cube_FW_F4_V1.27.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/asm_func_tester.d" -MT"Core/Src/asm_func_tester.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/asm_func_tester.o"
+../Core/Src/asm_func_tester.c: In function 'asm_sum_tester':
+../Core/Src/asm_func_tester.c:15:11: warning: variable 'resultado' set but not used [-Wunused-but-set-variable]
+   15 |  uint32_t resultado;
+      |           ^~~~~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_max_tester':
+../Core/Src/asm_func_tester.c:94:10: warning: unused variable 'max' [-Wunused-variable]
+   94 |  int32_t max = asm_max(myVecIn, myVecInSize);
+      |          ^~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV1_tester':
+../Core/Src/asm_func_tester.c:141:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  141 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 73.530 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV2_tester':
+../Core/Src/asm_func_tester.c:166:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  166 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 74.978 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_ecoV3_tester':
+../Core/Src/asm_func_tester.c:190:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  190 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 37.497 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV1_tester':
+../Core/Src/asm_func_tester.c:214:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  214 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta 15.637 ciclos en modo Debug
+      |                          ^~~~~~
+../Core/Src/asm_func_tester.c: In function 'asm_corrV2_tester':
+../Core/Src/asm_func_tester.c:242:26: warning: unused variable 'Ciclos' [-Wunused-variable]
+  242 |  const volatile uint32_t Ciclos = DWT->CYCCNT; // Reporta ABC ciclos en modo Debug
+      |                          ^~~~~~
+arm-none-eabi-gcc -o "adm_c16.elf" @"objects.list"   -mcpu=cortex-m4 -T"/media/francesco/Data/Francesco/AdM_workspace/adm_c16/STM32F429ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="adm_c16.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: adm_c16.elf
+ 
+arm-none-eabi-size   adm_c16.elf 
+arm-none-eabi-objdump -h -S  adm_c16.elf  > "adm_c16.list"
+arm-none-eabi-objcopy  -O binary  adm_c16.elf  "adm_c16.bin"
+   text	   data	    bss	    dec	    hex	filename
+  24816	    120	   3512	  28448	   6f20	adm_c16.elf
+Finished building: default.size.stdout
+ 
+Finished building: adm_c16.bin
+ 
+Finished building: adm_c16.list
+ 
+23:57:44 **** Incremental Build of configuration Debug for project adm_c16 ****
+make -j20 all 
+arm-none-eabi-size   adm_c16.elf 
+   text	   data	    bss	    dec	    hex	filename
+  24816	    120	   3512	  28448	   6f20	adm_c16.elf
+Finished building: default.size.stdout
+ 

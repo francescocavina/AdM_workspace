@@ -573,7 +573,7 @@
 	asm_corrV2:
 		PUSH {R4 - R8}					@ se resguardan registros en STACK
 		MOV R4, #0						@ l = 0;
-		MOV R3, R3, LSR #1				@ R3 = longitud / 2;
+		MOV R3, R3, LSR #2				@ R3 = longitud / 2;
 
 	asm_corrV2_loop1:					@ loop 1
 		MOV R5, #0						@ sum = 0;
@@ -591,7 +591,7 @@
 		STRH R5, [R2, R4, LSL #1]		@ vectorCorr[l] = sum;
 
 		ADD R4, R4, #1					@ l++;
-		ADD R0, R0, #2					@ Poner índice 0 en el siguiente elemento
+		ADD R0, R0, R1					@ Poner índice 0 en el siguiente elemento
 		CMP R3, R4						@ longitud - l;
 		BHI asm_corrV2_loop1			@ if(longitud > l) --> repetir buble externo
 

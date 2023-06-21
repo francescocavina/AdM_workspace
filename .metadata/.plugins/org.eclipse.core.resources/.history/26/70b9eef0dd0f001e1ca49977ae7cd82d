@@ -573,7 +573,7 @@
 	asm_corrV2:
 		PUSH {R4 - R8}					@ se resguardan registros en STACK
 		MOV R4, #0						@ l = 0;
-		MOV R3, R3, LSR #1				@ R3 = longitud / 2;
+		MOV R3, R3, LSR #2				@ R3 = longitud / 4;
 
 	asm_corrV2_loop1:					@ loop 1
 		MOV R5, #0						@ sum = 0;
