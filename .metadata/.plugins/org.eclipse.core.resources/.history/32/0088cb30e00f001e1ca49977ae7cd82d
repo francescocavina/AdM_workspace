@@ -218,4 +218,26 @@ void asm_corrV1_tester(void) {
 /* EJERCICIO 11.2 ------------------------------------------------------------*/
 void asm_corrV2_tester(void) {
 
+	// Se define señal sinusoidal
+	int16_t myVecA[] = {1, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 10, 8, 4, -8, -5, -9, -10, -9, -5, -1, 4, 8, 10, 9, 7, 2, -3, -7, -10, -10, -8, -3, 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+	// Se define la misma señal defasada 90°
+	int16_t myVecB[] = {10, 9, 5, 7, -4, -8, -10, -9, -7, -2, 3, 7, 10, 10, 8, 4, -2, -6, -9, -10, -8, -5, 4, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 8, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+	// Se define señal sinusoidal
+	//int16_t myVecB[] = {1, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 10, 8, 4, -8, -5, -9, -10, -9, -5, -1, 4, 8, 10, 9, 7, 2, -3, -7, -10, -10, -8, -3, 2, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}};
+
+	/* Para utilizar:
+	 * 1) Las señales deben tener un número par de muestras.
+	 * 2) Completar con 0's cada señal la misma cantidad de muestras.
+	 */
+
+	uint16_t myVecASize = sizeof(myVecA) / sizeof(myVecA[0]);
+	int16_t myVecCorr[myVecASize/2];
+
+	DWT->CYCCNT = 0;
+
+	asm_corrV2(myVecA, myVecB, myVecCorr, myVecASize);
+
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta ABC ciclos en modo Debug
 }
