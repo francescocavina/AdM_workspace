@@ -132,7 +132,7 @@ void c_eco_tester(void) {
 
 	c_eco(myVecIn, myVecOut, BUFFER_SIZE, SAMPLING_RATE, DELAY_MS);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 282900 ciclos en modo Debug!!!
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 282.900 ciclos en modo Debug!!!
 }
 
 
@@ -148,7 +148,6 @@ void c_corr_tester(void) {
 	// Se define señal sinusoidal
 	int16_t myVecB[] = {1, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 10, 8, 4, -8, -5, -9, -10, -9, -5, -1, 4, 8, 10, 9, 7, 2, -3, -7, -10, -10, -8, -3};
 
-
 	uint16_t myVecASize = sizeof(myVecA) / sizeof(myVecA[0]);
 	int16_t myVecCorr[myVecASize];
 
@@ -156,6 +155,6 @@ void c_corr_tester(void) {
 
 	c_corr(myVecA, myVecB, myVecCorr, myVecASize);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 58497 ciclos en modo Debug.
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 58.497 ciclos en modo Debug!!!
 }
 

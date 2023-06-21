@@ -187,8 +187,8 @@ void c_corr(int16_t *vectorX, int16_t *vectorY, int16_t *vectorCorr, uint32_t lo
 		sum = 0;
 
 		for(uint16_t n = 0; n < longitud; n++) {
-			if(n - l >= 0) {
-				sum += (vectorX[n] * vectorY[n - l]);
+			if((n + l) < longitud) {
+				sum += (vectorX[n] * vectorY[n + l]);
 			}
 		}
 

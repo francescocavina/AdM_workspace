@@ -163,7 +163,7 @@ void asm_ecoV2_tester(void) {
 
 	asm_ecoV2(myVecIn, myVecOut, bufferSize, samplingRate, delay_ms);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 74978 ciclos en modo Debug
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 74.978 ciclos en modo Debug
 }
 
 /* EJERCICIO 10.3 ------------------------------------------------------------*/
@@ -187,7 +187,7 @@ void asm_ecoV3_tester(void) {
 
 	asm_ecoV3(myVecIn, myVecOut, bufferSize, samplingRate, delay_ms);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 37497 ciclos en modo Debug
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 37.497 ciclos en modo Debug
 }
 
 
@@ -198,10 +198,10 @@ void asm_corrV1_tester(void) {
 	int16_t myVecA[] = {1, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 10, 8, 4, -8, -5, -9, -10, -9, -5, -1, 4, 8, 10, 9, 7, 2, -3, -7, -10, -10, -8, -3};
 
 	// Se define la misma señal defasada 90°
-	//int16_t myVecB[] = {10, 9, 5, 7, -4, -8, -10, -9, -7, -2, 3, 7, 10, 10, 8, 4, -2, -6, -9, -10, -8, -5, 4, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9};
+	int16_t myVecB[] = {10, 9, 5, 7, -4, -8, -10, -9, -7, -2, 3, 7, 10, 10, 8, 4, -2, -6, -9, -10, -8, -5, 4, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9};
 
 	// Se define señal sinusoidal
-	int16_t myVecB[] = {1, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 10, 8, 4, -8, -5, -9, -10, -9, -5, -1, 4, 8, 10, 9, 7, 2, -3, -7, -10, -10, -8, -3};
+	//int16_t myVecB[] = {1, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 10, 8, 4, -8, -5, -9, -10, -9, -5, -1, 4, 8, 10, 9, 7, 2, -3, -7, -10, -10, -8, -3};
 
 
 	uint16_t myVecASize = sizeof(myVecA) / sizeof(myVecA[0]);
@@ -211,7 +211,7 @@ void asm_corrV1_tester(void) {
 
 	asm_corrV1(myVecA, myVecB, myVecCorr, myVecASize);
 
-	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta ABC ciclos en modo Debug
+	const volatile uint32_t Ciclos = DWT->CYCCNT;	// Reporta 15.637 ciclos en modo Debug
 }
 
 
@@ -222,10 +222,10 @@ void asm_corrV2_tester(void) {
 	int16_t myVecA[] = {1, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 10, 8, 4, -8, -5, -9, -10, -9, -5, -1, 4, 8, 10, 9, 7, 2, -3, -7, -10, -10, -8, -3};
 
 	// Se define la misma señal defasada 90°
-	//int16_t myVecB[] = {10, 9, 5, 7, -4, -8, -10, -9, -7, -2, 3, 7, 10, 10, 8, 4, -2, -6, -9, -10, -8, -5, 4, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9};
+	int16_t myVecB[] = {10, 9, 5, 7, -4, -8, -10, -9, -7, -2, 3, 7, 10, 10, 8, 4, -2, -6, -9, -10, -8, -5, 4, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9};
 
 	// Se define señal sinusoidal
-	int16_t myVecB[] = {1, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 10, 8, 4, -8, -5, -9, -10, -9, -5, -1, 4, 8, 10, 9, 7, 2, -3, -7, -10, -10, -8, -3};
+	//int16_t myVecB[] = {1, 5, 8, 10, 9, 6, 1, -4, -8, -10, -10, -7, -3, 2, 7, 9, 10, 8, 4, -8, -5, -9, -10, -9, -5, -1, 4, 8, 10, 9, 7, 2, -3, -7, -10, -10, -8, -3};
 
 
 	uint16_t myVecASize = sizeof(myVecA) / sizeof(myVecA[0]);
