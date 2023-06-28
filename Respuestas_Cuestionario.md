@@ -7,7 +7,7 @@
 
 Los diferentes perfiles de familias de uC/uP de ARM son:
 
-+ **Cortex A (Applications):** son microprocesadores optimizados para correr muchas aplicaciones a la vez y no en tiempo real. Porque importe la cantidad de procesamiento y no en 			el tiempo en que responda. Además, es posible embeberle un sistema operativo de propósito general y podría ser utilizado, por ejemplo, en un smartphone. Otra característica de este perfil es que poseen memoria Caché (memoria rápida para ganar tiempo). Como estos microprocesadores a veces utilizan la memoria RAM y otras veces la Caché, no hay determinismo y es por eso que no pueden ser utilizador para tiempo real. 
++ **Cortex A (Applications):** son microprocesadores optimizados para correr muchas aplicaciones a la vez y no en tiempo real. Aquí importa la cantidad de procesamiento y no el tiempo en que responda. Además, es posible embeberle un sistema operativo de propósito general y podría ser utilizado, por ejemplo, en un smartphone. Otra característica de este perfil es que poseen memoria Caché (memoria rápida para ganar tiempo). Como estos microprocesadores a veces utilizan la memoria RAM y otras veces la Caché, no hay determinismo y es por eso que no pueden ser utilizados para tiempo real. 
 
 + **Cortex R (Real Time):** son muy parecidos a los Cortex A, pero no poseen memoria Caché. Por lo tanto, son más lentos para correr aplicaciones, pero existe un determinismo en el tiempo, que lo hace ideal para utilizarlos en aplicaciones de tiempo real.
 
@@ -27,24 +27,26 @@ Los diferentes perfiles de familias de uC/uP de ARM son:
 
 ### 2. ¿Por qué se dice que el set de instrucciones Thumb permite mayor densidad de código? Explique. 
 
-Las instrucciones Thumb se refieren a un conjunto de instrucciones de 16 bits diseñadas para mejorar la eficiencia de código y reducir el tamaño de los programas (consumo de memoria) en comparación con las instrucciones de 32 bits tradicionales. Es por esta reazón que se dice que permiten una mayor densidad de código.
+Las instrucciones Thumb se refieren a un conjunto de instrucciones de 16 bits diseñadas para mejorar la eficiencia de código y reducir el tamaño de los programas (consumo de memoria) en comparación con las instrucciones de 32 bits tradicionales. Es por esta rezón que se dice que permiten una mayor densidad de código.
 
 Para indicar que se desea utilizar instrucciones Thumb de 16 bits, se utiliza la directiva ".thumb" al comienzo del archivo de código de ensamblador o antes de la sección específica donde se desea utilizar el conjunto de instrucciones Thumb. A partir de ese punto, todas las instrucciones siguientes serán ensambladas como instrucciones Thumb de 16 bits.
 
-Si se desea utilizar instrucciones ARM de 32 bits, se utiliza la directiva ".arm" para cambiar al modo ARM. A partir de ese punto, todas las instrucciones siguientes se ensamblarán como instrucciones ARM de 32 bits. A partir de ese punto, todas las instrucciones siguientes se ensamblarán como instrucciones ARM de 32 bits.
+Si se desea utilizar instrucciones ARM de 32 bits, se utiliza la directiva ".arm" para cambiar al modo ARM. A partir de ese punto, todas las instrucciones siguientes se ensamblarán como instrucciones ARM de 32 bits.
 
 Además, en las instrucciones Thumb, las banderas se actualizan por defecto. 
 
 ### 3. ¿Qué entiende por arquitectura load-store? ¿Qué tipo de instrucciones no posee este tipo de arquitectura?
 
 En ARM todas las operaciones se realizan entre registros (o entre registro e inmediato). Por lo tanto, en esta arquitectura se dividen las instrucciones en dos categorías principales: 		
-	- Instrucciones de acceso a memoria (carga y almacenamiento entre la memoria y los registros). 
-	- Instrucciones de procesamiento de datos (que solo ocurren entre los registros).
-Arquitecturas RISC, como ARM, PowerPC, SPARC, RISC-V y MIPS son arquitecturas load-store.
-Estas arquitecturas carecen entonces de instrucciones que permitan realizar operaciones de procesamiento de datos con datos que se encuentren en memoria. Por lo tanto, los pasos a seguir en esta situación serían por ejemplo: 
-	1) Cargar el dato de memoria en un registro.
-	2) Realizar la operación de procesamiento entre registros.
-	3) Guardar el dato del registro resultado en memoria.
+
++ Instrucciones de acceso a memoria (carga y almacenamiento entre la memoria y los registros). 
++ Instrucciones de procesamiento de datos (que solo ocurren entre los registros).
+
+Arquitecturas RISC, como ARM, PowerPC, SPARC, RISC-V y MIPS son arquitecturas load-store. Estas arquitecturas carecen entonces de instrucciones que permitan realizar operaciones de procesamiento de datos con datos que se encuentren en memoria. Por lo tanto, los pasos a seguir en esta situación serían por ejemplo: 
+	
+1. Cargar el dato de memoria en un registro.
+2. Realizar la operación de procesamiento entre registros.
+3. Guardar el dato del registro resultado en memoria.
 
 
 ### 4. ¿Cómo es el mapa de memoria de la familia? 
@@ -54,9 +56,9 @@ La memoria es toda continua y todos los periféricos se mapean en ella. Esto no 
 Los procesadores Cortex utilizan una memoria que se dirección por 32 bits, lo que significa que se puede direccionar hasta 4GB de memoria (2^32 = 4.294.967.296 bits). Esta memoria a su vez, se divide en regiones que tienen cada una su propósito y carecterísticas:
 
 + **Code:** almacena el código ejecutable del programa, como instrucciones y datos de solo lectura.
-+ **Data:** almacena datos modificables durante la ejecución del programa, como variables y estructura de datos. Cabe destacar que es memoria estática, es decir, se conoce qué posición de memoria y qué cantidad de memoria tendrá antes de que arranque el programa. 
++ **Data:** almacena datos modificables durante la ejecución del programa, como variables y estructura de datos. Cabe destacar que es memoria estática, es decir, se conoce qué posición de memoria y qué cantidad de memoria tendrá antes del arranque del programa. 
 + **Stack (pila):** almacena los datos de los registros durante las llamadas a funciones y también posee datos de variables locales en las funciones. Es memoria dinámica y se gestiona en tiempo de ejecución. 
-+ **Heap:** almacena datos generados en la aplicación de forma dinámica. Eso se da cuando se utilizan funciones como malloc() en C o new() en C++;
++ **Heap:** almacena datos generados en la aplicación de forma dinámica. Eso se da cuando se utilizan funciones como malloc() en C o new() en C++.
 + **Shared Memory (memoria compartida):** se utiliza para compartir datos entre diferentes componentes y procesos.
 + **Peripheral Memory (memoria de los periféricos):** donde se encuentran mapeados todos los dispositivos periféricos, como puertos de entra/salida (GPIO). 
 
@@ -95,18 +97,18 @@ Esta idea de shadowd pointers trae algunos beneficios:
 El procesador puede operar en uno de dos estados de operación: 
 
 + **Estado Thumb:** es el estado normal donde se ejecutan instrucciones Thumb de 16 y 32 bits.
-+ **Estado Debug:** es el estado cuando el procesador para el debugging. Y es solo posible si el debugger está conectado. 
++ **Estado Debug:** es el estado en el que está el procesador durante el debugging. Y es solo posible si el debugger está conectado. 
 
 Dentro del estado Thumb, el procesador admite dos modos de operación, el **modo Thread** y el **modo Handler**:
 
 + El procesador ingresa al modo Thread en el reset o al volver de manejar una excepción. El código con privilegios y sin privilegios puede ejecutarse en modo Thread.
-+ El procesador ingresa al modo Handler como resultado de una excepción. Todo el código tiene privilegio en el modo Handlers.
++ El procesador ingresa al modo Handler como resultado de una excepción. Todo el código tiene privilegio en el modo Handler.
 
 A continuación, se muestra un diagrama en bloques de los diferentes modos de operación. 
 
 ![Diagrama en bloques de los modos de ejecución.](/IMG_cuestionario/diagrama_modos.png)
 
-Si se quiere pasar de no privilegiado a privilegiado cambiando el bit 0 en el registro de control, el microcontrolador lo va a ignorar. La forma correcta de hacerlo es pidiéndoselo con el llamado de un manejador de excepción. Ejecutando el programa en modo Thread no privilegiado, la unica forma de ponerlo en modo privilegiado o de realizar cualquier cambio que requiera modo privilegiado, es pidiendo ese servicio a un hipotético RTOS. Para esto se incova por software la interrupción SVC (Supervisor Call) y debe hacerse mediante una función en assembler. 
+Si se quiere pasar de no privilegiado a privilegiado cambiando el bit 0 en el registro de control, el microcontrolador lo va a ignorar. La forma correcta de hacerlo es pidiéndoselo con el llamado de un manejador de excepción. Ejecutando el programa en modo Thread no privilegiado, la unica forma de ponerlo en modo privilegiado o de realizar cualquier cambio que requiera modo privilegiado, es pidiendo ese servicio a un hipotético RTOS. Para esto se invoca por software la interrupción SVC (Supervisor Call) y debe hacerse mediante una función en assembler. 
 
 Un programa en modo privilegiado no puede cambiarse solo a modo privilegiado y esto es esencial para proveer una seguridad básica, donde una aplicación no confiable podría corromper todo el sistema.
 
@@ -124,7 +126,7 @@ Se refiere a una característica del conjunto de instrucciones ARM en el que tod
 
 ### 8. ¿Qué ventajas presenta el uso de intrucciones de ejecución condicional (IT)? Dé un ejemplo.
 
-La ventaja del uso de instrucciones de ejecución condicional es que se puede ejecutar códido o no dependiendo de alguna determinada condición. Esto es lo mismo que se logra utlizando secuencias como if, if/else o switch. Se realiza una operación de procesamiento de datos y se setean las banderas o se hace una comparación entre registros que setea automáticamente las banderas. Luego, dependiendo del resultado y las banderas seteadas, es posible ejecutar el código o no. Por ejemplo:
+La ventaja del uso de instrucciones de ejecución condicional es que se puede ejecutar código o no dependiendo de alguna determinada condición. Esto es lo mismo que se logra utlizando secuencias como if, if/else o switch. Se realiza una operación de procesamiento de datos y se setean las banderas o se hace una comparación entre registros que setea automáticamente las banderas. Luego, dependiendo del resultado y las banderas seteadas, es posible ejecutar el código o no. Por ejemplo:
 
 ```
 MOV R0, #10		@ R0 = 10;
@@ -134,7 +136,7 @@ ADDGE R0, R0, #1	@ if(R0 >= R1) { R0++; } // Se ejecutará esta instrucción si 
 
 ```
 
-La condición se estable utilizando sufijos junto al nemónico de la instrucción. Estas condiciones se pueden utilizar junto a todas las instrucciones. 
+La condición se establece utilizando sufijos junto al nemónico de la instrucción. Estas condiciones se pueden utilizar junto a todas las instrucciones. 
 
 
 ### 9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault).
@@ -143,7 +145,7 @@ La condición se estable utilizando sufijos junto al nemónico de la instrucció
 
 + **NMI:** es una interrupción no enmascarable y puede ser señalada por un periférico o desencadenada por software. Está permanentemente habilitada y tiene una prioridad fija de -2. Esta excepción no puede ser enmascarada o impedida su activación por cualquier otra excepción y no puede ser anulada por otra excepción que no sea la de Reset. 
 
-+ **Hardfault:** se produce debido a un error durante la ejecución normal del programa y tiene pioridad fija de -1. Las causas más comunes debido a erroes del usuario son: ejecución de una instrucción no definida, intento de carga o almacenamiento en una dirección no válida o ejecución de una instrucción desde una dirección de memoria. 
++ **Hardfault:** se produce debido a un error durante la ejecución normal del programa y tiene pioridad fija de -1. Las causas más comunes son debido a errores del usuario como: ejecución de una instrucción no definida, intento de carga o almacenamiento en una dirección no válida o ejecución de una instrucción desde una dirección de memoria. 
 
 ### 10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?
 
@@ -159,7 +161,7 @@ Una función recursiva mal diseñada puede aumentar rápidamente el Stack y no l
 
 Es muy importante calcular el tamaño que se necesita para el Stack. Esto es así cuando se utilizan Sistemas Operativos de Tiempo Real y muchos fallos pueden darse por este problema. Es necesario tenerlo en cuenta, primero para que no suceda y si sucede, que la falla sea en modo seguro. Recordar que los sistemas críticos son aquellos de los cuáles dependen vidas humanas. 
 
-Aunque se recomienda no utilizar memoria dinámica en sistemas embebidos, en las arquitecturas más nuevas ocurren una excpeción cuando se llega al límite del Stack. 
+Aunque se recomienda no utilizar memoria dinámica en sistemas embebidos, en las arquitecturas más nuevas ocurre una excpeción cuando se llega al límite del Stack. 
 
 En resumen, las funciones más importantes del Stack son:
 
@@ -177,7 +179,7 @@ En Cortex M existen tres tipos de resets:
 + **Reseteo del sistema:** se resetea solo el procesador y los periféricos.
 + **Reseteo del procesador:** se resetea solo el procesador.
 
-Luego del reseteo y antes de que el procesador comience a ejecutar el programa, se lee las primeras dos palabras de la memoria. El principio de la memoria contiene la tabla de vectores y los dos primeros valores en esta tabla contiene el valor inicial del Stack Pointer (MSP) y el vector de reset, que sería la dirección inicial donde se ecuentra el Handler del reset. Después de leer estas dos palabras, se setea el MSP y el Program Counter (PC) con estos valores. Esto es necesario porque algunas excepciones como NMI o HardDefault podrían ocurrir justo al termina el reset.  
+Luego del reseteo y antes de que el procesador comience a ejecutar el programa, se lee las primeras dos palabras de la memoria. El principio de la memoria contiene la tabla de vectores y los dos primeros valores en esta tabla contiene el valor inicial del Stack Pointer (MSP) y el vector de reset, que sería la dirección inicial donde se ecuentra el Handler del reset. Después de leer estas dos palabras, se setea el MSP y el Program Counter (PC) con estos valores. Esto es necesario porque algunas excepciones como NMI o HardDefault podrían ocurrir justo al terminar el reset.  
 
 En conclusión, el programa no empieza en la función main(), sino en la rutina de inicialización o reset. Seguramente después de main() no haya nada, ninguna instrucción. Va a ver todo 0 en memoria, y se generará una excepción donde seguramente el programa termina. 
 
@@ -190,14 +192,14 @@ Los core peripherals son:
 + **Temporizador del sistema (systick):** es un temporizador de cuenta regresiva de 24 bits. Es utilizado generalmente para establecer la base de tiempos en sistemas operativos de tiempo real. 
 + **Unidad de protección de memoria (MPU):** mejora la confiabilidad del sistema al definir los atributos de memoria para diferentes regiones de memoria.
 
-Estos periféricos están integrados en el núcleo del procesador. La diferencia con el resto de los periféricos como (GPIO, USART, I2C, SPI, CAN, USB, ADCs, DACs y Timers, entre otros) es que estos últimos depende del fabricante qué cantidad quiere agregarle y cuáles. Además, no se encontrarán en el núcleo del procesador sino en su perifería y se comunicará con éste mediante buses de datos paralelos. Es por ello, que las direcciones de memoria en las cuáles estarán mapeados estos periféricos dependerá del microncontrolador (modelo y fabricante). 
+Estos periféricos están integrados en el núcleo del procesador. La diferencia con el resto de los periféricos como (GPIO, USART, I2C, SPI, CAN, USB, ADCs, DACs y Timers, entre otros) es que estos últimos dependen del fabricante qué cantidad quiere agregarle y cuáles. Además, no se encontrarán en el núcleo del procesador sino en su perifería y se comunicarán con éste mediante buses de datos paralelos. Es por ello, que las direcciones de memoria en las cuáles estarán mapeados estos periféricos dependerá del microncontrolador (modelo y fabricante). 
 
 
 ### 13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo. 
 
 Lo primero que tiene la memoria FLASH es el vector de interrupciones y éstas se ordenan por prioridad. Aquí son más prioritarias las primeras (las que tengan el número más bajo). Hay interrupciones que poseen prioridad configurable y otras no. 
 
-Estas prioridades sirven para determinar cuál interrupción se debería atender primera en el caso de que dos o más ocurran al mismo tiempo. 
+Estas prioridades sirven para determinar cuál interrupción se debería atender primero en el caso de que dos o más ocurran al mismo tiempo. 
 
 En este vector de interrupciones no se tiene el manejador en sí, sino la dirección de memoria de la función que la atiende o maneja. 
 
@@ -217,7 +219,7 @@ CMSIS es el estándar de interfaz de software de microcontroladores Cortex. Su o
 
 CMSIS se define en estrecha colaboración con varios proveedores de software y hardware y proporciona un enfoque común para la interfaz con periféricos, sistemas operativos en tiempo real y componentes de software intermedio. Su objetivo es permitir la interoperabilidad de los componentes de software de múltiples proveedores.
 
-Por otra parte, con el tiempo se fue agregando CMSIS-DSP, que permite funciones iguales para el procesamiento digital de señales en todos los microcontroladores ARM. La velocidad con la que se ejecutará esa función dependerá de cada microcontrolador, pero será siempre implementado de la misma manera. 
+Por otra parte, con el tiempo se fue agregando CMSIS-DSP, que permite funciones iguales para el procesamiento digital de señales en todos los microcontroladores ARM. La velocidad con la que se ejecutarán esas funciones dependerá de cada microcontrolador, pero serán siempre implementadas de la misma manera. 
 
 También existe CMSIS-RTOS con lo que se puede utilizar el RTOS en cualquier microcontrolador Cortex (siempre que sus capacidades lo permita) sin cambiar el código. 
 
@@ -232,7 +234,7 @@ Desde que aparece la interrupción hasta que se la atienda y se vuelve a la ejec
 
 Cuando ocurre una excepción, el procesador suspende lo que esté haciendo y ejecuta una parte del programa llamada manejador de la excepción. Luego, de que la ejecución del manejador de la excepción se ha completado, se vuelve a la ejecución normal del programa. 
 
-En el caso de las interrupciones (caso especial de las excepciones) el manejador se conoce como Interrupt Service Rutine (ISR). Estas excepciones son manejadas por el NVIC o el NMI. Cada tipo de excepción tiene asociado un número y es utilizado para determinar la dirección del vector de excepción. Estos vectores son guardados en una tabla de vectores y el procesador lee esta tabla para determinar la dirección en la cuál empieza el manejador de la excepción. 
+En el caso de las interrupciones (caso especial de las excepciones) el manejador se conoce como Interrupt Service Routine (ISR). Estas excepciones son manejadas por el NVIC o el NMI. Cada tipo de excepción tiene asociado un número y es utilizado para determinar la dirección del vector de excepción. Estos vectores son guardados en una tabla de vectores y el procesador lee esta tabla para determinar la dirección en la cuál empieza el manejador de la excepción. 
 
 Todo lo que se ejecute desde el vector de interrupciones se hace en  modo de operación Handler que es siempre en modo privilegiado. 
 
@@ -251,23 +253,23 @@ Cuando se termine de ejecutar este manejador, se volverá al contexto que se est
 
 ### 16. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante?
 
-Existen registros específicos para la FPU que se denominan S#. Para la FPU también hay un registros de estado denominado FPSCR.
+Existen registros específicos para la FPU que se denominan S#. Para la FPU también hay un registro de estado denominado FPSCR.
 
-Si se está utilizando FPU entonces durante el stacking estos registros van a ser guardados automáticamente por el procesador (siempre que en el manejador se utilicen). Si no se utiliza, no los va a guardar. Con esto se ahorra tiempo del procesador. 
+Si se está utilizando FPU entonces durante el stacking estos registros van a ser guardados automáticamente por el procesador (siempre que en el manejador se utilicen). Si no se utilizan, no los va a guardar. Con esto se ahorra tiempo del procesador. 
 
 Esto se configura en el registro de control (bit 2). Lo hace el procesador automáticamente cuando detecta que se ha hecho una operación de punto flotante.
 
-Suponiendo que la aplicación no usa el CPU, pero sí el manejador, lo podría hacer libremente ya que tienen datos basura nomás.
+Suponiendo que la aplicación no usa la FPU, pero sí el manejador, lo podría hacer libremente ya que tienen datos basura nomás.
 
 ### 17. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
 
-Siempre que se esté atendiendo una exepción es posible que parezca otra. Dependiendo la prioridad de la nueva excepción, si es mayor se pasará a atender a ésta nueva. Sino se quedará atendiendo a la que ya estaba hasta que termine. Si sucede este último caso, aparece el concepto de "tail chaning":
+Siempre que se esté atendiendo una exepción es posible que aparezca otra. Dependiendo la prioridad de la nueva excepción, si es mayor se pasará a atender a ésta nueva. Sino se quedará atendiendo a la que ya estaba hasta que termine. Si sucede este último caso, aparece el concepto de "tail chaining":
 
 + **Tail chaining** se da cuando se quiere atender consecutivamente dos excepciones sin sobrecargar al micro con restaurar los contextos  entre las interrupciones. El procesador va a omitir hacer el POP y PUSH de los regsitros cuando termine de manejar la excepción y siga con la otra. No se pasa de modo Handler a modo Thread luego de atender la primera excepción, quedará en modo Handler hasta que termine de atender a todas las excepciones pendientes.
 
 Por otra parte, durante el cambio de contexto se guarda todo el contexto actual (los registros de usos generales (R0-R3, R12, LR), PSR (Program Status Register), registros de unidad de punto flotante, etc.) en el Stack. Este proceso se denomina "stacking".
 
-¿Por qué los otros registros generales no se guardan? Porque se asume que no son necesario y con esto se ahorra tiempo del procesador. Recordar que no se pasan parámetros a los manejadores de excepciones, sino que se guardan para dejarlos disponibles en caso de que se quiera utilizarlos dentro del manejador. 
+¿Por qué los otros registros generales no se guardan? Porque se asume que no son necesarios y con esto se ahorra tiempo del procesador. Recordar que no se pasan parámetros a los manejadores de excepciones, sino que se guardan para dejarlos disponibles en caso de que se quiera utilizarlos dentro del manejador. 
 
 Es necesario hacer una diferencia de lo que ocurre cuando se llama una función, donde se hace una distinción entre registros resguardados y no resguardados. Aquí no se guardan los registros de forma automática porque reduce la eficiencia del procesador. Esto lo maneja el programador. En cambio, durante el stacking, el procesador los guarda automáticamente.
 
@@ -286,29 +288,29 @@ Luego de esto se va hacer un fetch de las intrucciones del manejador. Se hace el
 
 El systick es un temporizador integrado en varios microcontroladores, incluidos los de la familia ARM Cortex M. Su función principal es proporcionar una interrupción periódica al procesador. Esto permite al sistema operativo o al firmware realizar tareas en intervalos de tiempo regulares. Es más que todo importante en sistemas operativos. 
 
-Este temportizador está definido por ARM y es estándar. Por lo tanto, todos los fabricantes deben respetar su diseño para lograr mayor portabilidad.  Es un temporizador de cuenta regresiva de 24 bits con recarga automática. Es decir, cuando llegua a cero, genera una interrupción y se carga un nuevo valor de conteo desde el registro de recarga.
+Este temportizador está definido por ARM y es estándar. Por lo tanto, todos los fabricantes deben respetar su diseño para lograr mayor portabilidad.  Es un temporizador de cuenta regresiva de 24 bits con recarga automática. Es decir, cuando llega a cero, genera una interrupción y se carga un nuevo valor de conteo desde el registro de recarga.
 
-El objetivo principal de este temporizador es generar una interrupción periódica para un sistema operativo en tiempo real (RTOS) u otra aplicación controlada por eventos. Algunos microcontroladores M0 no tiene systick y no son una buena elección para utilizar un RTOS, porque se debería utilizar otro timer y esto puede traer problemas. 
+El objetivo principal de este temporizador es generar una interrupción periódica para un sistema operativo en tiempo real (RTOS) u otra aplicación controlada por eventos. Algunos microcontroladores M0 no tienen systick y no son una buena elección para utilizar un RTOS, porque se debería utilizar otro Timer y esto puede traer problemas. 
 
 Como es un componente estándar en la arquitectura Cortex M, se puede decir que favore la portabilidad para los RTOS. 
 
 
 ### 19. ¿Qué funciones cumple la unidad de protección de memoria (MPU)?
 
-MPU (Memory Protecion Unit) es implementada en Cortex y se utiliza para proteger a la memoria desde una dirección hasta otra dirección determinadas. Poder acceder toda la memoria es solo posible si el modo de ejecución es privilegiado. Cuando una tarea en modo no privilegiado y quiere acceder a un espacio de memoria protegido, se producirá una excepción que la deberá manejar el SO.
+MPU (Memory Protecion Unit) es implementada en Cortex y se utiliza para proteger a la memoria desde una dirección hasta otra dirección determinada. Poder acceder a toda la memoria es solo posible si el modo de ejecución es privilegiado. Cuando una tarea en modo no privilegiado y quiere acceder a un espacio de memoria protegido, se producirá una excepción que la deberá manejar el SO.
 
-Por otra parte, el Heap es memoria dinámica que el programa puede utilizar (recordar la función malloc()) y se ubica apenas termina la memoria estática. En el caso de utilizar la función malloc(), por ejemplo, esta no puede utilizar toda la memoria que quiere. En un SO es necesario primero pedrile memoria, ya que esta la gestiona. En este caso la aplicación trabaja en modo no privilegiado y el SO, que gestiona los recursos del microcontrolado, trabaja en modo privilegiado. Aquí también es un caso donde se utiliza la protección de memoria. 
+Por otra parte, el Heap es memoria dinámica que el programa puede utilizar (recordar la función malloc()) y se ubica apenas termina la memoria estática. En el caso de utilizar la función malloc(), por ejemplo, esta no puede utilizar toda la memoria que quiere. En un SO es necesario primero pedirle a éste memoria, ya que éste la gestiona. En este caso la aplicación trabaja en modo no privilegiado y el SO, que gestiona los recursos del microcontrolado trabaja en modo privilegiado. Aquí también es un caso donde se utiliza la protección de memoria. 
 
 
 ### 20. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las regiones definidas?
 
 En ARM v7 se puede configurar hasta 8 regiones de memoria. Se pueden condigurar regiones bases que van en el background y dentro de cada región se pueden configurar subregiones que van en el foreground.
 
-Cada región y subregión tiene sus permisos de lectura/escritura/ejecución. Toda la configuración se hace a través de unos puntero a posiciones de memoria. La idea es especificar la región, dirección inicial y permisos.
+Cada región y subregión tiene sus permisos de lectura/escritura/ejecución. Toda la configuración se hace a través de unos punteros a posiciones de memoria. La idea es especificar la región, dirección inicial y permisos.
 
-El región no puede tener cualquier tamaño, sino que debe ser un valor específico múltiplo de 128KB. Además, dependiendo del tamaño seleccionado, le corresponderá una dirección de memoria inicial específica. Por ejemplo, si se utiliza una región de 4GB, la dirección inicial debe ser en 0. O si se utiliza una región de 2GB, las direcciones iniciales pueden ser en 0 o en 2GB.
+La región no puede tener cualquier tamaño, sino que debe ser un valor específico múltiplo de 128 KB. Además, dependiendo del tamaño seleccionado, le corresponderá una dirección de memoria inicial específica. Por ejemplo, si se utiliza una región de 4 GB, la dirección inicial debe ser en 0. O si se utiliza una región de 2 GB, las direcciones iniciales pueden ser en 0 o en 2 GB.
 
-Si las regiones se suporponen, no hay problema. Debe tenerse en cuenta la hora del diseño. 
+Si las regiones se suporponen, no hay problema. Debe tenerse en cuenta a la hora del diseño. 
 
 En el caso de que una zona de la memoria no sea asignada a una región definida, se podrá acceder de igual manera. El único problema es que no quedará protegida por la MPU.
 
@@ -352,7 +354,7 @@ void PendSV_Handler(void) {
 
 ### 22. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.
 
-SVC es un mecanismo de excepción proporcionado por el núcleo del procesador ARM Cortex-M. La ejecución de una instrucción SVC genera una llamada de supervisor, que se utiliza para llevar a cabo operaciones privilegiadas desde dentro de un núcleo de sistema operativo.  Esto permite al código de la aplicación acceder a los recursos del procesador y controlarlos.
+SVC es un mecanismo de excepción proporcionado por el núcleo del procesador ARM Cortex-M. La ejecución de una instrucción SVC genera una llamada de supervisor, que se utiliza para llevar a cabo operaciones privilegiadas desde dentro de un núcleo de sistema operativo. Esto permite al código de la aplicación acceder a los recursos del procesador y controlarlos.
 
 Normalmente, en un sistema de alta fiabilidad, la tarea de aplicación se ejecuta en un nivel sin privilegios. Algunos de los recursos de hardware están protegidos y se utiliza una unidad de protección de memoria (MPU) para proteger determinadas regiones de memoria. Si la aplicación intenta acceder directamente a estos recursos protegidos, puede producirse una violación de acceso que provoque una excepción o un fallo. En tales casos, el acceso a los recursos sólo es posible a través de los servicios proporcionados por el sistema operativo. Por lo tanto, la aplicación llama a estos servicios y el SO ejecuta código para llevar a cabo el servicio requerido. El SVC proporciona este mecanismo de servicio. El código de servicio se encuentra en el controlador de excepciones SVC, que se activa mediante la instrucción SVC.
 
@@ -370,7 +372,7 @@ Los sufijos se utilizan junto a los nemónicos para modificar el comportamiento 
 
 ### 2. ¿Para qué se utiliza el sufijo ‘S’? Dé un ejemplo. 
 
-En la arquitectura ARM se tienen banderas que almacenan información referida a la última operación realizada por la ALU (siempre que se haya habilitado en la instrucción). Estas banderas generalmente son 4 y se encuentran en el Current Program Status Register (CPSR). Se pueden modificar cuando se utilizan instrucciones de procesamiento de datos, agregando el sufjo ‘S’ al nemónico. Las banderas son las siguientes:
+En la arquitectura ARM se tienen banderas que almacenan información referida a la última operación realizada por la ALU (siempre que se haya habilitado en la instrucción). Estas banderas son 5 y se encuentran en el Current Program Status Register (CPSR). Se pueden modificar cuando se utilizan instrucciones de procesamiento de datos, agregando el sufjo ‘S’ al nemónico. Las banderas son las siguientes:
 
 + **Bandera N (negativo):** permite evaluar si un número es negativo, tomando el estado del bit 31 del resultado.
 + **Bandera V (desborde o overflow):** permite determinar luego de una operación con signo, si el resultado sufrió desborde. Se verifica el acarreo del bit 30 y del bit 31 (ocurre desborde si no son iguales).
@@ -415,7 +417,7 @@ Esta funcionalidad se podría realizar por software, pero es aconsejable utiliza
 
 ### 4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?
 
-Es posible escribir código Assembly junto al código en C y esto se conoce como "Assembly inline". Sin embargo, en general se utilizan archivos separados para escribir código en Assembly. Estos archivos pueen ser con extensión ".s" ó ".S". La diferencia está en que el segundo, el ensamblador pasa primero el código por el pre-procesador de C y esto permite enotnces incluir archivos header con "#include" y utlizar constantes definidas con "#define".
+Es posible escribir código Assembly junto al código en C y esto se conoce como "Assembly inline". Sin embargo, en general se utilizan archivos separados para escribir código en Assembly. Estos archivos pueden ser con extensión ".s" ó ".S". La diferencia está en que el segundo, el ensamblador pasa primero el código por el pre-procesador de C y esto permite enotnces incluir archivos header con "#include" y utlizar constantes definidas con "#define".
 
 El código de DSP (Digital Signal Processing) se suele hacer en Assembly, ya que es mucho más eficiente. Tener en cuenta que cuando uno escribre código en Assembly, no escribe programas enteros, sino que optimiza funciones específicas. 
 
@@ -430,9 +432,9 @@ __asm volatile(“ MOV R0, %0“ :: “r”(variable)); // se re-asignan los par
 
 ```
 
-Por otra pate, los "intrinsics" permiten llamar a funciones de Assembly desde el código en C. Esto es una gran ventaja, porque sepodría utilizar la función USAT (de aritmética saturada) en C. 
+Por otra pate, los "intrinsics" permiten llamar a funciones de Assembly desde el código en C. Esto es una gran ventaja, porque se podría utilizar la función USAT (de aritmética saturada) en C. 
 
-Por último, y como se nombró anteriormente, se utiliza la convención "Procedure Call Standard" para establecer como se pasan los parámetros a funciones y cómo estas devuelven los valores de retorno. Siguiente estos criterios, los parámteros se pasan a las funciones en los registros R0, R1, R2 y R3, y en el caso de haber más de 4 parámetros, se pasan a través del Stack. Y los valores de retorno se guardan en R0 antes de salir de la función. 
+Por último, y como se nombró anteriormente, se utiliza la convención "Procedure Call Standard" para establecer como se pasan los parámetros a funciones y cómo éstas devuelven los valores de retorno. Siguiendo estos criterios, los parámteros se pasan a las funciones en los registros R0, R1, R2 y R3, y en el caso de haber más de 4 parámetros, se pasan a través del Stack. Y el valor de retorno se guarda en R0 antes de salir de la función. 
 
 Como una función no debe afectar ningún registro o zona de memoria utilizada por el programa que llamó a la función, la función llamada deberá guardar en el Stack los registros utilizados dentro de la misma para recuperar su valor antes de retornar el programa a la función que la llamó. 
 
